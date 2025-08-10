@@ -6,18 +6,24 @@ import Sidebar from './components/Sidebar';
 import Contact from './components/Contact';
 import Project from './components/Project';
 
+// Rasmni import qilamiz
+import bodyBg from './assets/homeImg/bodybg.png';
+
 function App() {
   return (
-    <div
-    >
+    <div>
       <Header />
       <div className="flex flex-row min-h-screen">
         <Sidebar />
         <main
           style={{
-            backgroundImage: "url('/src/assets/homeImg/bodybg.png')"
+            backgroundImage: `url(${bodyBg})`, // import qilingan rasmni shu yerda ishlatamiz
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
-          className="w-full">
+          className="w-full"
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
