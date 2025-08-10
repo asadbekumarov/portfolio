@@ -4,7 +4,6 @@ import Home from './components/Home';
 import About from './pages/About';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
-import Project from './components/project';
 import Contact from './components/Contact';
 
 function App() {
