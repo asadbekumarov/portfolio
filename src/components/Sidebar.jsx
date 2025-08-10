@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
 import profileImg from '../assets/sidebarImg/ozm.jpg';
@@ -13,7 +12,7 @@ import {
     containerStagger,
     cardFadeUp,
     hoverScale,
-} from '../utils/animations'; 
+} from '../utils/animations';
 
 function Sidebar() {
     const contacts = [

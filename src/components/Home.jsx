@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCode } from "react-icons/fa";
 import { GoPeople, GoClock } from "react-icons/go";
@@ -9,7 +8,7 @@ import {
     cardFadeUp,
     titleFade,
     fadeIn,
-} from '../utils/animations'; 
+} from '../utils/animations';
 
 function Home() {
     const stats = [
@@ -56,7 +55,7 @@ function Home() {
                     animate="visible"
                     variants={fadeIn(0.3)}
                 >
-                    Veb dasturchi va dizayner sifatida natijaga yo'naltirilgan ishchi.
+                    Veb dasturchi va dizayner sifatida natijaga yo&apos;naltirilgan ishchi.
                     Veb-saytlar va veb-ilovalarni yaratish va boshqarish orqali umumiy mahsulot muvaffaqiyatiga erishish maqsadimdir.
                 </motion.p>
 

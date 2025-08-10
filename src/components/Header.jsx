@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 function Header() {
@@ -24,7 +23,7 @@ function Header() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/aboutme" className={linkClasses}>
+                            <NavLink to="/aboutMe" className={linkClasses}>
                                 Haqida
                             </NavLink>
                         </li>
@@ -35,7 +34,7 @@ function Header() {
                         </li>
                         <li>
                             <NavLink to="/contact" className={linkClasses}>
-                                Bog’lanish
+                                Bog&apos;lanish
                             </NavLink>
                         </li>
                     </ul>
