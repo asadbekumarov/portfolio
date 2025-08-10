@@ -1,5 +1,12 @@
 import { FiGithub } from "react-icons/fi"
 import { motion } from "framer-motion"
+
+// Import all images
+import projectImg from '../assets/projectsImg/image.png';
+import telegramImg from '../assets/projectsImg/telegram.png';
+import windImg from '../assets/projectsImg/wind.png';
+import megaphoneImg from '../assets/projectsImg/megaphone.png';
+
 import {
     titleFade,
     lineGrow,
@@ -14,7 +21,7 @@ const projects = [
     {
         title: "Online store",
         tag: "E-commerce",
-        img: "./src/assets/projectsImg/image.png",
+        img: projectImg,
         desc: "To'lov integratsiyasi va foydalanuvchilarni boshqarish bilan to'liq xususiyatli elektron tijorat platformasi",
         stack: ["React.js", "TailwindCSS", "PHP", "MySQL"],
         live: "#",
@@ -23,7 +30,7 @@ const projects = [
     {
         title: "Portfolio website",
         tag: "Frontend",
-        img: "./src/assets/projectsImg/image.png",
+        img: projectImg,
         desc: "Shaxsiy portfolio va blog platformasi, zamonaviy dizayn va responsive UI bilan",
         stack: ["Next.js", "TailwindCSS", "Framer Motion"],
         live: "#",
@@ -32,8 +39,8 @@ const projects = [
     {
         title: "Weather App",
         tag: "Utility",
-        img: "./src/assets/projectsImg/image.png",
-        desc: "Shaharlar bo‘yicha real vaqt ob-havo ma’lumotlarini ko‘rsatadigan React ilova",
+        img: projectImg,
+        desc: "Shaharlar bo'yicha real vaqt ob-havo ma'lumotlarini ko'rsatadigan React ilova",
         stack: ["React.js", "API", "TailwindCSS"],
         live: "#",
         github: "#"
@@ -158,7 +165,7 @@ function Project() {
                             className="flex rounded-lg w-36 h-36 items-center justify-center"
                         >
                             <img
-                                src="./src/assets/projectsImg/telegram.png"
+                                src={telegramImg}
                                 alt="telegram"
                                 className="w-36 h-36 object-contain"
                             />
@@ -186,14 +193,14 @@ function Project() {
                             initial={{ rotate: -10, opacity: 0 }}
                             whileInView={{ rotate: 0, opacity: 0.8 }}
                             transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
-                            src="./src/assets/projectsImg/wind.png"
+                            src={windImg}
                             alt="wind"
                             className="absolute -top-7 -left-28 w-44 h-44 object-contain"
                         />
                         <motion.img
                             whileHover={{ rotate: 10, scale: 1.05 }}
                             transition={{ type: "spring", stiffness: 150 }}
-                            src="./src/assets/projectsImg/megaphone.png"
+                            src={megaphoneImg}
                             alt="megaphone"
                             className="w-28 h-28 sm:w-40 sm:h-40 object-contain relative z-10"
                         />

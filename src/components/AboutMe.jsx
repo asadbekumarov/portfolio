@@ -4,6 +4,25 @@ import { FaCode } from "react-icons/fa";
 import { GoPeople, GoClock } from "react-icons/go";
 import { PiMedalThin } from "react-icons/pi";
 
+// Import all images
+import htmlImg from '../assets/aboutmeImg/html.svg';
+import cssImg from '../assets/aboutmeImg/css.svg';
+import jsImg from '../assets/aboutmeImg/js.svg';
+import scssImg from '../assets/aboutmeImg/scss.png';
+import reactImg from '../assets/aboutmeImg/react.svg';
+import tailwindImg from '../assets/aboutmeImg/tailwind.svg';
+import nextImg from '../assets/aboutmeImg/next.jpg';
+import typescriptImg from '../assets/aboutmeImg/typescript.svg';
+import reduxImg from '../assets/aboutmeImg/redux.svg';
+import bootstrapImg from '../assets/aboutmeImg/bootstrap.png';
+import androidImg from '../assets/aboutmeImg/and.svg';
+import reactQueryImg from '../assets/aboutmeImg/reactquery.webp';
+import seoImg from '../assets/aboutmeImg/seo.png';
+import designImg from '../assets/aboutmeImg/dizayn.png';
+import qualityImg from '../assets/aboutmeImg/sifat.png';
+import fastImg from '../assets/aboutmeImg/tezkor.png';
+import milliyImg from '../assets/aboutmeImg/milliy.png';
+
 import {
     fadeIn,
     fadeUp,
@@ -15,18 +34,18 @@ import {
 } from '../utils/animations';
 
 const tools = [
-    { img: './src/assets/aboutmeImg/html.svg', name: 'HTML' },
-    { img: './src/assets/aboutmeImg/css.svg', name: 'CSS' },
-    { img: './src/assets/aboutmeImg/js.svg', name: 'JavaScript' },
-    { img: './src/assets/aboutmeImg/scss.png', name: 'SCSS' },
-    { img: './src/assets/aboutmeImg/react.svg', name: 'React' },
-    { img: './src/assets/aboutmeImg/tailwind.svg', name: 'Tailwind' },
-    { img: './src/assets/aboutmeImg/next.jpg', name: 'Next.js' },
-    { img: './src/assets/aboutmeImg/typescript.svg', name: 'TypeScript' },
-    { img: './src/assets/aboutmeImg/redux.svg', name: 'Redux' },
-    { img: './src/assets/aboutmeImg/bootstrap.png', name: 'Bootstrap' },
-    { img: './src/assets/aboutmeImg/and.svg', name: 'Android' },
-    { img: './src/assets/aboutmeImg/reactquery.webp', name: 'React Query' },
+    { img: htmlImg, name: 'HTML' },
+    { img: cssImg, name: 'CSS' },
+    { img: jsImg, name: 'JavaScript' },
+    { img: scssImg, name: 'SCSS' },
+    { img: reactImg, name: 'React' },
+    { img: tailwindImg, name: 'Tailwind' },
+    { img: nextImg, name: 'Next.js' },
+    { img: typescriptImg, name: 'TypeScript' },
+    { img: reduxImg, name: 'Redux' },
+    { img: bootstrapImg, name: 'Bootstrap' },
+    { img: androidImg, name: 'Android' },
+    { img: reactQueryImg, name: 'React Query' },
 ];
 
 function AboutMe() {
@@ -174,19 +193,19 @@ function AboutMe() {
                     />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {[{
-                            img: "./src/assets/aboutmeImg/seo.png",
+                            img: seoImg,
                             title: "Seo",
                             desc: "Qidiruv tizimining natijalarida sayt reytingini yaxshilash",
                         }, {
-                            img: "./src/assets/aboutmeImg/dizayn.png",
+                            img: designImg,
                             title: "Dizayn",
                             desc: "Veb-saytlar va ilovalar uchun zamonaviy dizayn yaratish",
                         }, {
-                            img: "./src/assets/aboutmeImg/sifat.png",
+                            img: qualityImg,
                             title: "Sifat",
                             desc: "Veb-saytlar va ilovalar uchun yuqori sifatli kontent yaratish",
                         }, {
-                            img: "./src/assets/aboutmeImg/tezkor.png",
+                            img: fastImg,
                             title: "Tezkor",
                             desc: "Veb-saytlar va ilovalar uchun tezkor yechimlar taklif qilish",
                         }].map(({ img, title, desc }, i) => (
@@ -231,7 +250,7 @@ function AboutMe() {
                                 whileHover={hoverScale.whileHover}
                                 className="bg-[#1B1B1B] rounded-xl py-10 border border-gray-600 flex items-center justify-center cursor-pointer shadow hover:shadow-lg transition-shadow duration-300"
                             >
-                                <img className='w-24 h-24 object-contain' src="./src/assets/aboutmeImg/milliy.png" alt="Milliy Mijoz" />
+                                <img className='w-24 h-24 object-contain' src={milliyImg} alt="Milliy Mijoz" />
                             </motion.div>
                         ))}
                     </div>

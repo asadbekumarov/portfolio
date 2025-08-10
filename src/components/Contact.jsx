@@ -1,21 +1,26 @@
 import { motion } from 'framer-motion';
 
+// Import all images
+import gmailIcon from '../assets/contactImg/gmail.svg';
+import telegramIcon from '../assets/contactImg/telegram.svg';
+import phoneIcon from '../assets/contactImg/telefon.svg';
+
 function Contact() {
     const contacts = [
         {
-            icon: "./src/assets/contactImg/gmail.svg",
+            icon: gmailIcon,
             title: "E-pochta",
             value: "pubgn9642@gmail.com",
             link: "mailto:pubgn9642@gmail.com"
         },
         {
-            icon: "./src/assets/contactImg/telegram.svg",
+            icon: telegramIcon,
             title: "Telegram",
             value: "t.me/mryaxyobek",
             link: "https://t.me/mryaxyobek"
         },
         {
-            icon: "./src/assets/contactImg/telefon.svg",
+            icon: phoneIcon,
             title: "Telefon raqam",
             value: "+998 (20) 007-77-29",
             link: "tel:+998200077729"
