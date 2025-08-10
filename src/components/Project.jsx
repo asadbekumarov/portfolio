@@ -2,7 +2,10 @@ import { FiGithub } from "react-icons/fi"
 import { motion } from "framer-motion"
 
 // Import all images
-import projectImg from '../assets/projectsImg/image.png';
+import milliy from '../assets/projectsImg/milliy.jpg';
+import portfolio from '../assets/projectsImg/portfolio.jpg';
+import autoquiz from '../assets/projectsImg/autoquiz.jpg';
+
 import telegramImg from '../assets/projectsImg/telegram.png';
 import windImg from '../assets/projectsImg/wind.png';
 import megaphoneImg from '../assets/projectsImg/megaphone.png';
@@ -19,31 +22,31 @@ import {
 
 const projects = [
     {
-        title: "Online store",
-        tag: "E-commerce",
-        img: projectImg,
-        desc: "To'lov integratsiyasi va foydalanuvchilarni boshqarish bilan to'liq xususiyatli elektron tijorat platformasi",
+        title: "Milliy It center",
+        tag: "Marketing agency",
+        img: milliy,
+        desc: "Marketing agentligi — brendlaringizni rivojlantirish, raqamli strategiyalar yaratish va mijozlarga samarali marketing xizmatlarini taqdim etishga ixtisoslashgan mutaxassislar jamoasi.",
         stack: ["React.js", "TailwindCSS", "PHP", "MySQL"],
-        live: "#",
-        github: "#"
+        live: "https://milliyitcenter.uz/",
+        github: "https://github.com/asadbekumarov/Milliy-IT-center"
     },
     {
         title: "Portfolio website",
-        tag: "Frontend",
-        img: projectImg,
+        tag: "Portfolio",
+        img: portfolio,
         desc: "Shaxsiy portfolio va blog platformasi, zamonaviy dizayn va responsive UI bilan",
         stack: ["Next.js", "TailwindCSS", "Framer Motion"],
-        live: "#",
-        github: "#"
+        live: "https://portfolio-ivory-seven-88.vercel.app/",
+        github: "https://github.com/asadbekumarov/portfolio"
     },
     {
-        title: "Weather App",
-        tag: "Utility",
-        img: projectImg,
-        desc: "Shaharlar bo'yicha real vaqt ob-havo ma'lumotlarini ko'rsatadigan React ilova",
-        stack: ["React.js", "API", "TailwindCSS"],
-        live: "#",
-        github: "#"
+        title: "AutoQuiz",
+        tag: "Edtech ",
+        img: autoquiz,
+        desc: "AutoQuiz platforma — o‘qituvchilarga testlar yaratish va boshqarish imkonini beruvchi innovatsion ta’lim vositasi",
+        stack: ["React.js", "TailwindCSS"],
+        live: "https://auto-quiz-liard.vercel.app/",
+        github: "https://github.com/asadbekumarov/autoQuiz"
     }
 ]
 
@@ -63,7 +66,7 @@ function Project() {
                         className="text-5xl font-extrabold mb-2 tracking-tight"
                         variants={titleFade}
                     >
-                        Aloqa
+                        Loyihalar
                     </motion.h2>
                     <motion.div
                         className="w-32 h-2 rounded-full bg-green-500 mb-10"
@@ -180,7 +183,7 @@ function Project() {
                             </p>
                             <motion.a
                                 {...hoverScale}
-                                href="#"
+                                href="https://t.me/Choyxona_IT"
                                 className="text-center bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium shadow-md transition duration-300 text-sm sm:text-base"
                             >
                                 Ta’shrif buyurish

@@ -70,7 +70,6 @@ function Sidebar() {
                     variants={fadeUp}
                 >
                     <p className="text-gray-400">Veb dasturchi</p>
-                    <p className="text-gray-400">Frontend va Backend dasturchi</p>
                     <p className="text-gray-400">Copywriting</p>
                     <p className="text-gray-400">SEO</p>
                 </motion.div>

@@ -14,12 +14,12 @@ function Home() {
     const stats = [
         {
             icon: <FaCode className="mx-auto text-green-500 text-5xl mb-2" />,
-            number: '50+',
+            number: '4+',
             label: 'Loyihalar',
         },
         {
             icon: <GoPeople className="mx-auto text-green-500 text-5xl mb-2" />,
-            number: '30+',
+            number: '2+',
             label: 'Mijozlar',
         },
         {
@@ -55,8 +55,7 @@ function Home() {
                     animate="visible"
                     variants={fadeIn(0.3)}
                 >
-                    Veb dasturchi va dizayner sifatida natijaga yo&apos;naltirilgan ishchi.
-                    Veb-saytlar va veb-ilovalarni yaratish va boshqarish orqali umumiy mahsulot muvaffaqiyatiga erishish maqsadimdir.
+                    Veb dasturchi va dizayner sifatida, samarali va natijaga yo‘naltirilgan yechimlar yaratishga intilaman. Veb-saytlar hamda veb-ilovalarni ishlab chiqish va boshqarish orqali, foydalanuvchi tajribasini mukammallashtirish va mahsulot muvaffaqiyatini ta’minlash mening asosiy maqsadimdir.
                 </motion.p>
 
                 {/* Statistik kartalar */}

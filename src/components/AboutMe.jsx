@@ -32,6 +32,7 @@ import {
     titleFade,
     lineGrow,
 } from '../utils/animations';
+import { Link } from 'react-router-dom';
 
 const tools = [
     { img: htmlImg, name: 'HTML' },
@@ -76,16 +77,17 @@ function AboutMe() {
                         className="text-gray-300 text-lg leading-relaxed"
                         variants={fadeIn(0.2)}
                     >
-                        Men Habibulloyev Yaxyobek veb dasturchisiman. Yoshim 18 da, Andijon viloyati Oltinko&apos;l tumanida tug&apos;ilganman...
-                    </motion.p>
-                    <motion.button
-                        className="mt-8 bg-green-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300 shadow-lg"
-                        variants={fadeIn(0.4)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Bog&apos;lanish
-                    </motion.button>
+                        Men Asadbek, 18 yoshdaman. Veb dasturchiman va zamonaviy texnologiyalar yordamida oddiy, samarali veb-loyihalar yarataman. Doim o‘rganishga ochiqman va yangi bilimlarni amaliyotda qo‘llashga intilaman.                                          </motion.p>
+                    <Link  to="/contact">
+                        <motion.button
+                            className="mt-8 bg-green-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300 shadow-lg"
+                            variants={fadeIn(0.4)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Bog&apos;lanish
+                        </motion.button>
+                    </Link>
                 </motion.div>
 
                 {/* Stats section */}
@@ -98,11 +100,11 @@ function AboutMe() {
                 >
                     {[{
                         icon: <FaCode className="mx-auto text-green-500 text-5xl mb-2" />,
-                        number: '50+',
+                        number: '4+',
                         label: 'Loyihalar',
                     }, {
                         icon: <GoPeople className="mx-auto text-green-500 text-5xl mb-2" />,
-                        number: '30+',
+                        number: '2+',
                         label: 'Mijozlar',
                     }, {
                         icon: <PiMedalThin className="mx-auto text-green-500 text-5xl mb-2" />,
