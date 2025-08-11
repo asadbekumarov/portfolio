@@ -1,3 +1,66 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom responsive utilities */
+@layer utilities {
+
+    /* Smooth transitions for responsive elements */
+    .transition-responsive {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Mobile-first responsive spacing */
+    .responsive-padding {
+        @apply px-4 sm:px-6 lg:px-8;
+    }
+
+    .responsive-margin {
+        @apply my-4 sm:my-6 lg:my-8;
+    }
+
+    /* Responsive text sizing */
+    .responsive-text {
+        @apply text-sm sm:text-base md:text-lg;
+    }
+
+    .responsive-heading {
+        @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+    }
+
+    /* Responsive grid layouts */
+    .responsive-grid {
+        @apply grid gap-4 sm:gap-6 md:gap-8;
+    }
+
+    /* Responsive card layouts */
+    .responsive-card {
+        @apply p-4 sm:p-6 md:p-8;
+    }
+}
+
+/* Smooth scrolling for better mobile experience */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 640px) {
+
+    button,
+    a,
+    input,
+    textarea {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Improved focus states for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+    /* outline: 2px solid #10b981;   */
+    outline-offset: 2px;
+}

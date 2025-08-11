@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
       <Header />
-      <div className="flex flex-row min-h-screen">
+      <div className="flex flex-col lg:flex-row min-h-screen">
         <Sidebar />
         <main
           style={{
@@ -22,7 +22,7 @@ function App() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
-          className="w-full"
+          className="w-full lg:ml-0"
         >
           <Routes>
             <Route path="/" element={<Home />} />

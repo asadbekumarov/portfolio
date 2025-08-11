@@ -49,7 +49,7 @@
 //     return (
 //         <section className="px-6 py-12 min-h-screen text-white">
 //             <div className="max-w-7xl mx-auto w-full">
-//                 {/* Aloqa bo‘limi */}
+//                 {/* Aloqa bo'limi */}
 //                 <motion.h2
 //                     className="text-5xl font-extrabold mb-2 tracking-tight"
 //                     initial={{ opacity: 0, y: -20 }}
@@ -89,7 +89,7 @@
 //                     ))}
 //                 </div>
 
-//                 {/* So‘rov yuborish bo‘limi */}
+//                 {/* So'rov yuborish bo'limi */}
 //                 <motion.h2
 //                     className="text-5xl font-extrabold mb-2 tracking-tight"
 //                     initial={{ opacity: 0, y: -20 }}
@@ -97,7 +97,7 @@
 //                     viewport={{ once: true }}
 //                     transition={{ duration: 0.5 }}
 //                 >
-//                     So’rov yuborish
+//                     So'rov yuborish
 //                 </motion.h2>
 //                 <motion.div
 //                     className="w-32 h-2 rounded-full bg-green-500 mb-10"
@@ -220,7 +220,7 @@ function Contact() {
     // Validation error state
     const [errors, setErrors] = useState({});
 
-    // Input o‘zgarishini boshqarish
+    // Input o'zgarishini boshqarish
     const handleChange = (e) => {
         setFormData(prev => ({
             ...prev,
@@ -238,7 +238,7 @@ function Contact() {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(formData.email)) newErrors.email = "Yaroqli email kiriting";
         }
-        if (!formData.message.trim()) newErrors.message = "Xabar bo‘sh bo‘lishi mumkin emas";
+        if (!formData.message.trim()) newErrors.message = "Xabar bo'sh bo'lishi mumkin emas";
         return newErrors;
     };
 
@@ -258,11 +258,11 @@ function Contact() {
     };
 
     return (
-        <section className="px-6 py-12 min-h-screen text-white">
+        <section className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 min-h-screen text-white">
             <div className="max-w-7xl mx-auto w-full">
-                {/* Aloqa bo‘limi */}
+                {/* Aloqa bo'limi */}
                 <motion.h2
-                    className="text-5xl font-extrabold mb-2 tracking-tight"
+                    className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 tracking-tight"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -270,20 +270,20 @@ function Contact() {
                     Aloqa
                 </motion.h2>
                 <motion.div
-                    className="w-32 h-2 rounded-full bg-green-500 mb-10"
+                    className="w-24 sm:w-32 h-2 rounded-full bg-green-500 mb-8 sm:mb-10"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 0.5 }}
                 ></motion.div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16">
                     {contacts.map((contact, index) => (
                         <motion.a
                             key={index}
                             href={contact.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-6 bg-[#1B1B1B] border border-gray-700 rounded-xl shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center hover:border-green-500"
+                            className="p-4 sm:p-6 bg-[#1B1B1B] border border-gray-700 rounded-xl shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center text-center hover:border-green-500"
                             variants={cardVariants}
                             initial="hidden"
                             animate="visible"
@@ -292,26 +292,26 @@ function Contact() {
                             <img
                                 src={contact.icon}
                                 alt={contact.title}
-                                className="w-12 h-12 mb-4"
+                                className="w-10 h-10 sm:w-12 sm:h-12 mb-3 sm:mb-4"
                             />
-                            <h3 className="text-xl font-semibold mb-2">{contact.title}</h3>
-                            <p className="text-zinc-300">{contact.value}</p>
+                            <h3 className="text-lg sm:text-xl font-semibold mb-2">{contact.title}</h3>
+                            <p className="text-zinc-300 text-sm sm:text-base">{contact.value}</p>
                         </motion.a>
                     ))}
                 </div>
 
-                {/* So‘rov yuborish bo‘limi */}
+                {/* So'rov yuborish bo'limi */}
                 <motion.h2
-                    className="text-5xl font-extrabold mb-2 tracking-tight"
+                    className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 tracking-tight"
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    So’rov yuborish
+                    So'rov yuborish
                 </motion.h2>
                 <motion.div
-                    className="w-32 h-2 rounded-full bg-green-500 mb-10"
+                    className="w-24 sm:w-32 h-2 rounded-full bg-green-500 mb-8 sm:mb-10"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
@@ -320,60 +320,60 @@ function Contact() {
 
                 <motion.form
                     onSubmit={handleSubmit}
-                    className="space-y-6 bg-[#1B1B1B] border border-gray-700 p-6 rounded-xl shadow-lg"
+                    className="space-y-4 sm:space-y-6 bg-[#1B1B1B] border border-gray-700 p-4 sm:p-6 rounded-xl shadow-lg"
                     variants={formVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     noValidate
                 >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
-                            <label className="block mb-2 font-medium" htmlFor="name">Ismingiz*</label>
+                            <label className="block mb-2 font-medium text-sm sm:text-base" htmlFor="name">Ismingiz*</label>
                             <input
                                 id="name"
                                 type="text"
                                 placeholder="Ismingizni kiriting"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className={`w-full p-3 rounded-lg bg-[#0F0F0F] border ${errors.name ? 'border-red-500' : 'border-gray-700'} focus:border-green-500 outline-none`}
+                                className={`w-full p-3 rounded-lg bg-[#0F0F0F] border ${errors.name ? 'border-red-500' : 'border-gray-700'} focus:border-green-500 outline-none text-sm sm:text-base`}
                                 aria-describedby="name-error"
                             />
-                            {errors.name && <p id="name-error" className="text-red-500 mt-1 text-sm">{errors.name}</p>}
+                            {errors.name && <p id="name-error" className="text-red-500 mt-1 text-xs sm:text-sm">{errors.name}</p>}
                         </div>
 
                         <div>
-                            <label className="block mb-2 font-medium" htmlFor="email">Manzilingiz*</label>
+                            <label className="block mb-2 font-medium text-sm sm:text-base" htmlFor="email">Manzilingiz*</label>
                             <input
                                 id="email"
                                 type="email"
                                 placeholder="misol@gmail.com"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className={`w-full p-3 rounded-lg bg-[#0F0F0F] border ${errors.email ? 'border-red-500' : 'border-gray-700'} focus:border-green-500 outline-none`}
+                                className={`w-full p-3 rounded-lg bg-[#0F0F0F] border ${errors.email ? 'border-red-500' : 'border-gray-700'} focus:border-green-500 outline-none text-sm sm:text-base`}
                                 aria-describedby="email-error"
                             />
-                            {errors.email && <p id="email-error" className="text-red-500 mt-1 text-sm">{errors.email}</p>}
+                            {errors.email && <p id="email-error" className="text-red-500 mt-1 text-xs sm:text-sm">{errors.email}</p>}
                         </div>
                     </div>
 
                     <div>
-                        <label className="block mb-2 font-medium" htmlFor="message">Xabaringiz*</label>
+                        <label className="block mb-2 font-medium text-sm sm:text-base" htmlFor="message">Xabaringiz*</label>
                         <textarea
                             id="message"
                             rows="4"
                             placeholder="Xabaringizni kiriting"
                             value={formData.message}
                             onChange={handleChange}
-                            className={`w-full p-3 rounded-lg bg-[#0F0F0F] border ${errors.message ? 'border-red-500' : 'border-gray-700'} focus:border-green-500 outline-none resize-none`}
+                            className={`w-full p-3 rounded-lg bg-[#0F0F0F] border ${errors.message ? 'border-red-500' : 'border-gray-700'} focus:border-green-500 outline-none resize-none text-sm sm:text-base`}
                             aria-describedby="message-error"
                         ></textarea>
-                        {errors.message && <p id="message-error" className="text-red-500 mt-1 text-sm">{errors.message}</p>}
+                        {errors.message && <p id="message-error" className="text-red-500 mt-1 text-xs sm:text-sm">{errors.message}</p>}
                     </div>
 
                     <motion.button
                         type="submit"
-                        className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold shadow-md transition duration-300 w-full sm:w-auto"
+                        className="bg-green-500 hover:bg-green-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold shadow-md transition duration-300 w-full sm:w-auto text-sm sm:text-base"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
