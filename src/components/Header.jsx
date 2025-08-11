@@ -63,9 +63,9 @@ function Header() {
 
     return (
         <motion.header
-            className={`sticky top-0 z-50 ${isScrolled ? 'bg-[#27272a]/95 backdrop-blur-md shadow-lg' : 'bg-[#27272a]'} transition-all duration-300`}
+            className={`sticky top-0 z-50 ${isScrolled ? 'bg-[#27272a] ' : 'bg-[#27272a]'} transition-all duration-300`}
         >
-            <div className="relative flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3">
+            <div className="relative flex justify-between items-center px-4 sm:px-6 lg:px-8 py-[19px]">
                 {/* Logo */}
                 <motion.h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white">
                     <NavLink to="/">Umarov Asadbek</NavLink>
