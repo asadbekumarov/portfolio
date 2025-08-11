@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 
 // Import all images
 import milliy from '../assets/projectsImg/milliy.jpg';
-import portfolio from '../assets/projectsImg/portfolio.jpg';
+import abdullohsayfidinov from '../assets/projectsImg/abdullohsayfidinov.jpg';
 import autoquiz from '../assets/projectsImg/autoquiz.jpg';
 
 import telegramImg from '../assets/projectsImg/telegram.png';
@@ -31,13 +31,13 @@ const projects = [
         github: "https://github.com/asadbekumarov/Milliy-IT-center"
     },
     {
-        title: "Portfolio website",
-        tag: "Portfolio",
-        img: portfolio,
+        title: "Abdulloh Sayfuddinov",
+        tag: "Personal brand website",
+        img: abdullohsayfidinov,
         desc: "Shaxsiy portfolio va blog platformasi, zamonaviy dizayn va responsive UI bilan",
-        stack: ["Next.js", "TailwindCSS", "Framer Motion"],
-        live: "https://portfolio-ivory-seven-88.vercel.app/",
-        github: "https://github.com/asadbekumarov/portfolio"
+        stack: ["React.tsx", "TailwindCSS", "Aos animation"],
+        live: "https://abdullohsayfuddinov.vercel.app/",
+        github: "https://abdullohsayfuddinov.vercel.app/"
     },
     {
         title: "AutoQuiz",

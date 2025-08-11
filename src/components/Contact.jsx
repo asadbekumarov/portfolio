@@ -174,8 +174,8 @@ function Contact() {
         {
             icon: gmailIcon,
             title: "E-pochta",
-            value: "asadbekumarov@gmail.com",
-            link: "mailto:asadbekumarov@gmail.com"
+            value: "asadbekumarov922@gmail.com",
+            link: "mailto:asadbekumarov922@gmail.com"
         },
         {
             icon: telegramIcon,
