@@ -5,9 +5,10 @@ import { Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Contact from './components/Contact';
 import Project from './components/Project';
+// import ParticlesBackground from "./ParticlesBackground";
 
 // Rasmni import qilamiz
-import bodyBg from './assets/homeImg/bodybg.png';
+import bodyBg from './assets/homeImg/bg2.jpg';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <div className="flex flex-col lg:flex-row min-h-screen">
         <Sidebar />
+              {/* <ParticlesBackground /> */}
         <main
           style={{
             backgroundImage: `url(${bodyBg})`, // import qilingan rasmni shu yerda ishlatamiz

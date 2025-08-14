@@ -40,7 +40,7 @@ function Home() {
 
                 {/* Sarlavha */}
                 <motion.h1
-                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white leading-snug px-2"
+                    className="text-2xl font-code sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white leading-snug px-2 "
                     initial="hidden"
                     animate="visible"
                     variants={titleFade}
@@ -50,7 +50,7 @@ function Home() {
 
                 {/* Tavsif */}
                 <motion.p
-                    className="text-sm sm:text-base md:text-lg text-gray-300 mb-8 sm:mb-10 px-2 leading-relaxed"
+                    className="text-sm font-code sm:text-base md:text-lg text-gray-300 mb-8 sm:mb-10 px-2 leading-relaxed "
                     initial="hidden"
                     animate="visible"
                     variants={fadeIn(0.3)}

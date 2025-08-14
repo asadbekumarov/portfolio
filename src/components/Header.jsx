@@ -6,6 +6,7 @@ import gmailImg from '../assets/sidebarImg/gmail.png';
 import githubImg from '../assets/sidebarImg/github.png';
 import telegramImg from '../assets/sidebarImg/telegram.png';
 import telefonImg from '../assets/sidebarImg/telefon.png';
+import logo from '../assets/headerImg/logo.jpg';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +19,7 @@ function Header() {
     }, []);
 
     const linkClasses = ({ isActive }) =>
-        `relative px-3 py-2 rounded-lg font-medium transition-colors duration-300
+        `relative px-3 font-jetbrains py-2 rounded-lg font-medium transition-colors duration-300
     ${isActive ? 'text-emerald-400 border-b-2 border-emerald-400' : 'text-white hover:text-emerald-400 hover:border-b-2 hover:border-emerald-400'}`;
 
 
@@ -63,13 +64,33 @@ function Header() {
 
     return (
         <motion.header
-            className={`sticky top-0 z-50 ${isScrolled ? 'bg-[#27272a] ' : 'bg-[#27272a]'} transition-all duration-300`}
+            className={`sticky top-0 z-50 ${isScrolled ? 'bg-[#1b1b1b] ' : 'bg-[#1b1b1b]'} border-b border-gray-700 transition-all duration-300`}
         >
             <div className="relative flex justify-between items-center px-4 sm:px-6 lg:px-8 py-[19px]">
                 {/* Logo */}
-                <motion.h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white">
-                    <NavLink to="/">Umarov Asadbek</NavLink>
+                <motion.h1
+                    className="flex items-center gap-3 font-code sm:text-2xl md:text-3xl font-bold text-white cursor-pointer group"
+                    // whileHover={{ scale: 1.05 }} // umumiy kattalashish
+                    transition={{ duration: 0.25 }}
+                >
+                    {/* Logo */}
+                    <motion.img
+                        src={logo}
+                        alt="Logo"
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-emerald-400 object-cover
+                   transition-all duration-300 group-hover:border-[4px] group-hover:shadow-[0_0_12px_rgba(16,185,129,0.8)]"
+                    />
+
+                    {/* Text */}
+                    <NavLink
+                        to="/"
+                        className="transition-colors duration-300 group-hover:text-emerald-400 group-hover:text-glow"
+                    >
+                        Umarov Asadbek
+                    </NavLink>
+
                 </motion.h1>
+
 
                 {/* Desktop Menu */}
                 <nav className="hidden md:block">

@@ -50,7 +50,7 @@ function Sidebar() {
         <>
 
             <motion.aside
-                className="hidden lg:block bg-zinc-800 p-4 sticky top-[73px] max-w-[320px] w-full overflow-y-auto"
+                className="hidden lg:block border-r border-gray-700 bg-[#1b1b1b] p-4 sticky top-[73px] max-w-[320px] w-full overflow-y-auto"
                 style={{ height: 'calc(100vh - 73px)' }}
                 initial="hidden"
                 animate="visible"
@@ -93,7 +93,7 @@ function Sidebar() {
                                 href={link}
                                 target={link.startsWith('http') ? '_blank' : '_self'}
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-3 hover:bg-zinc-700 p-2 rounded-lg transition-colors duration-200"
+                                className="flex text-xs items-center gap-3 hover:bg-zinc-700 p-2 rounded-lg transition-colors duration-200"
                                 variants={cardFadeUp}
                                 whileHover={hoverScale.whileHover}
                                 whileTap={hoverScale.whileTap}
@@ -104,10 +104,10 @@ function Sidebar() {
                                     className="w-6 h-6 sm:w-8 sm:h-8"
                                 />
                                 <div className="text-left min-w-0">
-                                    <h3 className="text-sm sm:text-lg font-bold text-white truncate">
+                                    <h3 className="text-xs sm:text-sm font-bold text-white truncate">
                                         {title}
                                     </h3>
-                                    <p className="text-xs sm:text-base text-white break-all">
+                                    <p className="text-xs sm:text-sm text-white  break-all">
                                         {value}
                                     </p>
                                 </div>
