@@ -28,6 +28,7 @@ body {
     text-shadow: 0 0 5px #10b981, 0 0 10px #10b981, 0 0 15px #10b981;
 }
 
+
 /* Custom responsive utilities */
 @layer utilities {
 

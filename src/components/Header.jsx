@@ -7,10 +7,13 @@ import githubImg from '../assets/sidebarImg/github.png';
 import telegramImg from '../assets/sidebarImg/telegram.png';
 import telefonImg from '../assets/sidebarImg/telefon.png';
 import logo from '../assets/headerImg/logo.jpg';
+import { HiHome, HiUser, HiFolder, HiMail } from 'react-icons/hi';
+
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const navIcons = [<HiHome />, <HiUser />, <HiFolder />, <HiMail />];
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -19,7 +22,7 @@ function Header() {
     }, []);
 
     const linkClasses = ({ isActive }) =>
-        `relative px-3 font-jetbrains py-2 rounded-lg font-medium transition-colors duration-300
+        `relative flex items-center gap-2 px-3 font-jetbrains py-2 rounded-lg font-medium transition-colors duration-300
     ${isActive ? 'text-emerald-400 border-b-2 border-emerald-400' : 'text-white hover:text-emerald-400 hover:border-b-2 hover:border-emerald-400'}`;
 
 
@@ -93,8 +96,8 @@ function Header() {
 
 
                 {/* Desktop Menu */}
-                <nav className="hidden md:block">
-                    <ul className="flex space-x-2 lg:space-x-4">
+                <nav className="hidden md:flex items-center justify-center gap-6">
+                    <ul className="flex items-center gap-4 lg:gap-6">
                         {['/', '/aboutMe', '/projects', '/contact'].map((path, index) => {
                             const labels = ['Bosh sahifa', 'Haqida', 'Loyihalar', 'Bog\'lanish'];
                             return (
@@ -105,14 +108,32 @@ function Header() {
                                     transition={{ delay: index * 0.1, duration: 0.5 }}
                                 >
                                     <NavLink to={path} className={linkClasses}>
+                                        {navIcons[index]}
                                         {labels[index]}
                                     </NavLink>
                                 </motion.li>
                             );
                         })}
                     </ul>
-                </nav>
 
+                    {/* Vertical separator */}
+                    <div className="h-6 w-px bg-gray-600 mx-3"></div>
+
+                    {/* Gradient CV Button */}
+                    <motion.a
+                        href="/Asadbek Umarov Resume.pdf" // CV fayling yo'li
+                        download="Umarov-Asadbek-CV.pdf" className="px-6 py-2 rounded-lg font-medium text-white 
+                   bg-gradient-to-r from-emerald-500 to-green-400 
+                   shadow-[0_0_10px_rgba(16,185,129,0.5)]
+                   transition-all duration-300
+                   hover:from-green-400 hover:to-emerald-500
+                   hover:shadow-[0_0_15px_rgba(16,185,129,0.8)]"
+                        whileHover={{ scale: 1.07 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        CV
+                    </motion.a>
+                </nav>
 
                 {/* Mobile Menu Button */}
                 <motion.button
