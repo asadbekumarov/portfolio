@@ -98,8 +98,8 @@ function Header() {
                 {/* Desktop Menu */}
                 <nav className="hidden md:flex items-center justify-center gap-6">
                     <ul className="flex items-center gap-4 lg:gap-6">
-                        {['/', '/aboutMe', '/projects', '/contact'].map((path, index) => {
-                            const labels = ['Bosh sahifa', 'Haqida', 'Loyihalar', 'Bog\'lanish'];
+                        {['/', '/aboutMe', '/projects', '/certificates', '/contact'].map((path, index) => {
+                            const labels = ['Bosh sahifa', 'Haqida', 'Loyihalar', 'Sertifikatlar', 'Bog\'lanish'];
                             return (
                                 <motion.li
                                     key={path}
@@ -122,18 +122,20 @@ function Header() {
                     {/* Gradient CV Button */}
                     <motion.a
                         href="/Asadbek Umarov Resume.pdf" // CV fayling yo'li
-                        download="Umarov-Asadbek-CV.pdf" className="px-6 py-2 rounded-lg font-medium text-white 
-                   bg-gradient-to-r from-emerald-500 to-green-400 
-                   shadow-[0_0_10px_rgba(16,185,129,0.5)]
-                   transition-all duration-300
-                   hover:from-green-400 hover:to-emerald-500
-                   hover:shadow-[0_0_15px_rgba(16,185,129,0.8)]"
+                        download="Umarov-Asadbek-CV.pdf"
+                        className="px-6 py-2 rounded-lg font-medium text-white 
+           bg-gradient-to-r from-emerald-500 to-green-400 
+           shadow-[0_0_10px_rgba(16,185,129,0.5)]
+           transition-all duration-300
+           hover:from-green-400 hover:to-emerald-500
+           hover:shadow-[0_0_15px_rgba(16,185,129,0.8)]"
                         whileHover={{ scale: 1.07 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         CV
                     </motion.a>
                 </nav>
+
 
                 {/* Mobile Menu Button */}
                 <motion.button

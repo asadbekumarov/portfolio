@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import milliy from '../assets/projectsImg/milliy.jpg';
 import abdullohsayfidinov from '../assets/projectsImg/abdullohsayfidinov.jpg';
 import autoquiz from '../assets/projectsImg/autoquiz.jpg';
+import cloudPlay from '../assets/projectsImg/cloudPlay.png';
 
 import telegramImg from '../assets/projectsImg/telegram.png';
 import windImg from '../assets/projectsImg/wind.png';
@@ -26,7 +27,7 @@ const projects = [
         tag: "Marketing agency",
         img: milliy,
         desc: "Marketing agentligi — brendlaringizni rivojlantirish, raqamli strategiyalar yaratish va mijozlarga samarali marketing xizmatlarini taqdim etishga ixtisoslashgan mutaxassislar jamoasi.",
-        stack: ["React.js", "TailwindCSS", "PHP", "MySQL"],
+        stack: ["React.js", "TailwindCSS"],
         live: "https://milliyitcenter.uz/",
         github: "https://github.com/asadbekumarov/Milliy-IT-center"
     },
@@ -47,6 +48,15 @@ const projects = [
         stack: ["React.js", "TailwindCSS"],
         live: "https://auto-quiz-liard.vercel.app/",
         github: "https://github.com/asadbekumarov/autoQuiz"
+    },
+    {
+        title: "CloudPlay",
+        tag: "Gaming",
+        img: cloudPlay,
+        desc: "CloudPlay — o‘yinlarni kompyuter, noutbuk yoki telefonda ham oson va qulay o‘ynash imkonini beruvchi cloud gaming platforma.",
+        stack: ["React.tsx", "TailwindCSS"],
+        live: "https://cloudplay.vercel.app/",
+        github: "https://github.com/jasurumarov/cloudplay-frontend.git"
     }
 ]
 

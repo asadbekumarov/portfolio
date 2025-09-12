@@ -16,7 +16,7 @@ function App() {
       <Header />
       <div className="flex flex-col lg:flex-row min-h-screen">
         <Sidebar />
-              {/* <ParticlesBackground /> */}
+        {/* <ParticlesBackground /> */}
         <main
           style={{
             backgroundImage: `url(${bodyBg})`, // import qilingan rasmni shu yerda ishlatamiz

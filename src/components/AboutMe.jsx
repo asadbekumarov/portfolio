@@ -122,6 +122,7 @@ function AboutMe() {
                         >
                             {icon}
                             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">{number}</h3>
+
                             <p className="text-gray-400 mt-1 text-xs sm:text-sm md:text-base">{label}</p>
                         </motion.div>
                     ))}
