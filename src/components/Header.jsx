@@ -99,7 +99,7 @@ function Header() {
                 <nav className="hidden md:flex items-center justify-center gap-6">
                     <ul className="flex items-center gap-4 lg:gap-6">
                         {['/', '/aboutMe', '/projects', '/certificates', '/contact'].map((path, index) => {
-                            const labels = ['Bosh sahifa', 'Haqida', 'Loyihalar', 'Sertifikatlar', 'Bog\'lanish'];
+                            const labels = ['Bosh sahifa', 'Haqida', 'Loyihalar', 'Bog\'lanish'];
                             return (
                                 <motion.li
                                     key={path}
