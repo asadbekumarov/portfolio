@@ -1,93 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&family=Fira+Code&display=swap');
 
-* {
-    font-family: 'Fira Code', monospace;
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-sapphire-1 text-sapphire-4 font-sans antialiased;
+  }
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-}
-
-/* globals.css yoki tailwind.css */
-@keyframes textGlow {
-
-    0%,
-    100% {
-        text-shadow: 0 0 2px #10b981, 0 0 5px #10b981;
-    }
-
-    50% {
-        text-shadow: 0 0 5px #10b981, 0 0 10px #10b981;
-    }
-}
-
-.text-glow {
-    text-shadow: 0 0 5px #10b981, 0 0 10px #10b981, 0 0 15px #10b981;
-}
-
-
-/* Custom responsive utilities */
 @layer utilities {
-
-    /* Smooth transitions for responsive elements */
-    .transition-responsive {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Mobile-first responsive spacing */
-    .responsive-padding {
-        @apply px-4 sm:px-6 lg:px-8;
-    }
-
-    .responsive-margin {
-        @apply my-4 sm:my-6 lg:my-8;
-    }
-
-    /* Responsive text sizing */
-    .responsive-text {
-        @apply text-sm sm:text-base md:text-lg;
-    }
-
-    .responsive-heading {
-        @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
-    }
-
-    /* Responsive grid layouts */
-    .responsive-grid {
-        @apply grid gap-4 sm:gap-6 md:gap-8;
-    }
-
-    /* Responsive card layouts */
-    .responsive-card {
-        @apply p-4 sm:p-6 md:p-8;
-    }
-}
-
-/* Smooth scrolling for better mobile experience */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Better touch targets for mobile */
-@media (max-width: 640px) {
-
-    button,
-    a,
-    input,
-    textarea {
-        min-height: 44px;
-        min-width: 44px;
-    }
-}
-
-/* Improved focus states for accessibility */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus {
-    /* outline: 2px solid #10b981;   */
-    outline-offset: 2px;
+  .soft-shadow {
+    box-shadow: 0 6px 24px rgba(13, 36, 64, 0.12);
+  }
+  .soft-card {
+    @apply rounded-xl border border-sapphire-2/40 bg-white/80 backdrop-blur;
+  }
+  .gradient-logo {
+    @apply bg-gradient-to-r from-sapphire-2 to-sapphire-3 bg-clip-text text-transparent;
+  }
 }

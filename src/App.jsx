@@ -5,27 +5,17 @@ import { Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Contact from './components/Contact';
 import Project from './components/Project';
-// import ParticlesBackground from "./ParticlesBackground";
 
 // Rasmni import qilamiz
-import bodyBg from './assets/homeImg/bg2.jpg';
 
 function App() {
   return (
-    <div>
+    <div className="bg-background text-main min-h-screen">
       <Header />
       <div className="flex flex-col lg:flex-row min-h-screen">
-        <Sidebar />
+        <Sidebar className="w-[500px]" />
         {/* <ParticlesBackground /> */}
-        <main
-          style={{
-            backgroundImage: `url(${bodyBg})`, // import qilingan rasmni shu yerda ishlatamiz
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-          className="w-full lg:ml-0"
-        >
+        <main className="w-full lg:ml-0 bg-background">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
