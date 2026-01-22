@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './pages/About';
@@ -9,13 +10,15 @@ import Project from './components/Project';
 // Rasmni import qilamiz
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <div className="bg-background text-main min-h-screen">
-      <Header />
-      <div className="flex flex-col lg:flex-row min-h-screen">
-        <Sidebar className="w-[500px]" />
+      <Header setSidebarToggle={setIsSidebarOpen} />
+      <div className="lg:flex lg:items-stretch">
+        <Sidebar className="w-[360px] h-full" isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         {/* <ParticlesBackground /> */}
-        <main className="w-full lg:ml-0 bg-background">
+        <main className="w-full mx-auto bg-background">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />

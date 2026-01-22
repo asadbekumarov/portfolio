@@ -30,40 +30,39 @@ const projects = [
     github: "https://github.com/",
   },
 
-{
+  {
     title: "Darrov",
     tag: "Delivery & Services App",
     img: darrow,
     desc: "Darrov — Telegram va web platformasida ishlaydigan xizmatlar ilovasi. Foydalanuvchilar ovqat yetkazib berish, texnik xizmatlar va boshqa service xizmatlarini osongina buyurtma qilishlari mumkin.",
     stack: ["React.tsx", "TailwindCSS", "TypeScript"],
     live: "https://darrov.softturtkul.uz/",
-    github: "https://github.com/your-username/darrov"
-},
-{
+    github: "https://github.com/your-username/darrov",
+  },
+  {
     title: "PUBG Tournament",
-    tag: "Gaming / Tournament Platform",
-    img: pubg, 
+    tag: "Gaming / Platform",
+    img: pubg,
     desc: "PUBG Tournament – 12 viloyat ishtirokchilarini qamrab olgan onlayn turnir sayti. Foydalanuvchilar turnir jadvali, natijalar va qatnashish imkoniyatlarini sayt orqali kuzatishlari mumkin.",
-    stack: ["Next.tsx", "TailwindCSS"],
+    stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
     live: "https://pubg-tournament.vercel.app/",
-    github: "https://github.com/"
-},
+    github: "https://github.com/",
+  },
   {
     title: "AutoQuiz",
-    tag: "Edtech",
+    tag: "Education Technology",
     img: autoquiz,
     desc: "AutoQuiz platforma — o'qituvchilarga testlar yaratish va boshqarish imkonini beruvchi innovatsion ta'lim vositasi",
-    stack: ["React.js", "TailwindCSS"],
+    stack: ["React.js", "TailwindCSS", "Javascript"],
     live: "https://auto-quiz-liard.vercel.app/",
     github: "https://github.com/asadbekumarov/autoQuiz",
   },
-
 ];
 
 function Project() {
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1100px] mx-auto">
         {/* Title */}
         <motion.div
           initial="hidden"
@@ -97,7 +96,7 @@ function Project() {
                 borderColor: "#0284C7",
                 transition: { duration: 0.3 },
               }}
-              className="flex flex-col bg-surface border border-border p-5 rounded-2xl transition-all duration-300 cursor-pointer group"
+              className="flex flex-col bg-surface border border-border p-4 rounded-2xl transition-all duration-300 cursor-pointer group"
             >
               {/* Image */}
               <div className="overflow-hidden rounded-xl mb-4">
@@ -111,7 +110,7 @@ function Project() {
               </div>
 
               {/* Title & Tag */}
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-start justify-between mb-3">
                 <h3
                   className="text-lg md:text-xl font-bold text-main group-hover:text-primary transition-colors duration-300"
                   style={{ fontFamily: '"Fira Code", monospace' }}
@@ -215,6 +214,8 @@ function Project() {
               </p>
               <motion.a
                 href="https://t.me/umarov_posts"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-block text-center bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 w-full sm:w-auto"

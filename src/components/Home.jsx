@@ -24,7 +24,7 @@ function Home() {
         },
         {
             icon: <PiMedalThin className="text-primary text-4xl md:text-5xl mb-3" />,
-            number: '1+ yil',
+            number: '1yil',
             label: 'Tajriba',
         },
         {
@@ -35,9 +35,9 @@ function Home() {
     ];
 
     return (
-        <div className="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
-            <div className="max-w-5xl w-full py-12 md:py-20">
-                <div className="text-center mb-16 md:mb-20">
+    <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
+      <div className="max-w-[1100px] mx-auto">
+                <div className="mb-16 md:mb-20">
                     <motion.h1
                         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-main mb-6 leading-tight"
                         style={{ fontFamily: '"Fira Code", monospace' }}
@@ -50,7 +50,7 @@ function Home() {
                     </motion.h1>
 
                     <motion.p
-                        className="text-base sm:text-lg md:text-xl text-muted max-w-3xl mx-auto leading-relaxed"
+                        className="text-base sm:text-lg md:text-xl text-muted max-w-3xl leading-relaxed"
                         style={{ fontFamily: '"Fira Code", monospace' }}
                         initial="hidden"
                         animate="visible"
@@ -100,7 +100,7 @@ function Home() {
                     ))}
                 </motion.div>
             </div>
-        </div>
+        </section>
     );
 }
 

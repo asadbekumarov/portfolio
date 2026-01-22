@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { HiMenu, HiX, HiHome, HiUser, HiFolder, HiMail } from "react-icons/hi";
+import PropTypes from "prop-types";
+import { HiMenu, HiX, HiHome, HiUser, HiFolder, HiMail, HiOutlineViewGrid } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import gmailImg from "../assets/sidebarImg/gmail.png";
 import githubImg from "../assets/sidebarImg/github.png";
@@ -39,7 +40,7 @@ const contacts = [
   },
 ];
 
-function Header() {
+function Header({ setSidebarToggle }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -129,6 +130,17 @@ function Header() {
 
           <DownloadButton />
         </nav>
+
+         {/* Sidebar Toggle Button */}
+        <motion.button
+          className="lg:hidden p-2 rounded-lg text-main hover:text-primary hover:bg-primary hover:bg-opacity-10 transition-all duration-300"
+          onClick={() => setSidebarToggle(prev => !prev)}
+          aria-label="Toggle sidebar"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <HiOutlineViewGrid size={24} />
+        </motion.button>
 
         {/* Mobile Menu Button */}
         <motion.button
@@ -221,5 +233,9 @@ function Header() {
     </motion.header>
   );
 }
+
+Header.propTypes = {
+  setSidebarToggle: PropTypes.func.isRequired,
+};
 
 export default Header;
