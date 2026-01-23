@@ -1,7 +1,6 @@
 import { FiGithub } from "react-icons/fi";
 import { motion } from "framer-motion";
 
-// Import all images
 import manhome from "../assets/projectsImg/manhome.png";
 import autoquiz from "../assets/projectsImg/autoquiz.jpg";
 import darrow from "../assets/projectsImg/darrov.png";
@@ -45,7 +44,7 @@ const projects = [
     img: pubg,
     desc: "PUBG Tournament – 12 viloyat ishtirokchilarini qamrab olgan onlayn turnir sayti. Foydalanuvchilar turnir jadvali, natijalar va qatnashish imkoniyatlarini sayt orqali kuzatishlari mumkin.",
     stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
-    live: "https://pubg-tournament.vercel.app/",
+    live: "https://pubg-tournament-frontend.vercel.app/uz",
     github: "https://github.com/",
   },
   {
