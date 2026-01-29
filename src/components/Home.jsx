@@ -36,7 +36,7 @@ function Home() {
 
     return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
-      <div className="max-w-[1100px] mx-auto">
+      <div className="max-w-[1300px] mx-auto">
                 <div className="mb-16 md:mb-20">
                     <motion.h1
                         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-main mb-6 leading-tight"

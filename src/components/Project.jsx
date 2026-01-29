@@ -1,5 +1,6 @@
 import { FiGithub } from "react-icons/fi";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 import manhome from "../assets/projectsImg/manhome.png";
 import autoquiz from "../assets/projectsImg/autoquiz.jpg";
@@ -17,11 +18,16 @@ import {
   cardFadeUp,
   fadeIn,
 } from "../utils/animations";
-
+const FILTERS = [
+  { label: "Hammasi", value: "all" },
+  { label: "Amaldagi loyihalar", value: "production" },
+  { label: "Shaxsiy loyihalar", value: "personal" },
+];
 const projects = [
   {
     title: "Mann Home",
     tag: "Online Furniture Store",
+    type: "production",
     img: manhome,
     desc: "Mann Home – zamonaviy onlayn mebel do‘koni. Sayt orqali turli mebellarni ko‘rish, tanlash va xavfsiz xarid qilish mumkin. Foydalanuvchi uchun qulay interfeys va to‘liq ishlaydigan e-commerce funksiyalari mavjud.",
     stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
@@ -32,6 +38,7 @@ const projects = [
   {
     title: "Darrov",
     tag: "Delivery & Services App",
+    type: "production",
     img: darrow,
     desc: "Darrov — Telegram va web platformasida ishlaydigan xizmatlar ilovasi. Foydalanuvchilar ovqat yetkazib berish, texnik xizmatlar va boshqa service xizmatlarini osongina buyurtma qilishlari mumkin.",
     stack: ["React.tsx", "TailwindCSS", "TypeScript"],
@@ -41,6 +48,7 @@ const projects = [
   {
     title: "PUBG Tournament",
     tag: "Gaming / Platform",
+    type: "production",
     img: pubg,
     desc: "PUBG Tournament – 12 viloyat ishtirokchilarini qamrab olgan onlayn turnir sayti. Foydalanuvchilar turnir jadvali, natijalar va qatnashish imkoniyatlarini sayt orqali kuzatishlari mumkin.",
     stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
@@ -50,6 +58,7 @@ const projects = [
   {
     title: "AutoQuiz",
     tag: "Education Technology",
+    type: "personal",
     img: autoquiz,
     desc: "AutoQuiz platforma — o'qituvchilarga testlar yaratish va boshqarish imkonini beruvchi innovatsion ta'lim vositasi",
     stack: ["React.js", "TailwindCSS", "Javascript"],
@@ -59,9 +68,15 @@ const projects = [
 ];
 
 function Project() {
+  const [activeFilter, setActiveFilter] = useState("all");
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((p) => p.type === activeFilter);
+
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
-      <div className="max-w-[1100px] mx-auto">
+      <div className="max-w-[1300px] mx-auto">
         {/* Title */}
         <motion.div
           initial="hidden"
@@ -77,6 +92,23 @@ function Project() {
             Loyihalar
           </motion.h2>
           <motion.div className="w-20 h-1 bg-primary" variants={lineGrow} />
+          <div className="flex flex-wrap gap-3 mt-8 mb-12">
+            {FILTERS.map((filter) => (
+              <button
+                key={filter.value}
+                onClick={() => setActiveFilter(filter.value)}
+                className={`px-4 py-2 rounded-[8px] text-sm font-medium transition-all
+        ${
+          activeFilter === filter.value
+            ? "bg-primary text-white"
+            : "bg-surface text-muted"
+        }`}
+                style={{ fontFamily: '"Fira Code", monospace' }}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* Cards */}
@@ -86,7 +118,7 @@ function Project() {
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-20 md:mb-28"
         >
-          {projects.map((project, i) => (
+          {filteredProjects.map((project, i) => (
             <motion.div
               key={i}
               variants={cardFadeUp}

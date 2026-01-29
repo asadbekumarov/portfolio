@@ -41,21 +41,21 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
+    <>
     <motion.section
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`
-        w-full max-w-[360px]
+        w-[85vw] lg:w-full max-w-[360px]
         rounded
         border border-border
         ${isScrolled ? "bg-white/80 dark:bg-black/50 shadow-lg" : "bg-white/70 dark:bg-black/40"}
         backdrop-blur-xl
         p-6
         space-y-6
-        fixed top-20
         transition-all duration-300
-        ${isOpen ? 'fixed inset-0 z-50 lg:static lg:inset-auto' : 'hidden lg:block'}
+        ${isOpen ? 'fixed left-0 top-[72px] z-50 h-[calc(100vh-72px)] lg:static' : 'hidden lg:block lg:sticky lg:top-24'}
         ${className || ""}
       `}
     >
@@ -171,6 +171,13 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
         ))}
       </div>
     </motion.section>
+    {isOpen && (
+      <div
+        onClick={() => setIsOpen(false)}
+        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
+      />
+    )}
+    </>
   );
 }
 

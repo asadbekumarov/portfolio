@@ -117,7 +117,7 @@ function Contact() {
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
-      <div className="max-w-[1100px] mx-auto">
+      <div className="max-w-[1300px] mx-auto">
         {/* Contact Cards Section */}
         <motion.div
           initial="hidden"

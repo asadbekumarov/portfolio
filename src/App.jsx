@@ -17,10 +17,10 @@ function App() {
  <div className='w-full mx-auto' >
      <div className="bg-background  text-main min-h-screen">
       <Header setSidebarToggle={setIsSidebarOpen} />
-      <div className="lg:flex lg:items-stretch">
-        <Sidebar className="w-[360px] h-full" isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+      <div className="lg:flex lg:items-start">
+        <Sidebar className="lg:w-[360px]" isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         {/* <ParticlesBackground /> */}
-        <main className="w-[1100px] mx-auto bg-background">
+        <main className="w-full lg:w-[1300px] mx-auto bg-background">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
