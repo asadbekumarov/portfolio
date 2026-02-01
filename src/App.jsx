@@ -6,9 +6,6 @@ import { Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Contact from './components/Contact';
 import Project from './components/Project';
-import { div } from 'framer-motion/client';
-
-// Rasmni import qilamiz
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,7 +16,6 @@ function App() {
       <Header setSidebarToggle={setIsSidebarOpen} />
       <div className="lg:flex lg:items-start">
         <Sidebar className="lg:w-[360px]" isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-        {/* <ParticlesBackground /> */}
         <main className="w-full lg:w-[1300px] mx-auto bg-background">
           <Routes>
             <Route path="/" element={<Home />} />

@@ -19,9 +19,9 @@ import {
   fadeIn,
 } from "../utils/animations";
 const FILTERS = [
-  { label: "Hammasi", value: "all" },
-  { label: "Amaldagi loyihalar", value: "production" },
-  { label: "Shaxsiy loyihalar", value: "personal" },
+  { label: "Barcha", value: "all" },
+  { label: "Real loyihalar", value: "production" },
+  { label: "Amalyot loyihalar", value: "personal" },
 ];
 const projects = [
   {
