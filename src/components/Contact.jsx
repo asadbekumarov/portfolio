@@ -104,16 +104,34 @@ function Contact() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    setErrors(validationErrors);
-    if (Object.keys(validationErrors).length === 0) {
-      console.log("Form ma'lumotlari:", formData);
-      setFormData({ name: "", email: "", message: "" });
-      alert("Xabaringiz uchun rahmat!");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const validationErrors = validate();
+  setErrors(validationErrors);
+
+  if (Object.keys(validationErrors).length === 0) {
+    try {
+      // Backend API ga POST yuborish
+      const response = await fetch("http://localhost:3000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Xabaringiz yuborildi! Tez orada javob olasiz.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Xatolik yuz berdi: " + (data.error || "Noma'lum xatolik"));
+      }
+    } catch (err) {
+      console.error("Error sending message:", err);
+      alert("Xabar yuborishda xatolik yuz berdi. Iltimos, keyinroq urinib ko‘ring.");
     }
-  };
+  }
+};
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
