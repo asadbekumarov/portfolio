@@ -10,6 +10,7 @@ import pubg from "../assets/projectsImg/pubg.png";
 import telegramImg from "../assets/projectsImg/telegram.png";
 import windImg from "../assets/projectsImg/wind.png";
 import megaphoneImg from "../assets/projectsImg/megaphone.png";
+import barber from "../assets/projectsImg/barber.png";
 
 import {
   titleFade,
@@ -64,6 +65,16 @@ const projects = [
     stack: ["React.js", "TailwindCSS", "Javascript"],
     live: "https://auto-quiz-liard.vercel.app/",
     github: "https://github.com/asadbekumarov/autoQuiz",
+  },
+  {
+    title: "BarBer Shop",
+    tag: "Education Technology",
+    type: "personal",
+    img: barber,
+    desc: "BarBer Shop — barbershop xizmatlarini online tanishish va xizmatlar ro'yxatini ko'rish platformasi.",
+    stack: ["React.js", "TailwindCSS", "Javascript"],
+    live: "https://barber-shop-frontend.vercel.app/",
+    github: "https://github.com/asadbekumarov/barberShop",
   },
 ];
 
