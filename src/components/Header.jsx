@@ -132,7 +132,7 @@ function Header({ setSidebarToggle }) {
         </nav>
 
          {/* Sidebar Toggle Button */}
-        <motion.button
+        {/* <motion.button
           className="lg:hidden p-2 rounded-lg text-main hover:text-primary hover:bg-primary hover:bg-opacity-10 transition-all duration-300"
           onClick={() => setSidebarToggle(prev => !prev)}
           aria-label="Toggle sidebar"
@@ -140,7 +140,7 @@ function Header({ setSidebarToggle }) {
           whileTap={{ scale: 0.95 }}
         >
           <HiOutlineViewGrid size={24} />
-        </motion.button>
+        </motion.button> */}
 
         {/* Mobile Menu Button */}
         <motion.button
