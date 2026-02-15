@@ -140,7 +140,7 @@ function Header({ setSidebarToggle }) {
           whileTap={{ scale: 0.95 }}
         >
           <HiOutlineViewGrid size={24} />
-        </motion.button> */}
+        </motion.button> */} 
 
         {/* Mobile Menu Button */}
         <motion.button

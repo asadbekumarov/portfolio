@@ -1,10 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
-import Hero from './new/Hero'
-import About from './new/About'
-import Skills from './new/Skills'
-import Projects from './new/Projects'
-import Contact from './new/Contact'
+import Home from './components/Home'
+import AboutMe from './components/AboutMe'
+import Project from './components/Project'
+import Contact from './components/Contact'
 
 export default function App() {
   return (
@@ -12,10 +11,9 @@ export default function App() {
       <Route path="/" element={<MainLayout />}> 
         <Route index element={(
           <div>
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
+            <Home />
+            <AboutMe />
+            <Project />
             <Contact />
           </div>
         )} />
