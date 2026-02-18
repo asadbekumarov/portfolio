@@ -35,8 +35,8 @@ function Home() {
     ];
 
     return (
-    <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
-      <div className="max-w-[1300px] mx-auto">
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
+            <div className="max-w-[1300px] mx-auto">
                 <div className="mb-16 md:mb-20">
                     <motion.h1
                         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-main mb-6 leading-tight"
@@ -46,8 +46,7 @@ function Home() {
                         variants={titleFade}
                     >
                         Assalomu alaykum, Men{' '}
-                        <span className="text-primary">Umarov Asadbek</span>man
-                    </motion.h1>
+                        <span className="text-primary">Umarov Asadbek</span>                    </motion.h1>
 
                     <motion.p
                         className="text-base sm:text-lg md:text-xl text-muted max-w-3xl leading-relaxed"
@@ -71,8 +70,8 @@ function Home() {
                         <motion.div
                             key={i}
                             variants={cardFadeUp}
-                            whileHover={{ 
-                                y: -8, 
+                            whileHover={{
+                                y: -8,
                                 borderColor: '#0284C7',
                                 transition: { duration: 0.3 }
                             }}
@@ -84,13 +83,13 @@ function Home() {
                             >
                                 {icon}
                             </motion.div>
-                            <h3 
+                            <h3
                                 className="text-2xl md:text-3xl lg:text-4xl font-bold text-main mb-2"
                                 style={{ fontFamily: '"Fira Code", monospace' }}
                             >
                                 {number}
                             </h3>
-                            <p 
+                            <p
                                 className="text-muted text-sm md:text-base group-hover:text-primary transition-colors duration-300"
                                 style={{ fontFamily: '"Fira Code", monospace' }}
                             >

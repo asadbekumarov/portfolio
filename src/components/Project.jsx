@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import manhome from "../assets/projectsImg/manhome.png";
 import autoquiz from "../assets/projectsImg/autoquiz.jpg";
-import darrow from "../assets/projectsImg/darrov.png";
+import tgbotdarrow from "../assets/projectsImg/tgbotdarrow.jpg";
 import pubg from "../assets/projectsImg/pubg.png";
 
 import telegramImg from "../assets/projectsImg/telegram.png";
@@ -46,7 +46,7 @@ const projects = [
     title: "Darrov",
     tag: "Delivery & Services App",
     type: "production",
-    img: darrow,
+    img: tgbotdarrow,
     desc: "Darrov — Telegram va web platformasida ishlaydigan xizmatlar ilovasi. Foydalanuvchilar ovqat yetkazib berish, texnik xizmatlar va boshqa service xizmatlarini osongina buyurtma qilishlari mumkin.",
     stack: ["React.tsx", "TailwindCSS", "TypeScript"],
     live: "https://darrov.softturtkul.uz/",
@@ -129,11 +129,10 @@ function Project() {
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
                 className={`px-4 py-2 rounded-[8px] text-sm font-medium transition-all
-        ${
-          activeFilter === filter.value
-            ? "bg-primary text-white"
-            : "bg-surface text-muted"
-        }`}
+        ${activeFilter === filter.value
+                    ? "bg-primary text-white"
+                    : "bg-surface text-muted"
+                  }`}
                 style={{ fontFamily: '"Fira Code", monospace' }}
               >
                 {filter.label}
@@ -162,18 +161,15 @@ function Project() {
             >
               {/* Image */}
               <div
-                className={`overflow-hidden rounded-xl mb-4 ${
-                  project.title === "VocabApp" ? "bg-white/5 p-2" : ""
-                }`}
+                className={`overflow-hidden rounded-xl mb-4 ${project.title === "VocabApp" || project.title === "Darrov" ? "bg-white/5 p-2" : ""}`}
               >
                 <motion.img
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.4 }}
-                  className={`${
-                    project.title === "VocabApp"
+                  className={`${project.title === "VocabApp" || project.title === "Darrov"
                       ? "object-contain"
                       : "object-cover"
-                  } w-full h-48 md:h-52`}
+                    } w-full h-48 md:h-52`}
                   src={project.img}
                   alt={project.title}
                 />
