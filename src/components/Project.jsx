@@ -1,5 +1,5 @@
-import { FiGithub } from "react-icons/fi";
-import { motion } from "framer-motion";
+import { FiGithub, FiX } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 import manhome from "../assets/projectsImg/manhome.png";
@@ -10,7 +10,13 @@ import pubg from "../assets/projectsImg/pubg.png";
 import telegramImg from "../assets/projectsImg/telegram.png";
 import windImg from "../assets/projectsImg/wind.png";
 import megaphoneImg from "../assets/projectsImg/megaphone.png";
-import barber from "../assets/projectsImg/barber.png";
+import vocabAppImg from "../assets/projectsImg/vocabAppImg.jpg";
+import addword from "../assets/projectsImg/addword.jpg";
+import newword from "../assets/projectsImg/newword.jpg";
+import vocab from "../assets/projectsImg/vocab.jpg";
+import vocab1 from "../assets/projectsImg/vocab1.jpg";
+import quiz from "../assets/projectsImg/quiz.jpg";
+import complated from "../assets/projectsImg/complate.jpg";
 
 import {
   titleFade,
@@ -66,10 +72,34 @@ const projects = [
     live: "https://auto-quiz-liard.vercel.app/",
     github: "https://github.com/asadbekumarov/autoQuiz",
   },
+  {
+    title: "VocabApp",
+    tag: "EdTech • Mobile",
+    type: "personal",
+    img: vocabAppImg,
+    images: [vocabAppImg, addword, newword, vocab, vocab1, quiz, complated],
+    desc: "VocabApp — xorijiy tillarni o'rganuvchilar uchun shaxsiy lug'at boyligini oshirishga mo'ljallangan mobil ilova. Foydalanuvchilar o'z so'zlarini tezkor kiritish (batch-entry), ularni kunlik tartibda ko'rib chiqish va aqlli, randomizatsiya qilingan testlar orqali xotirasini mustahkamlashlari mumkin.",
+    stack: ["React Native", "Expo", "AsyncStorage", "TypeScript"],
+    live: "APK yuklab olish linki (ixtiyoriy)",
+    github: "https://github.com/asadbekumarov/placeholder",
+  },
 ];
 
 function Project() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const openGallery = (project) => {
+    setSelectedProject(project);
+    setIsGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setIsGalleryOpen(false);
+    setSelectedProject(null);
+  };
+
   const filteredProjects =
     activeFilter === "all"
       ? projects
@@ -131,11 +161,19 @@ function Project() {
               className="flex flex-col bg-surface border border-border p-4 rounded-2xl transition-all duration-300 cursor-pointer group"
             >
               {/* Image */}
-              <div className="overflow-hidden rounded-xl mb-4">
+              <div
+                className={`overflow-hidden rounded-xl mb-4 ${
+                  project.title === "VocabApp" ? "bg-white/5 p-2" : ""
+                }`}
+              >
                 <motion.img
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.4 }}
-                  className="object-cover w-full h-48 md:h-52"
+                  className={`${
+                    project.title === "VocabApp"
+                      ? "object-contain"
+                      : "object-cover"
+                  } w-full h-48 md:h-52`}
                   src={project.img}
                   alt={project.title}
                 />
@@ -181,11 +219,19 @@ function Project() {
               {/* Buttons */}
               <div className="flex items-center gap-3">
                 <motion.a
-                  href={project.live}
+                  href={project.title === "VocabApp" ? "#" : project.live}
+                  onClick={(e) => {
+                    if (project.title === "VocabApp") {
+                      e.preventDefault();
+                      openGallery(project);
+                    }
+                  }}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="flex-1 text-center bg-primary hover:bg-primary-hover text-white px-4 py-2.5 rounded-lg font-medium transition-all duration-300"
                   style={{ fontFamily: '"Fira Code", monospace' }}
+                  target={project.title === "VocabApp" ? "_self" : "_blank"}
+                  rel="noopener noreferrer"
                 >
                   Ko&apos;rish
                 </motion.a>
@@ -201,6 +247,50 @@ function Project() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Gallery Modal */}
+        <AnimatePresence>
+          {isGalleryOpen && selectedProject && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] bg-black/90 flex flex-col items-center justify-center p-4 backdrop-blur-sm"
+            >
+              <button
+                onClick={closeGallery}
+                className="absolute top-6 right-6 text-white bg-white/10 p-2 rounded-full hover:bg-white/20 transition-all z-[110]"
+              >
+                <FiX size={24} />
+              </button>
+
+              <div className="w-full max-w-6xl">
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 scrollbar-hide px-4">
+                  {selectedProject.images.map((image, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="flex-shrink-0 w-full sm:w-[400px] snap-center flex items-center justify-center"
+                    >
+                      <img
+                        src={image}
+                        alt={`${selectedProject.title} ${idx + 1}`}
+                        className="h-[70vh] w-auto object-contain rounded-2xl shadow-2xl border border-white/10"
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="text-center mt-4">
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {selectedProject.title}
+                  </h3>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Telegram section */}
         <motion.div
