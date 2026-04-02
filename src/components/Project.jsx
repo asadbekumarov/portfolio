@@ -20,13 +20,12 @@ import pubg from "../assets/projectsImg/pubg.png";
 import telegramImg from "../assets/projectsImg/telegram.png";
 import windImg from "../assets/projectsImg/wind.png";
 import megaphoneImg from "../assets/projectsImg/megaphone.png";
-import vocabAppImg from "../assets/projectsImg/vocabAppImg.jpg";
-import addword from "../assets/projectsImg/addword.jpg";
-import newword from "../assets/projectsImg/newword.jpg";
-import vocab from "../assets/projectsImg/vocab.jpg";
-import vocab1 from "../assets/projectsImg/vocab1.jpg";
-import quiz from "../assets/projectsImg/quiz.jpg";
-import complated from "../assets/projectsImg/complate.jpg";
+import img1 from "../assets/projectsImg/1.jpg";
+import img2 from "../assets/projectsImg/2.jpg";
+import img3 from "../assets/projectsImg/3.jpg";
+import img4 from "../assets/projectsImg/4.jpg";
+import img5 from "../assets/projectsImg/5.jpg";
+import img6 from "../assets/projectsImg/6.jpg";
 
 import {
   titleFade,
@@ -98,8 +97,8 @@ function Project() {
         title: t("project.items.vocabapp.title"),
         tag: t("project.items.vocabapp.tag"),
         type: "personal",
-        img: vocabAppImg,
-        images: [vocabAppImg, addword, newword, vocab, vocab1, quiz, complated],
+        img: img1,
+        images: [img1, img2, img3, img4, img5, img6],
         desc: t("project.items.vocabapp.desc"),
         stack: ["React Native", "Expo", "AsyncStorage", "TypeScript"],
         live: "#",
