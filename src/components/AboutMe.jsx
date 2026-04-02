@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { FaCode } from "react-icons/fa";
 import { GoPeople, GoClock } from "react-icons/go";
 import { PiMedalThin } from "react-icons/pi";
+import { useTranslation } from "react-i18next";
+import SEO from "./SEO";
 
 // Import all images
 import htmlImg from "../assets/aboutmeImg/html.svg";
@@ -48,57 +50,59 @@ const tools = [
   { img: reactQueryImg, name: "React Query" },
 ];
 
-const stats = [
-  {
-    icon: <FaCode className="text-primary text-4xl md:text-5xl mb-3" />,
-    number: "4+",
-    label: "Loyihalar",
-  },
-  {
-    icon: <GoPeople className="text-primary text-4xl md:text-5xl mb-3" />,
-    number: "2+",
-    label: "Mijozlar",
-  },
-  {
-    icon: <PiMedalThin className="text-primary text-4xl md:text-5xl mb-3" />,
-    number: "1+ yil",
-    label: "Tajriba",
-  },
-  {
-    icon: <GoClock className="text-primary text-4xl md:text-5xl mb-3" />,
-    number: "24/7",
-    label: "Ish vaqti",
-  },
-];
-
-const capabilities = [
-  {
-    img: seoImg,
-    title: "Seo",
-    desc: "Qidiruv tizimining natijalarida sayt reytingini yaxshilash",
-  },
-  {
-    img: designImg,
-    title: "Dizayn",
-    desc: "Veb-saytlar va ilovalar uchun zamonaviy dizayn yaratish",
-  },
-  {
-    img: qualityImg,
-    title: "Sifat",
-    desc: "Veb-saytlar va ilovalar uchun yuqori sifatli kontent yaratish",
-  },
-  {
-    img: fastImg,
-    title: "Tezkor",
-    desc: "Veb-saytlar va ilovalar uchun tezkor yechimlar taklif qilish",
-  },
-];
-
 function AboutMe() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const { t } = useTranslation();
+
+  const stats = [
+    {
+      icon: <FaCode className="text-primary text-4xl md:text-5xl mb-3" />,
+      number: "4+",
+      label: "home.stats.projects",
+    },
+    {
+      icon: <GoPeople className="text-primary text-4xl md:text-5xl mb-3" />,
+      number: "2+",
+      label: "home.stats.clients",
+    },
+    {
+      icon: <PiMedalThin className="text-primary text-4xl md:text-5xl mb-3" />,
+      number: t('home.stats.expValue'),
+      label: "home.stats.experience",
+    },
+    {
+      icon: <GoClock className="text-primary text-4xl md:text-5xl mb-3" />,
+      number: "24/7",
+      label: "home.stats.workingHours",
+    },
+  ];
+
+  const capabilities = [
+    {
+      img: seoImg,
+      title: "aboutme.capabilities.seo.title",
+      desc: "aboutme.capabilities.seo.desc",
+    },
+    {
+      img: designImg,
+      title: "aboutme.capabilities.design.title",
+      desc: "aboutme.capabilities.design.desc",
+    },
+    {
+      img: qualityImg,
+      title: "aboutme.capabilities.quality.title",
+      desc: "aboutme.capabilities.quality.desc",
+    },
+    {
+      img: fastImg,
+      title: "aboutme.capabilities.fast.title",
+      desc: "aboutme.capabilities.fast.desc",
+    },
+  ];
 
   return (
        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
+      <SEO title={t('nav.about')} />
       <div className="max-w-[1300px] mx-auto">
         {/* About section */}
         <motion.div
@@ -112,7 +116,7 @@ function AboutMe() {
             style={{ fontFamily: '"Fira Code", monospace' }}
             variants={titleFade}
           >
-            Men haqimda
+            {t('aboutme.title')}
           </motion.h2>
           <motion.div
             className="w-20 h-1 bg-primary mb-6"
@@ -123,10 +127,7 @@ function AboutMe() {
             style={{ fontFamily: '"Fira Code", monospace' }}
             variants={fadeIn(0.2)}
           >
-            Men Asadbek, 19 yoshdaman. Veb dasturchiman va zamonaviy
-            texnologiyalar yordamida oddiy, samarali veb-loyihalar yarataman.
-            Doim o&apos;rganishga ochiqman va yangi bilimlarni amaliyotda
-            qo&apos;llashga intilaman.
+            {t('aboutme.description')}
           </motion.p>
           <Link to="/contact">
             <motion.button
@@ -136,7 +137,7 @@ function AboutMe() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              Bog&apos;lanish
+              {t('aboutme.contactBtn')}
             </motion.button>
           </Link>
         </motion.div>
@@ -153,12 +154,7 @@ function AboutMe() {
             <motion.div
               key={i}
               variants={cardFadeUp}
-              whileHover={{
-                y: -8,
-                borderColor: "#0284C7",
-                transition: { duration: 0.3 },
-              }}
-              className="bg-surface border border-border rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer group"
+              className="premium-card p-6 md:p-8 flex flex-col items-center justify-center group"
             >
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 5 }}
@@ -176,7 +172,7 @@ function AboutMe() {
                 className="text-muted text-sm md:text-base group-hover:text-primary transition-colors duration-300"
                 style={{ fontFamily: '"Fira Code", monospace' }}
               >
-                {label}
+                {t(label)}
               </p>
             </motion.div>
           ))}
@@ -195,7 +191,7 @@ function AboutMe() {
             style={{ fontFamily: '"Fira Code", monospace' }}
             variants={titleFade}
           >
-            Asbob uskunalari
+            {t('aboutme.toolsTitle')}
           </motion.h2>
           <motion.div
             className="w-20 h-1 bg-primary mb-10"
@@ -206,14 +202,9 @@ function AboutMe() {
               <motion.div
                 key={index}
                 variants={cardFadeUp}
-                className="relative bg-surface border border-border rounded-2xl cursor-pointer overflow-hidden transition-all duration-300 flex items-center justify-center h-32 md:h-36 group"
+                className="relative premium-card overflow-hidden flex items-center justify-center h-32 md:h-36 group"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                whileHover={{
-                  y: -6,
-                  borderColor: "#0284C7",
-                  transition: { duration: 0.3 },
-                }}
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.img
@@ -249,7 +240,7 @@ function AboutMe() {
             style={{ fontFamily: '"Fira Code", monospace' }}
             variants={titleFade}
           >
-            Men nimalar qila olaman
+            {t('aboutme.capabilitiesTitle')}
           </motion.h2>
           <motion.div
             className="w-20 h-1 bg-primary mb-10"
@@ -260,16 +251,11 @@ function AboutMe() {
               <motion.div
                 key={i}
                 variants={cardFadeUp}
-                whileHover={{
-                  y: -6,
-                  borderColor: "#0284C7",
-                  transition: { duration: 0.3 },
-                }}
-                className="flex items-start gap-5 bg-surface border border-border rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer group"
+                className="flex items-start gap-5 premium-card p-6 md:p-8 group"
               >
                 <motion.img
                   src={img}
-                  alt={title}
+                  alt={t(title)}
                   className="w-14 h-14 md:w-16 md:h-16 object-contain flex-shrink-0"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ duration: 0.3 }}
@@ -279,13 +265,75 @@ function AboutMe() {
                     className="text-xl md:text-2xl font-semibold text-main mb-2 group-hover:text-primary transition-colors duration-300"
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
-                    {title}
+                    {t(title)}
                   </h4>
                   <p
                     className="text-muted text-sm md:text-base leading-relaxed"
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
-                    {desc}
+                    {t(desc)}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Experience Timeline */}
+        <motion.div
+          className="mb-24 md:mb-32"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerStagger}
+        >
+          <motion.h2
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-main mb-4"
+            style={{ fontFamily: '"Fira Code", monospace' }}
+            variants={titleFade}
+          >
+            {t('experience.title')}
+          </motion.h2>
+          <motion.div
+            className="w-20 h-1 bg-primary mb-12"
+            variants={lineGrow}
+          />
+          <div className="space-y-12">
+            {['softturtkul', 'edu'].map((id, idx) => (
+              <motion.div
+                key={id}
+                variants={cardFadeUp}
+                className="relative pl-8 border-l-2 border-primary/20 group"
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/10 group-hover:scale-125 transition-transform" />
+                
+                <div className="premium-card p-6 md:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                    <h3 
+                      className="text-xl md:text-2xl font-bold text-main"
+                      style={{ fontFamily: '"Fira Code", monospace' }}
+                    >
+                      {t(`experience.items.${id}.title`)}
+                    </h3>
+                    <span 
+                      className="text-primary font-bold text-sm bg-primary/10 px-4 py-1 rounded-full"
+                      style={{ fontFamily: '"Fira Code", monospace' }}
+                    >
+                      {t(`experience.items.${id}.date`)}
+                    </span>
+                  </div>
+                  <h4 
+                    className="text-lg font-semibold text-primary mb-3"
+                    style={{ fontFamily: '"Fira Code", monospace' }}
+                  >
+                    {t(`experience.items.${id}.company`)}
+                  </h4>
+                  <p 
+                    className="text-muted leading-relaxed"
+                    style={{ fontFamily: '"Fira Code", monospace' }}
+                  >
+                    {t(`experience.items.${id}.desc`)}
                   </p>
                 </div>
               </motion.div>
@@ -306,7 +354,7 @@ function AboutMe() {
             style={{ fontFamily: '"Fira Code", monospace' }}
             variants={titleFade}
           >
-            Mijozlar
+            {t('aboutme.clientsTitle')}
           </motion.h2>
           <motion.div
             className="w-20 h-1 bg-primary mb-10"
@@ -317,18 +365,12 @@ function AboutMe() {
               <motion.div
                 key={i}
                 variants={cardFadeUp}
-                whileHover={{
-                  y: -6,
-                  borderColor: "#0284C7",
-                  scale: 1.02,
-                  transition: { duration: 0.3 },
-                }}
-                className="bg-surface rounded-2xl py-12 md:py-16 border border-border flex items-center justify-center cursor-pointer transition-all duration-300"
+                className="premium-card py-12 md:py-16 flex items-center justify-center"
               >
                 <img
                   className="w-20 h-20 md:w-24 md:h-24 object-contain"
                   src={milliyImg}
-                  alt="Milliy Mijoz"
+                  alt={t('aboutme.clientLabel')}
                 />
               </motion.div>
             ))}

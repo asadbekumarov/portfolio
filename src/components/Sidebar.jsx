@@ -1,8 +1,8 @@
-"use client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { HiX } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 import {
   Mail,
   Phone,
@@ -16,30 +16,37 @@ import {
   Users,
   Calendar,
 } from "lucide-react";
+
 const socials = [
   { icon: Mail, link: "mailto:asadbekumarov922@gmail.com", label: "Email" },
   { icon: Phone, link: "tel:+998772687865", label: "Phone" },
   { icon: Github, link: "https://github.com/asadbekumarov", label: "GitHub" },
   { icon: Send, link: "https://t.me/asad_umarov", label: "Telegram" },
 ];
-const stats = [
-  { icon: Briefcase, value: "4+", label: "Loyihalar" },
-  { icon: Users, value: "2+", label: "Mijozlar" },
-  { icon: Calendar, value: "1", label: "Yil tajriba" },
-];
-const info = [
-  { icon: MapPin, label: "Joylashuv", value: "Toshkent, O‘zbekiston" },
-  { icon: Code, label: "Yo‘nalish", value: "Frontend Developer" },
-  { icon: Clock, label: "Ish vaqti", value: "24/7 Online" },
-  { icon: Award, label: "Daraja", value: "Strong Junior" },
-];
+
 export default function Sidebar({ className, isOpen, setIsOpen }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useTranslation();
+
+  const stats = [
+    { icon: Briefcase, value: "4+", label: "sidebar.stats.projects" },
+    { icon: Users, value: "2+", label: "sidebar.stats.clients" },
+    { icon: Calendar, value: "1", label: "sidebar.stats.experience" },
+  ];
+
+  const info = [
+    { icon: MapPin, label: "sidebar.info.location", value: "sidebar.info.locationValue" },
+    { icon: Code, label: "sidebar.info.direction", value: "sidebar.info.directionValue" },
+    { icon: Clock, label: "sidebar.info.workingHours", value: "sidebar.info.workingHoursValue" },
+    { icon: Award, label: "sidebar.info.level", value: "sidebar.info.levelValue" },
+  ];
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <>
       <motion.section
@@ -48,14 +55,11 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`
         w-[85vw] lg:w-full max-w-[360px]
-        rounded
-        border border-border
-        ${isScrolled ? "bg-white/80 dark:bg-black/50 shadow-lg" : "bg-white/70 dark:bg-black/40"}
-        backdrop-blur-xl
+        premium-card
         p-6
         space-y-6
         transition-all duration-300
-        ${isOpen ? 'fixed left-0 top-[72px] z-50 h-[calc(100vh-72px)] lg:static' : 'hidden lg:block lg:sticky lg:top-24'}
+        ${isOpen ? 'fixed left-0 top-[72px] z-50 h-[calc(100vh-72px)]' : 'hidden lg:block lg:sticky lg:top-24'}
         ${className || ""}
       `}
       >
@@ -83,10 +87,10 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
             AU
           </motion.div>
           <h2 className="mt-4 text-xl font-bold">
-            Umarov Asadbek
+            {t('header.name')}
           </h2>
           <p className="text-sm text-muted-foreground">
-            Frontend Developer · UI Engineer
+            {t('sidebar.info.directionValue')} · UI Engineer
           </p>
         </div>
         <div className="grid grid-cols-3 gap-3">
@@ -105,7 +109,7 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
               <Icon className="mx-auto mb-1 text-primary" size={16} />
               <div className="font-bold text-sm">{value}</div>
               <div className="text-[11px] text-muted-foreground">
-                {label}
+                {t(label)}
               </div>
             </motion.div>
           ))}
@@ -125,10 +129,10 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
               <Icon size={16} className="text-primary mt-0.5" />
               <div>
                 <p className="text-xs text-muted-foreground">
-                  {label}
+                  {t(label)}
                 </p>
                 <p className="text-sm font-medium">
-                  {value}
+                  {t(value)}
                 </p>
               </div>
             </div>
@@ -145,7 +149,7 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-sm text-emerald-600 font-medium">
-            Yangi loyihalar uchun ochiq
+            {t('sidebar.openForProjects')}
           </span>
         </div>
         <div className="grid grid-cols-4 gap-3">

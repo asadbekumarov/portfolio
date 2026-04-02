@@ -1,33 +1,38 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Player } from "@lottiefiles/react-lottie-player";
+import SEO from "./SEO";
 
 // Import all images
 import gmailIcon from "../assets/contactImg/gmail.svg";
 import telegramIcon from "../assets/contactImg/telegram.svg";
 import phoneIcon from "../assets/contactImg/telefon.svg";
 
-const contacts = [
-  {
-    icon: gmailIcon,
-    title: "E-pochta",
-    value: "asadbekumarov922@gmail.com",
-    link: "mailto:asadbekumarov922@gmail.com",
-  },
-  {
-    icon: telegramIcon,
-    title: "Telegram",
-    value: "t.me/asad_umarov",
-    link: "https://t.me/asad_umarov",
-  },
-  {
-    icon: phoneIcon,
-    title: "Telefon raqam",
-    value: "+998 (77) 267-78-65",
-    link: "tel:+998772677865",
-  },
-];
-
 function Contact() {
+  const { t } = useTranslation();
+
+  const contacts = [
+    {
+      icon: gmailIcon,
+      title: "contacts.emailTitle",
+      value: "asadbekumarov922@gmail.com",
+      link: "mailto:asadbekumarov922@gmail.com",
+    },
+    {
+      icon: telegramIcon,
+      title: "contacts.telegram",
+      value: "t.me/asad_umarov",
+      link: "https://t.me/asad_umarov",
+    },
+    {
+      icon: phoneIcon,
+      title: "contacts.phoneTitle",
+      value: "+998 (77) 267-78-65",
+      link: "tel:+998772677865",
+    },
+  ];
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -91,16 +96,16 @@ function Contact() {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Ism kiritilishi shart";
+    if (!formData.name.trim()) newErrors.name = t('contact.errors.nameRequired');
     if (!formData.email.trim()) {
-      newErrors.email = "Email kiritilishi shart";
+      newErrors.email = t('contact.errors.emailRequired');
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email))
-        newErrors.email = "Yaroqli email kiriting";
+        newErrors.email = t('contact.errors.emailInvalid');
     }
     if (!formData.message.trim())
-      newErrors.message = "Xabar bo'sh bo'lishi mumkin emas";
+      newErrors.message = t('contact.errors.messageRequired');
     return newErrors;
   };
 
@@ -121,82 +126,99 @@ const handleSubmit = async (e) => {
       const data = await response.json();
 
       if (data.success) {
-        alert("Xabaringiz yuborildi! Tez orada javob olasiz.");
+        alert(t('contact.alerts.success'));
         setFormData({ name: "", email: "", message: "" });
       } else {
-        alert("Xatolik yuz berdi: " + (data.error || "Noma'lum xatolik"));
+        alert(t('contact.alerts.error') + (data.error || "Noma'lum xatolik"));
       }
     } catch (err) {
       console.error("Error sending message:", err);
-      alert("Xabar yuborishda xatolik yuz berdi. Iltimos, keyinroq urinib ko‘ring.");
+      alert(t('contact.alerts.generalError'));
     }
   }
 };
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
+      <SEO title={t('nav.contact')} />
       <div className="max-w-[1300px] mx-auto">
-        {/* Contact Cards Section */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={titleFade}
-          className="mb-16 md:mb-20"
-        >
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-main mb-4"
-            style={{ fontFamily: '"Fira Code", monospace' }}
-          >
-            Aloqa
-          </h2>
-          <motion.div
-            className="w-20 h-1 bg-primary mb-10"
-            variants={lineGrow}
-          />
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-20 md:mb-28"
-          initial="hidden"
-          animate="visible"
-          variants={containerStagger}
-        >
-          {contacts.map((contact, index) => (
-            <motion.a
-              key={index}
-              href={contact.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-6 md:p-8 bg-surface border border-border rounded-2xl transition-all duration-300 flex flex-col items-center text-center cursor-pointer group"
-              variants={cardFadeUp}
-              whileHover={{
-                y: -8,
-                borderColor: "#0284C7",
-                transition: { duration: 0.3 },
-              }}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          <div>
+            {/* Contact Cards Section */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={titleFade}
+              className="mb-10"
             >
-              <motion.img
-                src={contact.icon}
-                alt={contact.title}
-                className="w-12 h-12 md:w-14 md:h-14 mb-4"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.3 }}
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-main mb-4"
+                style={{ fontFamily: '"Fira Code", monospace' }}
+              >
+                {t('contact.title')}
+              </h2>
+              <motion.div
+                className="w-20 h-1 bg-primary"
+                variants={lineGrow}
               />
-              <h3
-                className="text-lg md:text-xl font-semibold text-main mb-2 group-hover:text-primary transition-colors duration-300"
-                style={{ fontFamily: '"Fira Code", monospace' }}
-              >
-                {contact.title}
-              </h3>
-              <p
-                className="text-muted text-sm md:text-base"
-                style={{ fontFamily: '"Fira Code", monospace' }}
-              >
-                {contact.value}
-              </p>
-            </motion.a>
-          ))}
-        </motion.div>
+            </motion.div>
+
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+              initial="hidden"
+              animate="visible"
+              variants={containerStagger}
+            >
+              {contacts.map((contact, index) => (
+                <motion.a
+                  key={index}
+                  href={contact.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-6 premium-card flex flex-col items-center text-center group"
+                  variants={cardFadeUp}
+                >
+                  <motion.img
+                    src={contact.icon}
+                    alt={t(contact.title)}
+                    className="w-12 h-12 mb-4"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <h3
+                    className="text-lg font-semibold text-main mb-2 group-hover:text-primary transition-colors duration-300"
+                    style={{ fontFamily: '"Fira Code", monospace' }}
+                  >
+                    {t(contact.title)}
+                  </h3>
+                  <p
+                    className="text-muted text-xs sm:text-sm break-all"
+                    style={{ fontFamily: '"Fira Code", monospace' }}
+                  >
+                    {contact.value}
+                  </p>
+                </motion.a>
+              ))}
+            </motion.div>
+          </div>
+
+          <motion.div 
+            className="flex justify-center items-center"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="w-full max-w-[450px]">
+              <Player 
+                 autoplay
+                 loop
+                 src="https://assets3.lottiefiles.com/packages/lf20_u25cckyh.json" // Email/Contact animation
+                 style={{ height: 'auto', width: '100%' }}
+               />
+            </div>
+          </motion.div>
+        </div>
 
         {/* Form Section */}
         <motion.div
@@ -210,14 +232,14 @@ const handleSubmit = async (e) => {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-main mb-4"
             style={{ fontFamily: '"Fira Code", monospace' }}
           >
-            So&apos;rov yuborish
+            {t('contact.formTitle')}
           </h2>
           <motion.div className="w-20 h-1 bg-primary" variants={lineGrow} />
         </motion.div>
 
         <motion.form
           onSubmit={handleSubmit}
-          className="bg-surface border border-border p-6 md:p-8 rounded-2xl max-w-4xl"
+          className="premium-card p-6 md:p-8 max-w-4xl"
           variants={formVariants}
           initial="hidden"
           whileInView="visible"
@@ -231,12 +253,12 @@ const handleSubmit = async (e) => {
                 style={{ fontFamily: '"Fira Code", monospace' }}
                 htmlFor="name"
               >
-                Ismingiz*
+                {t('contact.form.nameLabel')}
               </label>
               <input
                 id="name"
                 type="text"
-                placeholder="Ismingizni kiriting"
+                placeholder={t('contact.form.namePlaceholder')}
                 value={formData.name}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-lg bg-background border ${errors.name ? "border-red-500" : "border-border"} focus:border-primary outline-none transition-colors duration-300 text-main placeholder-muted`}
@@ -260,12 +282,12 @@ const handleSubmit = async (e) => {
                 style={{ fontFamily: '"Fira Code", monospace' }}
                 htmlFor="email"
               >
-                Manzilingiz*
+                {t('contact.form.emailLabel')}
               </label>
               <input
                 id="email"
                 type="email"
-                placeholder="misol@gmail.com"
+                placeholder={t('contact.form.emailPlaceholder')}
                 value={formData.email}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-lg bg-background border ${errors.email ? "border-red-500" : "border-border"} focus:border-primary outline-none transition-colors duration-300 text-main placeholder-muted`}
@@ -290,12 +312,12 @@ const handleSubmit = async (e) => {
               style={{ fontFamily: '"Fira Code", monospace' }}
               htmlFor="message"
             >
-              Xabaringiz*
+              {t('contact.form.messageLabel')}
             </label>
             <textarea
               id="message"
               rows="5"
-              placeholder="Xabaringizni kiriting"
+              placeholder={t('contact.form.messagePlaceholder')}
               value={formData.message}
               onChange={handleChange}
               className={`w-full px-4 py-3 rounded-lg bg-background border ${errors.message ? "border-red-500" : "border-border"} focus:border-primary outline-none resize-none transition-colors duration-300 text-main placeholder-muted`}
@@ -320,7 +342,7 @@ const handleSubmit = async (e) => {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
-            Yuborish
+            {t('contact.form.submitBtn')}
           </motion.button>
         </motion.form>
       </div>

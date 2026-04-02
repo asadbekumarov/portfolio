@@ -1,6 +1,8 @@
 import { FiGithub, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import SEO from "./SEO";
 
 import manhome from "../assets/projectsImg/manhome.png";
 import autoquiz from "../assets/projectsImg/autoquiz.jpg";
@@ -25,70 +27,77 @@ import {
   cardFadeUp,
   fadeIn,
 } from "../utils/animations";
-const FILTERS = [
-  { label: "Barcha", value: "all" },
-  { label: "Real loyihalar", value: "production" },
-  { label: "Amalyot loyihalar", value: "personal" },
-];
-const projects = [
-  {
-    title: "Mann Home",
-    tag: "Online Furniture Store",
-    type: "production",
-    img: manhome,
-    desc: "Mann Home – zamonaviy onlayn mebel do‘koni. Sayt orqali turli mebellarni ko‘rish, tanlash va xavfsiz xarid qilish mumkin. Foydalanuvchi uchun qulay interfeys va to‘liq ishlaydigan e-commerce funksiyalari mavjud.",
-    stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
-    live: "https://mann-home.vercel.app/uz",
-    github: "https://github.com/",
-  },
-
-  {
-    title: "Darrov",
-    tag: "Delivery & Services App",
-    type: "production",
-    img: tgbotdarrow,
-    desc: "Darrov — Telegram va web platformasida ishlaydigan xizmatlar ilovasi. Foydalanuvchilar ovqat yetkazib berish, texnik xizmatlar va boshqa service xizmatlarini osongina buyurtma qilishlari mumkin.",
-    stack: ["React.tsx", "TailwindCSS", "TypeScript"],
-    live: "https://darrov.softturtkul.uz/",
-    github: "https://github.com/your-username/darrov",
-  },
-  {
-    title: "PUBG Tournament",
-    tag: "Gaming / Platform",
-    type: "production",
-    img: pubg,
-    desc: "PUBG Tournament – 12 viloyat ishtirokchilarini qamrab olgan onlayn turnir sayti. Foydalanuvchilar turnir jadvali, natijalar va qatnashish imkoniyatlarini sayt orqali kuzatishlari mumkin.",
-    stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
-    live: "https://pubg-tournament-frontend.vercel.app/uz",
-    github: "https://github.com/",
-  },
-  {
-    title: "AutoQuiz",
-    tag: "Education Technology",
-    type: "personal",
-    img: autoquiz,
-    desc: "AutoQuiz platforma — o'qituvchilarga testlar yaratish va boshqarish imkonini beruvchi innovatsion ta'lim vositasi",
-    stack: ["React.js", "TailwindCSS", "Javascript"],
-    live: "https://auto-quiz-liard.vercel.app/",
-    github: "https://github.com/asadbekumarov/autoQuiz",
-  },
-  {
-    title: "VocabApp",
-    tag: "EdTech • Mobile",
-    type: "personal",
-    img: vocabAppImg,
-    images: [vocabAppImg, addword, newword, vocab, vocab1, quiz, complated],
-    desc: "VocabApp — xorijiy tillarni o'rganuvchilar uchun shaxsiy lug'at boyligini oshirishga mo'ljallangan mobil ilova. Foydalanuvchilar o'z so'zlarini tezkor kiritish (batch-entry), ularni kunlik tartibda ko'rib chiqish va aqlli, randomizatsiya qilingan testlar orqali xotirasini mustahkamlashlari mumkin.",
-    stack: ["React Native", "Expo", "AsyncStorage", "TypeScript"],
-    live: "APK yuklab olish linki (ixtiyoriy)",
-    github: "https://github.com/asadbekumarov/placeholder",
-  },
-];
 
 function Project() {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [loadedImages, setLoadedImages] = useState({});
+
+  const handleImageLoad = (index) => {
+    setLoadedImages(prev => ({ ...prev, [index]: true }));
+  };
+
+  const FILTERS = [
+    { label: t("project.filters.all"), value: "all" },
+    { label: t("project.filters.production"), value: "production" },
+    { label: t("project.filters.personal"), value: "personal" },
+  ];
+
+  const projects = [
+    {
+      title: t("project.items.mannhome.title"),
+      tag: t("project.items.mannhome.tag"),
+      type: "production",
+      img: manhome,
+      desc: t("project.items.mannhome.desc"),
+      stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
+      live: "https://mann-home.vercel.app/uz",
+      github: "https://github.com/",
+    },
+    {
+      title: t("project.items.darrov.title"),
+      tag: t("project.items.darrov.tag"),
+      type: "production",
+      img: tgbotdarrow,
+      desc: t("project.items.darrov.desc"),
+      stack: ["React.tsx", "TailwindCSS", "TypeScript"],
+      live: "https://darrov.softturtkul.uz/",
+      github: "https://github.com/your-username/darrov",
+    },
+    {
+      title: t("project.items.pubg.title"),
+      tag: t("project.items.pubg.tag"),
+      type: "production",
+      img: pubg,
+      desc: t("project.items.pubg.desc"),
+      stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
+      live: "https://pubg-tournament-frontend.vercel.app/uz",
+      github: "https://github.com/",
+    },
+    {
+      title: t("project.items.autoquiz.title"),
+      tag: t("project.items.autoquiz.tag"),
+      type: "personal",
+      img: autoquiz,
+      desc: t("project.items.autoquiz.desc"),
+      stack: ["React.js", "TailwindCSS", "Javascript"],
+      live: "https://auto-quiz-liard.vercel.app/",
+      github: "https://github.com/asadbekumarov/autoQuiz",
+    },
+    {
+      title: t("project.items.vocabapp.title"),
+      tag: t("project.items.vocabapp.tag"),
+      type: "personal",
+      img: vocabAppImg,
+      images: [vocabAppImg, addword, newword, vocab, vocab1, quiz, complated],
+      desc: t("project.items.vocabapp.desc"),
+      stack: ["React Native", "Expo", "AsyncStorage", "TypeScript"],
+      live: "#",
+      github: "https://github.com/asadbekumarov/placeholder",
+    },
+  ];
 
   const openGallery = (project) => {
     setSelectedProject(project);
@@ -107,6 +116,7 @@ function Project() {
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen">
+      <SEO title={t('nav.projects')} />
       <div className="max-w-[1300px] mx-auto">
         {/* Title */}
         <motion.div
@@ -120,7 +130,7 @@ function Project() {
             style={{ fontFamily: '"Fira Code", monospace' }}
             variants={titleFade}
           >
-            Loyihalar
+            {t("project.title")}
           </motion.h2>
           <motion.div className="w-20 h-1 bg-primary" variants={lineGrow} />
           <div className="flex flex-wrap gap-3 mt-8 mb-12">
@@ -152,24 +162,25 @@ function Project() {
             <motion.div
               key={i}
               variants={cardFadeUp}
-              whileHover={{
-                y: -8,
-                borderColor: "#0284C7",
-                transition: { duration: 0.3 },
-              }}
-              className="flex flex-col bg-surface border border-border p-4 rounded-2xl transition-all duration-300 cursor-pointer group"
+              className="flex flex-col premium-card p-4 group"
             >
               {/* Image */}
               <div
-                className={`overflow-hidden rounded-xl mb-4 ${project.title === "VocabApp" || project.title === "Darrov" ? "bg-white/5 p-2" : ""}`}
+                className={`relative overflow-hidden rounded-xl mb-4 h-48 md:h-52 ${project.title === t("project.items.vocabapp.title") || project.title === t("project.items.darrov.title") ? "bg-white/5 p-2" : "bg-surface"}`}
               >
+                {/* Skeleton Loader */}
+                {!loadedImages[i] && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-surface via-border to-surface bg-[length:200%_100%] animate-shimmer" />
+                )}
+                
                 <motion.img
+                  onLoad={() => handleImageLoad(i)}
                   whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.4 }}
-                  className={`${project.title === "VocabApp" || project.title === "Darrov"
+                  className={`${project.title === t("project.items.vocabapp.title") || project.title === t("project.items.darrov.title")
                       ? "object-contain"
                       : "object-cover"
-                    } w-full h-48 md:h-52`}
+                    } w-full h-full transition-opacity duration-500 ${loadedImages[i] ? 'opacity-100' : 'opacity-0'}`}
                   src={project.img}
                   alt={project.title}
                 />
@@ -215,9 +226,9 @@ function Project() {
               {/* Buttons */}
               <div className="flex items-center gap-3">
                 <motion.a
-                  href={project.title === "VocabApp" ? "#" : project.live}
+                  href={project.title === t("project.items.vocabapp.title") ? "#" : project.live}
                   onClick={(e) => {
-                    if (project.title === "VocabApp") {
+                    if (project.title === t("project.items.vocabapp.title")) {
                       e.preventDefault();
                       openGallery(project);
                     }
@@ -226,10 +237,10 @@ function Project() {
                   whileTap={{ scale: 0.95 }}
                   className="flex-1 text-center bg-primary hover:bg-primary-hover text-white px-4 py-2.5 rounded-lg font-medium transition-all duration-300"
                   style={{ fontFamily: '"Fira Code", monospace' }}
-                  target={project.title === "VocabApp" ? "_self" : "_blank"}
+                  target={project.title === t("project.items.vocabapp.title") ? "_self" : "_blank"}
                   rel="noopener noreferrer"
                 >
-                  Ko&apos;rish
+                  {t("project.viewBtn")}
                 </motion.a>
                 <motion.a
                   href={project.github}
@@ -321,14 +332,13 @@ function Project() {
                 className="text-xl sm:text-2xl lg:text-3xl font-bold text-main group-hover:text-primary transition-colors duration-300"
                 style={{ fontFamily: '"Fira Code", monospace' }}
               >
-                Telegram kanal
+                {t("project.telegram.title")}
               </h3>
               <p
                 className="text-muted max-w-lg text-sm sm:text-base leading-relaxed"
                 style={{ fontFamily: '"Fira Code", monospace' }}
               >
-                Barcha loyihalarimni Telegram kanalimda ham kuzatib borishingiz
-                mumkin!
+                {t("project.telegram.desc")}
               </p>
               <motion.a
                 href="https://t.me/umarov_posts"
@@ -339,7 +349,7 @@ function Project() {
                 className="inline-block text-center bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 w-full sm:w-auto"
                 style={{ fontFamily: '"Fira Code", monospace' }}
               >
-                Ta&apos;shrif buyurish
+                {t("project.telegram.btn")}
               </motion.a>
             </div>
           </div>

@@ -1,10 +1,11 @@
- 
+import { useTranslation } from "react-i18next";
 
 export default function DownloadButton() {
+  const { t } = useTranslation();
   return (
     <a
       href="/Asadbek Umarov Resume.pdf"
-      download="Umarov-Asadbek-CV.pdf"
+      download={t('header.resumeFilename')}
       className="
         group relative w-[120px] h-[40px]
         bg-primary hover:bg-primary-hover
@@ -12,7 +13,7 @@ export default function DownloadButton() {
         transition-all duration-300
         flex items-center justify-center
       "
-      data-tooltip="Yuklash"
+      data-tooltip={t('header.download')}
     >
       {/* Tooltip */}
       <div
@@ -25,7 +26,7 @@ export default function DownloadButton() {
           top-[60px] left-1/2 -translate-x-1/2
         "
       >
-        Size: 44.4KB
+        {t('header.size')}: 44.4KB
       </div>
 
       {/* Tooltip triangle */}
@@ -41,11 +42,11 @@ export default function DownloadButton() {
 
       {/* Button text & icon */}
       <div className="flex items-center gap-2">
-        <span>Download</span>
+        <span className="text-sm font-medium">{t('header.download')}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
