@@ -1,7 +1,19 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { HiMenu, HiX, HiHome, HiUser, HiFolder, HiMail, HiOutlineViewGrid, HiTranslate, HiSun, HiMoon, HiNewspaper } from "react-icons/hi";
+import {
+  HiMenu,
+  HiX,
+  HiHome,
+  HiUser,
+  HiFolder,
+  HiMail,
+  HiTranslate,
+  HiSun,
+  HiMoon,
+  HiNewspaper,
+  HiDownload,
+} from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../context/ThemeContext";
@@ -17,7 +29,7 @@ const navLinks = [
   { path: "/aboutMe", key: "nav.about", icon: HiUser },
   { path: "/projects", key: "nav.projects", icon: HiFolder },
   { path: "/blog", key: "nav.blog", icon: HiNewspaper },
-  { path: "/contact", key: "nav.contact", icon: HiMail }
+  { path: "/contact", key: "nav.contact", icon: HiMail },
 ];
 
 const contacts = [
@@ -25,192 +37,243 @@ const contacts = [
     img: gmailImg,
     key: "contacts.gmail",
     link: "https://mail.google.com/mail/?view=cm&fs=1&to=asadbekumarov922@gmail.com",
+    hoverColor: "hover:border-red-400/50 hover:bg-red-500/5",
   },
   {
     img: githubImg,
     key: "contacts.github",
     link: "https://github.com/asadbekumarov",
+    hoverColor: "hover:border-violet-400/50 hover:bg-violet-500/5",
   },
   {
     img: telegramImg,
     key: "contacts.telegram",
     link: "https://t.me/asad_umarov",
+    hoverColor: "hover:border-sky-400/50 hover:bg-sky-500/5",
   },
   {
     img: telefonImg,
     key: "contacts.phone",
     link: "tel:+998949011202",
+    hoverColor: "hover:border-emerald-400/50 hover:bg-emerald-500/5",
   },
 ];
+
+const LANGS = ["uz", "en", "ru"];
 
 function Header({ setSidebarToggle }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
-    setIsLangDropdownOpen(false);
+    setIsLangOpen(false);
   };
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    const handleClickOutside = (event) => {
-      if (!event.target.closest(".lang-switcher")) {
-        setIsLangDropdownOpen(false);
-      }
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    const onClickOutside = (e) => {
+      if (!e.target.closest(".lang-switcher")) setIsLangOpen(false);
     };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", onScroll);
+    window.addEventListener("mousedown", onClickOutside);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousedown", onClickOutside);
     };
   }, []);
 
-  const currentLang = i18n.language === "uz" ? "UZ" : "EN";
+  /* ── close mobile menu on route change ── */
+  const handleNavClick = () => setIsMenuOpen(false);
 
+  const currentLang = i18n.language?.slice(0, 2).toUpperCase() ?? "UZ";
+
+  /* ── desktop nav link classes ── */
   const linkClasses = ({ isActive }) =>
-    `relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+    `relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
       isActive
-        ? "text-primary bg-primary bg-opacity-10"
-        : "text-main hover:text-primary hover:bg-primary hover:bg-opacity-5"
+        ? "text-primary bg-primary/10 border border-primary/20 shadow-sm shadow-primary/10"
+        : "text-muted hover:text-main hover:bg-surface border border-transparent"
     }`;
 
+  /* ── animation variants ── */
   const menuVariants = {
     closed: {
       opacity: 0,
       height: 0,
-      transition: { duration: 0.3, ease: "easeInOut" },
+      transition: { duration: 0.28, ease: "easeInOut" },
     },
     open: {
       opacity: 1,
       height: "auto",
-      transition: { duration: 0.3, ease: "easeInOut" },
+      transition: { duration: 0.28, ease: "easeInOut" },
     },
   };
 
   const dropdownVariants = {
-    closed: { opacity: 0, y: 10, scale: 0.95, pointerEvents: "none" },
-    open: { opacity: 1, y: 0, scale: 1, pointerEvents: "auto" },
+    closed: { opacity: 0, y: -8, scale: 0.95, pointerEvents: "none" },
+    open: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      pointerEvents: "auto",
+      transition: { duration: 0.18, ease: "easeOut" },
+    },
   };
 
   const itemVariants = {
-    closed: { x: -15, opacity: 0 },
+    closed: { x: -16, opacity: 0 },
     open: (i) => ({
       x: 0,
       opacity: 1,
-      transition: { delay: i * 0.08, duration: 0.3 },
+      transition: { delay: i * 0.07, duration: 0.28 },
     }),
   };
 
   return (
     <motion.header
       className={`glass-effect transition-all duration-300 ${
-        isScrolled ? "shadow-sm" : ""
+        isScrolled
+          ? "shadow-[0_4px_24px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)]"
+          : ""
       }`}
     >
-      <div className=" relative flex justify-between items-center px-4 sm:px-6 lg:px-8 py-[19px]">
-        
-        {/* Logo */}
+      {/* ── Scroll progress line ── */}
+      {isScrolled && (
+        <motion.div
+          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-indigo-500 to-primary"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
+          style={{ transformOrigin: "left" }}
+          transition={{ duration: 0.4 }}
+        />
+      )}
+
+      <div className="relative flex justify-between items-center px-4 sm:px-6 lg:px-8 py-[18px]">
+        {/* ── Logo ── */}
         <NavLink to="/" className="flex items-center gap-3 group">
-          <motion.img
-            src={logo}
-            alt="Logo"
-            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-primary object-cover transition-all duration-300 group-hover:border-primary-hover group-hover:scale-105"
-            whileHover={{ rotate: 5 }}
-            transition={{ duration: 0.3 }}
-          />
-          <motion.span
-            className="text-xl sm:text-2xl font-bold text-main group-hover:text-primary transition-colors duration-300 hidden sm:block"
+          <motion.div
+            className="relative"
+            whileHover={{ scale: 1.08, rotate: -3 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-indigo-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-400" />
+            <img
+              src={logo}
+              alt="Logo"
+              className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl border-2 border-primary/40 object-cover group-hover:border-primary transition-colors duration-300"
+            />
+          </motion.div>
+          <span
+            className="text-xl sm:text-2xl font-black text-main group-hover:text-primary transition-colors duration-300 hidden sm:block tracking-tight"
             style={{ fontFamily: '"Fira Code", monospace' }}
           >
-            {t('header.name')}
-          </motion.span>
+            {t("header.name")}
+          </span>
         </NavLink>
 
-        {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-6">
-          <ul className="flex items-center gap-2">
+        {/* ── Desktop Nav ── */}
+        <nav className="hidden md:flex items-center gap-5">
+          <ul className="flex items-center gap-1">
             {navLinks.map(({ path, key, icon: Icon }, index) => (
               <motion.li
                 key={path}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.08, duration: 0.4 }}
+                transition={{ delay: index * 0.07, duration: 0.35 }}
               >
-                <NavLink 
-                  to={path} 
+                <NavLink
+                  to={path}
                   className={linkClasses}
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
                   <Icon className="w-4 h-4" />
-                  <span className="text-sm">{t(key)}</span>
+                  <span>{t(key)}</span>
                 </NavLink>
               </motion.li>
             ))}
           </ul>
 
-          <div className="h-8 w-px bg-border" />
+          <div className="h-7 w-px bg-border" />
 
           {/* Theme Toggle */}
           <motion.button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-main hover:text-primary hover:bg-primary hover:bg-opacity-10 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="p-2.5 rounded-xl text-muted hover:text-primary hover:bg-primary/8 border border-transparent hover:border-primary/20 transition-all duration-300"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? <HiSun size={20} /> : <HiMoon size={20} />}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={theme}
+                initial={{ rotate: -30, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 30, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {theme === "dark" ? <HiSun size={19} /> : <HiMoon size={19} />}
+              </motion.div>
+            </AnimatePresence>
           </motion.button>
 
-          {/* Custom Language Switcher */}
+          {/* Language Switcher */}
           <div className="relative lang-switcher">
             <motion.button
-              onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-border hover:border-primary transition-all duration-300"
+              onClick={() => setIsLangOpen(!isLangOpen)}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface border border-border hover:border-primary/40 transition-all duration-300"
               whileTap={{ scale: 0.95 }}
             >
               <HiTranslate className="text-primary w-4 h-4" />
-              <span className="text-sm font-medium text-main uppercase" style={{ fontFamily: '"Fira Code", monospace' }}>
+              <span
+                className="text-xs font-black text-main uppercase"
+                style={{ fontFamily: '"Fira Code", monospace' }}
+              >
                 {currentLang}
               </span>
-              <motion.div
-                animate={{ rotate: isLangDropdownOpen ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
+              <motion.svg
+                className="w-3 h-3 text-muted"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                animate={{ rotate: isLangOpen ? 180 : 0 }}
+                transition={{ duration: 0.25 }}
               >
-                <svg className="w-3 h-3 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </motion.div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M19 9l-7 7-7-7"
+                />
+              </motion.svg>
             </motion.button>
 
             <AnimatePresence>
-              {isLangDropdownOpen && (
+              {isLangOpen && (
                 <motion.div
                   variants={dropdownVariants}
                   initial="closed"
                   animate="open"
                   exit="closed"
-                  className="absolute top-full right-0 mt-2 w-24 bg-surface border border-border rounded-lg shadow-xl overflow-hidden z-50 backdrop-blur-xl"
+                  className="absolute top-full right-0 mt-2 w-24 bg-surface border border-border rounded-2xl shadow-xl overflow-hidden z-50 backdrop-blur-xl"
                 >
-                  <div className="flex flex-col py-1">
-                    {["uz", "en", "ru"].map((lang) => (
-                      <button
-                        key={lang}
-                        onClick={() => changeLanguage(lang)}
-                        className={`px-4 py-2 text-sm text-left hover:bg-primary hover:bg-opacity-10 transition-colors ${
-                          i18n.language === lang ? "text-primary font-bold" : "text-main"
-                        }`}
-                        style={{ fontFamily: '"Fira Code", monospace' }}
-                      >
-                        {lang.toUpperCase()}
-                      </button>
-                    ))}
-                  </div>
+                  {LANGS.map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => changeLanguage(lang)}
+                      className={`w-full px-4 py-2.5 text-sm text-left font-bold transition-colors hover:bg-primary/8 ${
+                        i18n.language === lang
+                          ? "text-primary bg-primary/5"
+                          : "text-muted hover:text-main"
+                      }`}
+                      style={{ fontFamily: '"Fira Code", monospace' }}
+                    >
+                      {lang.toUpperCase()}
+                    </button>
+                  ))}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -219,90 +282,126 @@ function Header({ setSidebarToggle }) {
           <DownloadButton />
         </nav>
 
-        {/* Mobile Controls */}
-        <div className="flex items-center gap-4 md:hidden">
-          {/* Theme Toggle Mobile */}
+        {/* ── Mobile Controls ── */}
+        <div className="flex items-center gap-2 md:hidden">
+          {/* Theme */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-main hover:text-primary hover:bg-primary hover:bg-opacity-10 transition-all duration-300"
+            className="p-2 rounded-xl text-muted hover:text-primary hover:bg-primary/8 transition-all duration-300"
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? <HiSun size={20} /> : <HiMoon size={20} />}
+            {theme === "dark" ? <HiSun size={20} /> : <HiMoon size={20} />}
           </button>
 
-          {/* Mobile Language Switcher */}
+          {/* Lang */}
           <div className="relative lang-switcher">
             <button
-              onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className="flex items-center gap-2 px-2 py-1 rounded-lg bg-surface border border-border"
+              onClick={() => setIsLangOpen(!isLangOpen)}
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-surface border border-border text-xs font-black text-main uppercase"
+              style={{ fontFamily: '"Fira Code", monospace' }}
             >
-              <HiTranslate className="text-primary w-4 h-4" />
-              <span className="text-xs font-medium text-main uppercase" style={{ fontFamily: '"Fira Code", monospace' }}>
-                {currentLang}
-              </span>
+              <HiTranslate className="text-primary w-3.5 h-3.5" />
+              {currentLang}
             </button>
             <AnimatePresence>
-              {isLangDropdownOpen && (
+              {isLangOpen && (
                 <motion.div
                   variants={dropdownVariants}
                   initial="closed"
                   animate="open"
                   exit="closed"
-                  className="absolute top-full right-0 mt-2 w-20 bg-surface border border-border rounded-lg shadow-xl overflow-hidden z-50"
+                  className="absolute top-full right-0 mt-2 w-20 bg-surface border border-border rounded-xl shadow-xl overflow-hidden z-50"
                 >
-                  <div className="flex flex-col py-1">
-                    {["uz", "en", "ru"].map((lang) => (
-                      <button
-                        key={lang}
-                        onClick={() => changeLanguage(lang)}
-                        className={`px-3 py-2 text-xs text-left hover:bg-primary hover:bg-opacity-10 transition-colors ${
-                          i18n.language === lang ? "text-primary font-bold" : "text-main"
-                        }`}
-                        style={{ fontFamily: '"Fira Code", monospace' }}
-                      >
-                        {lang.toUpperCase()}
-                      </button>
-                    ))}
-                  </div>
+                  {LANGS.map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => changeLanguage(lang)}
+                      className={`w-full px-3 py-2 text-xs text-left font-bold transition-colors hover:bg-primary/8 ${
+                        i18n.language === lang ? "text-primary" : "text-muted"
+                      }`}
+                      style={{ fontFamily: '"Fira Code", monospace' }}
+                    >
+                      {lang.toUpperCase()}
+                    </button>
+                  ))}
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Hamburger */}
           <motion.button
-            className="p-2 rounded-lg text-main hover:text-primary hover:bg-primary hover:bg-opacity-10 transition-all duration-300"
+            className="p-2 rounded-xl text-muted hover:text-primary hover:bg-primary/8 border border-transparent hover:border-primary/20 transition-all duration-300"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.93 }}
           >
             <AnimatePresence mode="wait">
               <motion.div
                 key={isMenuOpen ? "close" : "open"}
-                initial={{ rotate: 0, opacity: 0 }}
+                initial={{ rotate: -45, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
+                exit={{ rotate: 45, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {isMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+                {isMenuOpen ? <HiX size={22} /> : <HiMenu size={22} />}
               </motion.div>
             </AnimatePresence>
           </motion.button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile Menu ── */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
-            className="md:hidden border-t border-border bg-surface"
+            className="md:hidden border-t border-border bg-surface/95 backdrop-blur-xl"
             variants={menuVariants}
             initial="closed"
             animate="open"
             exit="closed"
           >
-            <ul className="flex flex-col py-4">
+            {/* User Card */}
+            <motion.div
+              className="mx-4 mt-4 mb-3 p-4 rounded-2xl bg-gradient-to-r from-primary/10 via-indigo-500/10 to-primary/5 border border-primary/15 flex items-center gap-4"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <div className="relative flex-shrink-0">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-indigo-500 rounded-xl blur-sm opacity-40" />
+                <img
+                  src={logo}
+                  alt="Avatar"
+                  className="relative w-12 h-12 rounded-xl object-cover border-2 border-surface"
+                />
+                <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-surface" />
+              </div>
+              <div className="min-w-0">
+                <p
+                  className="text-sm font-black text-main tracking-tight truncate"
+                  style={{ fontFamily: '"Fira Code", monospace' }}
+                >
+                  {t("header.name")}
+                </p>
+                <p
+                  className="text-[11px] font-bold text-primary uppercase tracking-wider truncate"
+                  style={{ fontFamily: '"Fira Code", monospace' }}
+                >
+                  {t("sidebar.info.directionValue")}
+                </p>
+              </div>
+              <div className="ml-auto flex-shrink-0 flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[9px] font-black text-emerald-600 uppercase tracking-wider">
+                  {t("sidebar.openForProjects")}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Nav Links */}
+            <ul className="flex flex-col px-3 pb-2">
               {navLinks.map(({ path, key, icon: Icon }, index) => (
                 <motion.li
                   key={path}
@@ -313,38 +412,54 @@ function Header({ setSidebarToggle }) {
                 >
                   <NavLink
                     to={path}
-                    className="flex items-center gap-3 px-6 py-3 text-muted hover:text-primary hover:bg-primary hover:bg-opacity-5 transition-all duration-300"
+                    onClick={handleNavClick}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all duration-300 mb-0.5 ${
+                        isActive
+                          ? "text-primary bg-primary/10 border border-primary/15"
+                          : "text-muted hover:text-main hover:bg-background/60 border border-transparent"
+                      }`
+                    }
                     style={{ fontFamily: '"Fira Code", monospace' }}
-                    onClick={() => setIsMenuOpen(false)}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-5 h-5 flex-shrink-0" />
                     <span>{t(key)}</span>
                   </NavLink>
                 </motion.li>
               ))}
             </ul>
 
-            {/* Contacts */}
+            {/* Contacts + Download */}
             <motion.div
-              className="px-6 py-4 border-t border-border"
+              className="px-4 py-4 border-t border-border"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.25 }}
             >
-              <div className="grid grid-cols-4 gap-3 mb-4">
-                {contacts.map(({ img, key, link }, i) => (
+              <p
+                className="text-[10px] font-black text-muted uppercase tracking-[0.15em] mb-3 px-1"
+                style={{ fontFamily: '"Fira Code", monospace' }}
+              >
+                Contacts
+              </p>
+              <div className="grid grid-cols-4 gap-2 mb-4">
+                {contacts.map(({ img, key, link, hoverColor }, i) => (
                   <motion.a
                     key={i}
                     href={link}
                     target={link.startsWith("http") ? "_blank" : "_self"}
                     rel="noopener noreferrer"
-                    className="flex flex-col items-center gap-2 p-3 rounded-xl bg-surface border border-border hover:border-primary transition-all duration-300"
-                    whileHover={{ y: -3, scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className={`flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-background border border-border transition-all duration-300 ${hoverColor}`}
+                    whileHover={{ y: -3, scale: 1.04 }}
+                    whileTap={{ scale: 0.94 }}
                   >
-                    <img src={img} alt={t(key)} className="w-8 h-8 object-contain" />
-                    <span 
-                      className="text-xs text-muted"
+                    <img
+                      src={img}
+                      alt={t(key)}
+                      className="w-7 h-7 object-contain"
+                    />
+                    <span
+                      className="text-[9px] font-bold text-muted uppercase tracking-wider"
                       style={{ fontFamily: '"Fira Code", monospace' }}
                     >
                       {t(key)}
@@ -353,7 +468,9 @@ function Header({ setSidebarToggle }) {
                 ))}
               </div>
 
-              <DownloadButton />
+              <div className="flex justify-center">
+                <DownloadButton />
+              </div>
             </motion.div>
           </motion.nav>
         )}
