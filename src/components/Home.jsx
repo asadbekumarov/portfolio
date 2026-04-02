@@ -110,7 +110,7 @@ function Home() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        <div className="w-full max-w-[500px]">
+                        <div className="w-full max-w-[1000px]">
                             <Player
                                 autoplay
                                 loop
