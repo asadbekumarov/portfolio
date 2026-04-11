@@ -65,26 +65,25 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
     },
   ];
 
-  /* ── positioning class ───────────────────────────────────── */
+  /* ── positioning: scroll yo‘q — kontent ixcham, overflow yashirin ── */
   const sectionCls = isOpen
-    ? /* mobile overlay */
-      "fixed left-0 top-[72px] z-50 w-[85vw] max-w-[360px] h-[calc(100vh-72px)] overflow-y-auto shadow-2xl"
-    : /* desktop fixed panel */
-      "hidden lg:block lg:fixed lg:left-0 lg:top-[72px] lg:bottom-0 lg:w-[360px] lg:overflow-hidden";
+    ? "fixed left-0 z-50 w-[min(calc(100vw-1rem),320px)] max-w-[320px] overflow-hidden shadow-2xl " +
+      "top-[var(--header-height)] h-[calc(100dvh-var(--header-height))] max-h-[calc(100dvh-var(--header-height))] " +
+      "pb-[env(safe-area-inset-bottom,0px)]"
+    : "hidden lg:flex lg:flex-col lg:fixed lg:left-0 lg:z-40 lg:w-[320px] lg:max-w-[320px] " +
+      "lg:top-[var(--header-height)] lg:h-[calc(100dvh-var(--header-height))] lg:max-h-[calc(100dvh-var(--header-height))] " +
+      "lg:overflow-hidden lg:min-h-0";
 
   return (
     <>
       {/* ── Spacer: keeps main content out from under the fixed sidebar ── */}
       <div
-        className="hidden lg:block lg:w-[360px] lg:flex-shrink-0"
+        className="hidden lg:block lg:w-[320px] lg:flex-shrink-0"
         aria-hidden="true"
       />
 
       {/* ── Sidebar panel ── */}
-      <motion.section
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+      <section
         className={`${sectionCls} bg-surface border-r border-border ${className ?? ""}`}
       >
         {/* Close — mobile only */}
@@ -100,153 +99,102 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
           </button>
         )}
 
-        <div className="px-5 pt-10 pb-5 space-y-5">
+        <div className="flex h-full min-h-0 flex-col gap-2 overflow-hidden px-3 py-3 sm:px-4">
           {/* ────────────────── Profile ────────────────── */}
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center shrink-0">
             <motion.div
-              whileHover={{ scale: 1.05, rotate: -2 }}
+              whileHover={{ scale: 1.03, rotate: -2 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="relative group mb-3"
+              className="relative group mb-1.5"
             >
-              {/* Glow ring */}
               <div
-                className="absolute -inset-1 bg-gradient-to-r from-primary to-indigo-500
-                              rounded-2xl blur-sm opacity-30 group-hover:opacity-55
+                className="absolute -inset-0.5 bg-gradient-to-r from-primary to-indigo-500
+                              rounded-xl blur-sm opacity-25 group-hover:opacity-45
                               transition duration-500 pointer-events-none"
               />
-              {/* Avatar */}
-              <div className="relative w-20 h-20 rounded-2xl border-[3px] border-surface overflow-hidden shadow-lg">
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl border-2 border-surface overflow-hidden shadow-md">
                 <img
                   src={logo}
                   alt="Asadbek Umarov"
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Online dot */}
               <div
-                className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full
-                              bg-emerald-500 border-2 border-surface shadow"
+                className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full
+                              bg-emerald-500 border-2 border-surface"
               >
-                <span
-                  className="absolute inset-0 rounded-full bg-emerald-400
-                                 opacity-60 animate-ping"
-                />
+                <span className="absolute inset-0 rounded-full bg-emerald-400 opacity-50 animate-ping" />
               </div>
             </motion.div>
 
             <h2
-              className="text-lg font-black tracking-tight text-main"
+              className="text-sm sm:text-base font-black tracking-tight text-main leading-tight"
               style={{ fontFamily: '"Fira Code", monospace' }}
             >
               {t("header.name")}
             </h2>
 
-            <div
-              className="inline-flex items-center gap-1.5 mt-1.5 py-1 px-3
-                            rounded-full bg-primary/10 border border-primary/20"
-            >
-              <Code size={11} className="text-primary" />
-              <p className="text-[11px] font-bold text-primary uppercase tracking-wider">
+            <div className="inline-flex items-center gap-1 mt-1 py-0.5 px-2 rounded-full bg-primary/10 border border-primary/20 max-w-full">
+              <Code size={10} className="text-primary shrink-0" />
+              <p className="text-[9px] sm:text-[10px] font-bold text-primary uppercase tracking-wide truncate">
                 {t("sidebar.info.directionValue")}
               </p>
             </div>
           </div>
 
           {/* ────────────────── Stats ────────────────── */}
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-1.5 shrink-0">
             {stats.map(({ icon: Icon, value, label }, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -3 }}
-                className="group relative rounded-2xl border border-border
-                           bg-background/60 p-3 text-center overflow-hidden
-                           hover:border-primary/40 transition-all duration-300"
+                className="group relative rounded-xl border border-border bg-background/60 px-1 py-2 text-center hover:border-primary/40 transition-colors"
               >
-                <div
-                  className="absolute inset-0 bg-primary/5 opacity-0
-                                group-hover:opacity-100 transition-opacity
-                                pointer-events-none rounded-2xl"
-                />
-                <div className="relative">
-                  <div className="flex justify-center mb-1">
-                    <Icon
-                      className="text-primary group-hover:scale-110 transition-transform"
-                      size={16}
-                    />
-                  </div>
-                  <div className="font-black text-lg text-main leading-none">
-                    {value}
-                  </div>
-                  <div
-                    className="mt-0.5 text-[9px] font-bold text-muted
-                                  uppercase tracking-wider leading-tight"
-                  >
-                    {t(label)}
-                  </div>
+                <div className="flex justify-center mb-0.5">
+                  <Icon className="text-primary w-3.5 h-3.5" strokeWidth={2} />
                 </div>
-              </motion.div>
+                <div className="font-black text-sm text-main leading-none">{value}</div>
+                <div className="mt-0.5 text-[8px] font-bold text-muted uppercase leading-tight px-0.5">
+                  {t(label)}
+                </div>
+              </div>
             ))}
           </div>
 
           {/* ────────────────── Info List ────────────────── */}
-          <div className="space-y-0.5">
+          <div className="space-y-0.5 shrink-0">
             {info.map(({ icon: Icon, label, value }, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.07 + 0.2 }}
-                whileHover={{ x: 3 }}
-                className="group flex items-center gap-3 px-2.5 py-2
-                           rounded-xl hover:bg-primary/5 transition-all
-                           duration-200 cursor-default"
+                className="group flex items-center gap-2 px-1 py-1 rounded-lg hover:bg-primary/5 transition-colors cursor-default"
               >
-                <div
-                  className="flex-shrink-0 w-8 h-8 rounded-lg
-                                bg-background border border-border
-                                flex items-center justify-center text-muted
-                                group-hover:text-primary group-hover:border-primary/30
-                                group-hover:bg-primary/5 transition-all duration-300"
-                >
-                  <Icon size={14} />
+                <div className="flex-shrink-0 w-7 h-7 rounded-md bg-background border border-border flex items-center justify-center text-muted group-hover:text-primary group-hover:border-primary/30">
+                  <Icon size={12} />
                 </div>
-                <div className="min-w-0">
-                  <p
-                    className="text-[9px] font-black text-muted uppercase
-                                tracking-[0.12em] leading-none mb-0.5"
-                  >
+                <div className="min-w-0 flex-1">
+                  <p className="text-[8px] font-black text-muted uppercase tracking-wide leading-none mb-0.5">
                     {t(label)}
                   </p>
                   <p
-                    className="text-sm font-bold text-main truncate leading-tight"
+                    className="text-[11px] sm:text-xs font-bold text-main truncate leading-snug"
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
                     {t(value)}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* ────────────────── Skills ────────────────── */}
-          <div className="rounded-2xl border border-border bg-background/50 p-3.5">
-            <p
-              className="text-[9px] font-black text-muted uppercase
-                          tracking-[0.15em] mb-3"
-            >
+          <div className="rounded-xl border border-border bg-background/50 p-2 shrink-0">
+            <p className="text-[8px] font-black text-muted uppercase tracking-widest mb-1.5">
               Top Skills
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1">
               {skills.map((skill, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1.5 rounded-xl border border-border
-                             bg-surface text-xs font-bold text-muted
-                             hover:border-primary/40 hover:text-primary
-                             hover:bg-primary/5 transition-all duration-200"
+                  className="px-1.5 py-0.5 rounded-md border border-border bg-surface text-[9px] sm:text-[10px] font-bold text-muted leading-tight"
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
                   {skill}
@@ -257,29 +205,17 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
 
           {/* ────────────────── Open for Projects ────────────────── */}
           <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            className="relative group rounded-2xl p-[1.5px]
-                       bg-gradient-to-r from-emerald-500/60 via-teal-400/40
-                       to-emerald-500/60 overflow-hidden"
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            className="relative group rounded-xl p-px bg-gradient-to-r from-emerald-500/60 via-teal-400/40 to-emerald-500/60 shrink-0"
           >
-            <div
-              className="bg-surface rounded-[calc(1rem-1.5px)] py-2.5 px-4
-                            flex items-center justify-center gap-2
-                            group-hover:bg-emerald-500/5 transition-colors duration-300"
-            >
-              <div className="relative flex h-2 w-2 flex-shrink-0">
-                <span
-                  className="animate-ping absolute inline-flex h-full w-full
-                                 rounded-full bg-emerald-400 opacity-75"
-                />
-                <span
-                  className="relative inline-flex rounded-full h-2 w-2
-                                 bg-emerald-500"
-                />
+            <div className="bg-surface rounded-[11px] py-1.5 px-2 flex items-center justify-center gap-1.5">
+              <div className="relative flex h-1.5 w-1.5 flex-shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
               </div>
               <span
-                className="text-sm font-black text-emerald-600"
+                className="text-[10px] sm:text-xs font-black text-emerald-600 text-center leading-tight"
                 style={{ fontFamily: '"Fira Code", monospace' }}
               >
                 {t("sidebar.openForProjects")}
@@ -287,39 +223,24 @@ export default function Sidebar({ className, isOpen, setIsOpen }) {
             </div>
           </motion.div>
 
-          {/* ────────────────── Social Links (one color) ────────────────── */}
-          <div className="grid grid-cols-4 gap-2">
+          {/* ────────────────── Social Links — faqat ikonka (joy tejaymiz) ────────────────── */}
+          <div className="grid grid-cols-4 gap-1.5 shrink-0">
             {socials.map(({ icon: Icon, link, label }, i) => (
-              <motion.a
+              <a
                 key={i}
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
                 title={label}
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  delay: i * 0.07 + 0.45,
-                  type: "spring",
-                  stiffness: 200,
-                }}
-                whileHover={{ y: -4 }}
-                whileTap={{ scale: 0.88 }}
-                className="flex flex-col items-center justify-center gap-1
-                           py-2.5 rounded-2xl border border-border
-                           bg-background/50 text-muted
-                           hover:bg-primary/10 hover:border-primary/40
-                           hover:text-primary transition-all duration-300"
+                aria-label={label}
+                className="flex items-center justify-center py-2 rounded-xl border border-border bg-background/50 text-muted hover:bg-primary/10 hover:border-primary/40 hover:text-primary transition-colors"
               >
-                <Icon size={17} />
-                <span className="text-[9px] font-black uppercase tracking-wider">
-                  {label}
-                </span>
-              </motion.a>
+                <Icon size={15} />
+              </a>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Mobile backdrop */}
       {isOpen && (

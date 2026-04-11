@@ -134,12 +134,7 @@ const Blog = () => {
           </motion.div>
 
           {/* Right — Lottie animation */}
-          <motion.div
-            className="lg:col-span-5 relative hidden lg:flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9 }}
-          >
+          <div className="lg:col-span-5 relative hidden lg:flex items-center justify-center">
             <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10 w-full rounded-[2rem] bg-gradient-to-br from-surface to-background border border-border/50 overflow-hidden flex items-center justify-center p-4">
               <Player
@@ -149,17 +144,12 @@ const Blog = () => {
                 style={{ height: "320px", width: "100%" }}
               />
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* ── Featured Post (horizontal wide card) ───── */}
         {featuredPost && (
-          <motion.article
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="group relative overflow-hidden bg-surface border border-border rounded-[2rem] mb-10 hover:border-primary/50 transition-colors duration-500 cursor-pointer"
-          >
+          <article className="group relative overflow-hidden bg-surface border border-border rounded-[2rem] mb-10 hover:border-primary/50 transition-colors duration-500 cursor-pointer">
             {/* Hover glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -206,7 +196,7 @@ const Blog = () => {
                 </h3>
 
                 <p
-                  className="text-muted text-base leading-relaxed mb-8 line-clamp-3"
+                  className="text-muted text-base leading-[1.75] mb-8 line-clamp-3"
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
                   {t(`blog.posts.${featuredPost.id}.desc`)}
@@ -222,7 +212,7 @@ const Blog = () => {
                 </motion.button>
               </div>
             </div>
-          </motion.article>
+          </article>
         )}
 
         {/* ── Regular Posts Grid ──────────────────────── */}
@@ -281,7 +271,7 @@ const Blog = () => {
                   </h3>
 
                   <p
-                    className="text-muted text-sm leading-relaxed mb-6 flex-grow line-clamp-3"
+                    className="text-muted text-sm leading-[1.75] mb-6 flex-grow line-clamp-3"
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
                     {t(`blog.posts.${post.id}.desc`)}
@@ -303,11 +293,7 @@ const Blog = () => {
 
         {/* ── No Results ──────────────────────────────── */}
         {filteredPosts.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center justify-center py-16 text-center"
-          >
+          <div className="flex flex-col items-center justify-center py-16 text-center">
             <Player
               autoplay
               loop
@@ -320,7 +306,7 @@ const Blog = () => {
             >
               {t("blog.noResults")}
             </p>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

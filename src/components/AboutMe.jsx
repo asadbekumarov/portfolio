@@ -136,7 +136,7 @@ function AboutMe() {
               variants={lineGrow}
             />
             <motion.p
-              className="text-lg md:text-xl text-muted leading-relaxed mb-10 max-w-2xl"
+              className="text-lg md:text-xl text-muted leading-[1.75] mb-10 max-w-2xl"
               style={{ fontFamily: '"Fira Code", monospace' }}
               variants={fadeIn(0.2)}
             >
@@ -156,34 +156,26 @@ function AboutMe() {
             </Link>
           </motion.div>
 
-          <motion.div
-            className="lg:col-span-5 relative flex flex-col gap-6"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9 }}
-          >
+          <div className="lg:col-span-5 relative flex flex-col gap-6">
             {/* Glow decorations */}
             <div className="absolute -top-10 -right-10 w-60 h-60 bg-primary/8 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-indigo-500/8 rounded-full blur-3xl pointer-events-none" />
 
             {/* Lottie animation card */}
-            <div className="relative z-10 rounded-[2rem] bg-gradient-to-br from-surface to-background border border-border/50 overflow-hidden flex items-center justify-center p-4">
+            <div className="relative z-10 rounded-2xl sm:rounded-[2rem] bg-gradient-to-br from-surface to-background border border-border/50 overflow-hidden flex items-center justify-center p-3 sm:p-4">
               <Player
                 autoplay
                 loop
                 src="https://assets3.lottiefiles.com/packages/lf20_iv4dsx3q.json"
-                style={{ height: "340px", width: "100%" }}
+                style={{ height: "min(340px, 55vh)", width: "100%" }}
               />
             </div>
 
             {/* Stats row below Lottie */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 relative z-10">
               {stats.slice(0, 4).map((stat, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1 }}
                   className="flex flex-col items-center justify-center p-5 rounded-2xl bg-surface border border-border hover:border-primary/40 group transition-all duration-300"
                 >
                   <div className="text-primary group-hover:scale-110 transition-transform duration-300 mb-2">
@@ -195,18 +187,17 @@ function AboutMe() {
                   <span className="text-[10px] text-muted uppercase font-bold text-center tracking-widest mt-1">
                     {t(stat.label)}
                   </span>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Tools section */}
         <motion.div
           className="mb-24 md:mb-32"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           variants={containerStagger}
         >
           <div className="flex flex-col items-center text-center mb-16">
@@ -264,8 +255,7 @@ function AboutMe() {
         <motion.div
           className="mb-24 md:mb-32"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           variants={containerStagger}
         >
           <div className="flex flex-col items-center text-center mb-16">
@@ -309,7 +299,7 @@ function AboutMe() {
                     {t(title)}
                   </h4>
                   <p
-                    className="text-muted text-base leading-relaxed font-medium"
+                    className="text-muted text-base leading-[1.75] font-medium"
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
                     {t(desc)}
@@ -324,8 +314,7 @@ function AboutMe() {
         <motion.div
           className="mb-24 md:mb-32"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           variants={containerStagger}
         >
           <div className="flex flex-col items-center text-center mb-16">
@@ -347,15 +336,15 @@ function AboutMe() {
               <motion.div
                 key={id}
                 variants={cardFadeUp}
-                className="relative pl-12 border-l-4 border-primary/10 group"
+                className="relative pl-8 sm:pl-12 border-l-4 border-primary/10 group"
               >
                 {/* Timeline Dot */}
                 <div className="absolute left-[-14px] top-0 w-6 h-6 rounded-full bg-surface border-4 border-primary ring-8 ring-primary/5 group-hover:scale-125 transition-all duration-500" />
 
-                <div className="premium-card p-10 hover:border-primary/30 transition-all duration-500 relative overflow-hidden">
+                <div className="premium-card p-6 sm:p-8 md:p-10 hover:border-primary/30 transition-all duration-500 relative overflow-hidden">
                   {/* Decorative number */}
                   <span
-                    className="absolute top-4 right-8 text-7xl font-black text-primary/5 select-none"
+                    className="absolute top-3 right-3 sm:top-4 sm:right-8 text-5xl sm:text-7xl font-black text-primary/5 select-none"
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
                     0{idx + 1}
@@ -385,7 +374,7 @@ function AboutMe() {
                   </div>
 
                   <p
-                    className="text-muted text-base md:text-lg leading-relaxed font-medium relative z-10"
+                    className="text-muted text-base md:text-lg leading-[1.75] font-medium relative z-10"
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
                     {t(`experience.items.${id}.desc`)}
@@ -400,8 +389,7 @@ function AboutMe() {
         <motion.div
           className="mb-16 md:mb-20"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           variants={containerStagger}
         >
           <div className="flex flex-col items-center text-center mb-16">

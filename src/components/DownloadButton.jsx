@@ -7,7 +7,7 @@ export default function DownloadButton() {
       href="/Asadbek Umarov Resume.pdf"
       download={t('header.resumeFilename')}
       className="
-        group relative w-[120px] h-[40px]
+        group relative min-w-[104px] sm:w-[120px] h-[38px] sm:h-[40px] px-2 sm:px-0 shrink-0
         bg-primary hover:bg-primary-hover
         rounded-md text-white cursor-pointer
         transition-all duration-300

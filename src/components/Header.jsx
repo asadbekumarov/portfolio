@@ -13,6 +13,7 @@ import {
   HiMoon,
   HiNewspaper,
   HiDownload,
+  HiMenuAlt1,
 } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -152,7 +153,7 @@ function Header({ setSidebarToggle }) {
         />
       )}
 
-      <div className="relative flex justify-between items-center px-4 sm:px-6 lg:px-8 py-[18px]">
+      <div className="relative flex justify-between items-center gap-2 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8 py-[18px]">
         {/* ── Logo ── */}
         <NavLink to="/" className="flex items-center gap-3 group">
           <motion.div
@@ -283,7 +284,17 @@ function Header({ setSidebarToggle }) {
         </nav>
 
         {/* ── Mobile Controls ── */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-1.5 sm:gap-2 md:hidden shrink-0">
+          <motion.button
+            type="button"
+            onClick={() => setSidebarToggle((open) => !open)}
+            className="p-2 rounded-xl text-muted hover:text-primary hover:bg-primary/8 border border-transparent hover:border-primary/20 transition-all duration-300"
+            aria-label="Toggle profile sidebar"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.93 }}
+          >
+            <HiMenuAlt1 size={22} />
+          </motion.button>
           {/* Theme */}
           <button
             onClick={toggleTheme}

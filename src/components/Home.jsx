@@ -64,7 +64,7 @@ function Home() {
                             </motion.div>
 
                             <motion.h1
-                                className="text-4xl sm:text-5xl lg:text-7xl font-black text-main mb-8 leading-[1.1] tracking-tighter"
+                                className="text-4xl sm:text-5xl lg:text-7xl font-black text-main mb-8 leading-[1.18] sm:leading-[1.15] tracking-tight"
                                 style={{ fontFamily: '"Fira Code", monospace' }}
                                 variants={titleFade}
                             >
@@ -78,7 +78,7 @@ function Home() {
                             />
 
                             <motion.p
-                                className="text-lg md:text-xl text-muted max-w-2xl leading-relaxed mb-12 font-medium"
+                                className="text-lg md:text-xl text-muted max-w-2xl leading-[1.75] mb-12 font-medium"
                                 style={{ fontFamily: '"Fira Code", monospace' }}
                                 variants={fadeIn(0.3)}
                             >
@@ -86,7 +86,7 @@ function Home() {
                             </motion.p>
 
                             <motion.div 
-                                className="flex flex-wrap gap-5 mb-16"
+                                className="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:gap-5 mb-16 w-full [&_a]:w-full sm:[&_a]:w-auto"
                                 variants={fadeIn(0.5)}
                             >
                                 <Link to="/projects">
@@ -142,19 +142,14 @@ function Home() {
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-primary/20 rounded-full blur-[80px] pointer-events-none" />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none" />
                         
-                        <motion.div 
-                            className="w-full max-w-[600px] mx-auto relative z-10"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                        >
+                        <div className="w-full max-w-[600px] mx-auto relative z-10">
                             <Player
                                 autoplay
                                 loop
                                 src="https://assets3.lottiefiles.com/packages/lf20_w51pcehl.json"
                                 style={{ height: 'auto', width: '100%' }}
                             />
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -160,8 +160,8 @@ function Contact() {
             <motion.a
               key={index}
               href={contact.link}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={contact.link.startsWith("http") ? "_blank" : undefined}
+              rel={contact.link.startsWith("http") ? "noopener noreferrer" : undefined}
               variants={cardFadeUp}
               className={`group relative overflow-hidden bg-surface border border-border ${contact.borderHover} rounded-[2rem] p-8 flex flex-col items-center text-center transition-colors duration-500`}
             >
@@ -201,13 +201,7 @@ function Contact() {
         {/* ── Form Section ────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
           {/* Left – title + Lottie animation */}
-          <motion.div
-            className="lg:col-span-2 lg:sticky lg:top-32 flex flex-col"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="lg:col-span-2 lg:sticky lg:top-32 flex flex-col">
             <h2
               className="text-3xl md:text-4xl font-black text-main mb-5 tracking-tight"
               style={{ fontFamily: '"Fira Code", monospace' }}
@@ -233,12 +227,8 @@ function Contact() {
                   desc: t("sidebar.info.location"),
                 },
               ].map((item, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 0.3 }}
                   className="flex items-start gap-4 p-4 rounded-2xl bg-surface border border-border hover:border-primary/30 transition-colors duration-300"
                 >
                   <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
@@ -256,50 +246,29 @@ function Contact() {
                       {item.desc}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Lottie Animation */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="w-full flex justify-center"
-            >
+            <div className="w-full flex justify-center">
               <Player
                 autoplay
                 loop
                 src="https://assets3.lottiefiles.com/packages/lf20_u25cckyh.json"
                 style={{ height: "220px", width: "100%" }}
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right – form / success */}
-          <motion.div
-            className="lg:col-span-3"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <div className="lg:col-span-3">
             {submitted ? (
               /* ── Success State ── */
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-surface border border-primary/30 rounded-[2rem] p-12 text-center"
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-                  className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8"
-                >
+              <div className="bg-surface border border-primary/30 rounded-[2rem] p-12 text-center">
+                <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
                   <CheckCircle2 className="w-12 h-12 text-primary" />
-                </motion.div>
+                </div>
 
                 <h3
                   className="text-2xl font-black text-main mb-3 tracking-tight"
@@ -317,12 +286,12 @@ function Contact() {
                 >
                   {t("contact.form.submitBtn")} →
                 </motion.button>
-              </motion.div>
+              </div>
             ) : (
               /* ── Contact Form ── */
               <form
                 onSubmit={handleSubmit}
-                className="bg-surface border border-border rounded-[2rem] p-8 md:p-10 space-y-6"
+                className="bg-surface border border-border rounded-[2rem] p-8 md:p-10 space-y-7"
                 noValidate
               >
                 {/* Name + Email row */}
@@ -455,7 +424,7 @@ function Contact() {
                 </motion.button>
               </form>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

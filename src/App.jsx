@@ -24,9 +24,9 @@ function App() {
             <ScrollProgress />
             <CustomCursor />
             <Header setSidebarToggle={setIsSidebarOpen} />
-            <div className="lg:flex lg:items-start">
-              <Sidebar className="lg:w-[360px]" isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-              <main className="w-full lg:w-[1300px] mx-auto bg-background">
+            <div className="flex min-w-0 w-full lg:items-start">
+              <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+              <main className="min-w-0 w-full max-w-[1300px] flex-1 mx-auto bg-background">
                 <AnimatePresence mode="wait">
                   <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<PageTransition><Home /></PageTransition>} />

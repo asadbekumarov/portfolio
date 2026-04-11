@@ -1,75 +1,46 @@
-// src/utils/animations.js
+// Scroll/kirish animatsiyalari o‘chirilgan — variantlar darhol yakuniy holatda (Framer Motion bilan mos).
 
-// Section title chiqishi
+const none = { duration: 0 };
+
 export const titleFade = {
-  hidden: { opacity: 0, y: -20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: none },
 };
 
-// Chiziq animatsiyasi
 export const lineGrow = {
-  hidden: { scaleX: 0 },
-  visible: {
-    scaleX: 1,
-    transition: { duration: 0.5 },
-  },
+  hidden: { scaleX: 1, originX: 0 },
+  visible: { scaleX: 1, transition: none },
 };
 
-// Kartalar chiqishi uchun parent variant
 export const containerStagger = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 1 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
+    transition: { staggerChildren: 0, delayChildren: 0 },
   },
 };
 
-// Har bir karta chiqishi
 export const cardFadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: none },
 };
 
-// Chapdan chiqish
 export const fadeInLeft = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5 },
-  },
+  hidden: { opacity: 1, x: 0 },
+  visible: { opacity: 1, x: 0, transition: none },
 };
 
-// Sekin ko‘rinib chiqish
-export const fadeIn = (delay = 0) => ({
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { delay, duration: 0.5 },
-  },
+export const fadeIn = (_delay = 0) => ({
+  hidden: { opacity: 1 },
+  visible: { opacity: 1, transition: none },
 });
 
-// Hoverda biroz kattalashish
 export const hoverScale = {
   whileHover: { scale: 1.05 },
   whileTap: { scale: 0.95 },
 };
-// src/utils/animations.js
+
 export const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: none },
 };

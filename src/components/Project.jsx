@@ -194,7 +194,7 @@ function Project() {
             />
 
             <motion.p
-              className="text-muted text-lg leading-relaxed max-w-xl mb-10"
+              className="text-muted text-lg leading-[1.75] max-w-xl mb-10"
               style={{ fontFamily: '"Fira Code", monospace' }}
               variants={fadeIn(0.2)}
             >
@@ -237,12 +237,7 @@ function Project() {
           </motion.div>
 
           {/* Right — Lottie animation */}
-          <motion.div
-            className="lg:col-span-5 relative hidden lg:flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9 }}
-          >
+          <div className="lg:col-span-5 relative hidden lg:flex items-center justify-center">
             <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10 w-full rounded-[2rem] bg-gradient-to-br from-surface to-background border border-border/50 overflow-hidden flex items-center justify-center p-4">
               <Player
@@ -252,7 +247,7 @@ function Project() {
                 style={{ height: "320px", width: "100%" }}
               />
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* ── Projects Grid ─────────────────────────────────────────── */}
@@ -267,10 +262,10 @@ function Project() {
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={false}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                exit={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0 }}
                 variants={cardFadeUp}
                 className="group relative flex flex-col bg-surface border border-border rounded-[2rem] overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500"
               >
@@ -308,7 +303,7 @@ function Project() {
                 </div>
 
                 {/* Content */}
-                <div className="relative p-8 pt-2 flex flex-col flex-grow">
+                <div className="relative p-5 sm:p-6 md:p-8 pt-2 flex flex-col flex-grow">
                   <h3
                     className="text-xl font-black text-main mb-3 group-hover:text-primary transition-colors duration-300 tracking-tight"
                     style={{ fontFamily: '"Fira Code", monospace' }}
@@ -375,11 +370,7 @@ function Project() {
 
         {/* ── Empty State ───────────────────────────────────────────── */}
         {filteredProjects.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center justify-center py-8 text-center -mt-12 mb-24"
-          >
+          <div className="flex flex-col items-center justify-center py-8 text-center -mt-12 mb-24">
             <Player
               autoplay
               loop
@@ -398,39 +389,32 @@ function Project() {
             >
               No projects found for this filter.
             </p>
-          </motion.div>
+          </div>
         )}
 
         {/* ── Gallery Modal ─────────────────────────────────────────── */}
         <AnimatePresence>
           {isGalleryOpen && selectedProject && (
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={false}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              exit={{ opacity: 1 }}
+              transition={{ duration: 0 }}
               className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-xl"
             >
-              <motion.button
-                initial={{ scale: 0, rotate: -90 }}
-                animate={{ scale: 1, rotate: 0 }}
+              <button
+                type="button"
                 onClick={closeGallery}
-                className="absolute top-8 right-8 text-white bg-white/10 p-4 rounded-full hover:bg-white/20 transition-all z-[110] border border-white/10"
+                className="absolute top-[max(1rem,env(safe-area-inset-top,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:top-8 sm:right-8 text-white bg-white/10 p-3 sm:p-4 rounded-full hover:bg-white/20 transition-all z-[110] border border-white/10"
               >
                 <FiX size={24} />
-              </motion.button>
+              </button>
 
               <div className="w-full max-w-7xl">
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  className="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-12 scrollbar-hide px-4"
-                >
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-12 scrollbar-hide px-4">
                   {selectedProject.images.map((image, idx) => (
-                    <motion.div
+                    <div
                       key={idx}
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: idx * 0.1 }}
                       className="flex-shrink-0 w-full md:w-[500px] snap-center flex flex-col items-center gap-6"
                     >
                       <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
@@ -443,9 +427,9 @@ function Project() {
                       <span className="text-white/40 font-black text-xs uppercase tracking-widest">
                         {idx + 1} / {selectedProject.images.length}
                       </span>
-                    </motion.div>
+                    </div>
                   ))}
-                </motion.div>
+                </div>
 
                 <div className="text-center">
                   <h3
@@ -467,11 +451,10 @@ function Project() {
         <motion.div
           variants={fadeIn(0.3)}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="relative group overflow-hidden rounded-[3rem] p-1 bg-gradient-to-r from-primary/20 via-indigo-500/20 to-primary/20"
+          animate="visible"
+          className="relative group overflow-hidden rounded-3xl md:rounded-[3rem] p-1 bg-gradient-to-r from-primary/20 via-indigo-500/20 to-primary/20"
         >
-          <div className="relative bg-surface rounded-[2.9rem] p-8 md:p-12 flex flex-col lg:flex-row justify-between items-center gap-12">
+          <div className="relative bg-surface rounded-[1.4rem] md:rounded-[2.9rem] p-6 sm:p-8 md:p-12 flex flex-col lg:flex-row justify-between items-center gap-8 md:gap-12">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700 pointer-events-none" />
 
@@ -496,7 +479,7 @@ function Project() {
                   {t("project.telegram.title")}
                 </h3>
                 <p
-                  className="text-muted text-lg leading-relaxed font-medium"
+                  className="text-muted text-lg leading-[1.75] font-medium"
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
                   {t("project.telegram.desc")}
@@ -517,24 +500,12 @@ function Project() {
             </div>
 
             <div className="hidden lg:flex items-center relative">
-              <motion.img
-                animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+              <img
                 src={megaphoneImg}
                 alt="megaphone"
                 className="w-48 h-48 object-contain relative z-10"
               />
-              <motion.img
-                animate={{ x: [-10, 10, -10], opacity: [0.3, 0.6, 0.3] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+              <img
                 src={windImg}
                 alt="wind"
                 className="absolute -top-12 -left-20 w-56 h-56 object-contain opacity-30"

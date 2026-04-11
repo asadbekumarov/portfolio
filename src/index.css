@@ -4,6 +4,9 @@
 @tailwind utilities;
 
 :root {
+  /* Header balandligi — Sidebar `top` / `h` bilan bir xil (kesilish va ustma-ust tushmaslik uchun) */
+  --header-height: 5.25rem; /* ~84px: py-[18px] + logo/qator */
+
   /* High-end Light Mode (Vercel/Stripe style) */
   --background: 251 251 254; /* #FBFBFE */
   --surface: 255 255 255;    /* #FFFFFF */
@@ -29,16 +32,35 @@
 
 @layer base {
   html {
-    @apply scroll-smooth cursor-none;
+    @apply scroll-smooth;
+  }
+  /* Custom cursor only on fine pointers (mouse/trackpad); touch keeps normal cursor */
+  @media (pointer: fine) {
+    html {
+      @apply cursor-none;
+    }
+    body {
+      @apply cursor-none;
+    }
+    a,
+    button,
+    [role="button"],
+    select,
+    input,
+    textarea {
+      @apply cursor-none;
+    }
   }
   body {
-    @apply bg-background text-main font-sans antialiased transition-colors duration-300 cursor-none;
+    @apply bg-background text-main font-sans antialiased transition-colors duration-300;
+    overflow-x: clip;
+    line-height: 1.65;
   }
-  a, button, [role="button"], select, input, textarea {
-    @apply cursor-none;
+  p {
+    line-height: 1.75;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-bold;
+    @apply font-bold tracking-tight;
   }
 }
 
