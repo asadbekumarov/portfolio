@@ -26,6 +26,7 @@ import img3 from "../assets/projectsImg/3.jpg";
 import img4 from "../assets/projectsImg/4.jpg";
 import img5 from "../assets/projectsImg/5.jpg";
 import img6 from "../assets/projectsImg/6.jpg";
+import imgsentences6 from "../assets/sentences/img1.jpg";
 
 import {
   titleFade,
@@ -104,6 +105,17 @@ function Project() {
         live: "#",
         github: "https://github.com/asadbekumarov/placeholder",
       },
+      {
+        id: 6,
+        title: t("project.items.sentences.title"),
+        tag: t("project.items.sentences.tag"),
+        type: "personal",
+        img: imgsentences6,
+        desc: t("project.items.sentences.desc"),
+        stack: ["Deno", "TypeScript", "Grammy"],
+        live: "https://t.me/tences_umarov_bot",
+        github: "https://github.com/asadbekumarov/placeholder",
+      },
     ],
     [t],
   );
@@ -158,6 +170,9 @@ function Project() {
     project.title === t("project.items.vocabapp.title");
   const isDarrov = (project) =>
     project.title === t("project.items.darrov.title");
+  /** Skrinshot kartochkada to‘liq ko‘rinsin (kesilmasin) — Vocab, Darrov, Tences */
+  const usesContainScreenshot = (project) =>
+    isVocabApp(project) || isDarrov(project) || project.id === 6;
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-screen overflow-hidden">
@@ -289,8 +304,12 @@ function Project() {
                     onLoad={() => handleImageLoad(project.id)}
                     src={project.img}
                     alt={project.title}
-                    className={`w-full h-full transition-all duration-700 group-hover:scale-110
-                      ${isVocabApp(project) || isDarrov(project) ? "object-contain p-6" : "object-cover"}
+                    className={`w-full h-full transition-all duration-700 object-center
+                      ${
+                        usesContainScreenshot(project)
+                          ? "object-contain p-4 sm:p-6 group-hover:scale-100"
+                          : "object-cover group-hover:scale-110"
+                      }
                       ${loadedImages[project.id] ? "opacity-100" : "opacity-0"}`}
                   />
 
@@ -311,10 +330,7 @@ function Project() {
                     {project.title}
                   </h3>
 
-                  <p
-                    className="text-muted text-sm leading-relaxed mb-6 flex-grow line-clamp-3"
-                    style={{ fontFamily: '"Fira Code", monospace' }}
-                  >
+                  <p className="text-muted text-sm leading-relaxed mb-6 flex-grow line-clamp-4 font-sans">
                     {project.desc}
                   </p>
 

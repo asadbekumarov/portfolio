@@ -119,6 +119,11 @@ const resources = {
             title: "VocabApp",
             tag: "EdTech • Mobile",
             desc: "VocabApp is a mobile application designed for foreign language learners to increase their personal vocabulary. Users can quickly enter their words (batch-entry), review them daily, and strengthen their memory through smart, randomized tests."
+          },
+          sentences: {
+            title: "Tences Bot",
+            tag: "Telegram • Education",
+            desc: "Tences is a Telegram bot for learning English tenses and irregular verbs in Uzbek. Through an interactive menu you can quickly find tense rules, structure, and examples."
           }
         }
       },
@@ -332,6 +337,11 @@ const resources = {
             title: "VocabApp",
             tag: "EdTech • Mobile",
             desc: "VocabApp — xorijiy tillarni o'rganuvchilar uchun shaxsiy lug'at boyligini oshirishga mo'ljallangan mobil ilova. Foydalanuvchilar o'z so'zlarini tezkor kiritish (batch-entry), ularni kunlik tartibda ko'rib chiqish va aqlli, randomizatsiya qilingan testlar orqali xotirasini mustahkamlashlari mumkin."
+          },
+          sentences: {
+            title: "Tences Bot",
+            tag: "Telegram bot",
+            desc: "Tences — ingliz tili zamonlari va noto'g'ri fe'llarni o'zbek tilida o'rganish uchun qulay Telegram bot. Zamonlar qoidasi, tuzilishi va misollarini interaktiv menyu orqali oson topish imkonini beradi."
           }
         }
       },
@@ -505,6 +515,11 @@ const resources = {
             title: "VocabApp",
             tag: "EdTech • Мобильное",
             desc: "VocabApp — мобильное приложение, предназначенное для изучающих иностранные языки для пополнения личного словарного запаса. Пользователи могут быстро вводить свои слова (пакетный ввод), просматривать их ежедневно и укреплять память с помощью умных рандомизированных тестов."
+          },
+          sentences: {
+            title: "Tences Bot",
+            tag: "Telegram • Образование",
+            desc: "Tences — Telegram-бот для изучения английских времён и неправильных глаголов на узбекском. Интерактивное меню помогает быстро найти правила, структуру и примеры."
           }
         }
       },
