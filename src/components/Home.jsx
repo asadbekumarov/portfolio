@@ -69,7 +69,7 @@ function Home() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </span>
-                            <span className="text-xs font-bold tracking-wide">Ishga tayyor</span>
+                            <span className="text-xs font-bold tracking-wide">{t('home.availability')}</span>
                         </motion.div>
 
                         {/* 2. Tech Stack Tags */}
@@ -93,7 +93,7 @@ function Home() {
                             className="text-5xl sm:text-6xl lg:text-8xl font-black mb-4 tracking-tight leading-none"
                             style={{ fontFamily: '"Fira Code", monospace' }}
                         >
-                            Men <span className="text-primary">Umarov Asadbek</span>
+                            {t('home.namePrefix')} <span className="text-primary">{t('home.name')}</span>
                         </motion.h1>
 
                         {/* 4. Subtitle */}
@@ -102,7 +102,7 @@ function Home() {
                             className="text-lg sm:text-xl text-muted font-medium mb-8"
                             style={{ fontFamily: '"Fira Code", monospace' }}
                         >
-                            Web dasturchi & Mobile developer
+                            {t('home.subtitle')}
                         </motion.p>
 
                         {/* 5. Short Bio */}
@@ -110,8 +110,7 @@ function Home() {
                             variants={fadeIn(0.4)}
                             className="text-base sm:text-lg text-muted max-w-lg leading-relaxed mb-10"
                         >
-                            Zamonaviy va samarali veb-echimlar va mobile-echimlar yaratishga ixtisoslashganman. 
-                            Foydalanuvchi tajribasini yaxshilash va sifatli mahsulotlar ishlab chiqish mening ustuvor vazifamdir.
+                            {t('home.shortBio')}
                         </motion.p>
 
                         {/* 6. CTA Buttons */}
@@ -125,7 +124,7 @@ function Home() {
                                     whileTap={{ scale: 0.95 }}
                                     className="bg-primary hover:bg-primary-hover text-white font-bold px-8 py-4 rounded-2xl flex items-center gap-2 transition-all"
                                 >
-                                    Loyihalar <FaArrowRight size={14} />
+                                    {t('home.ctaProjects')} <FaArrowRight size={14} />
                                 </motion.button>
                             </Link>
                             <a href="https://t.me/asad_umarov" target="_blank" rel="noreferrer">
@@ -172,7 +171,7 @@ function Home() {
                             <div className="w-full h-full rounded-full overflow-hidden border-4 border-border p-2 bg-surface/50 backdrop-blur-sm">
                                 <img 
                                     src={profileImg} 
-                                    alt="Umarov Asadbek" 
+                                    alt={t('home.name')} 
                                     className="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700"
                                 />
                             </div>
@@ -184,8 +183,8 @@ function Home() {
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                 className="absolute -top-4 -left-4 sm:top-4 sm:-left-8 bg-surface border border-border p-4 rounded-2xl shadow-2xl backdrop-blur-md"
                             >
-                                <p className="text-[10px] uppercase font-bold text-muted tracking-widest mb-1">Tajriba</p>
-                                <p className="text-sm font-black text-primary">1+ yil</p>
+                                <p className="text-[10px] uppercase font-bold text-muted tracking-widest mb-1">{t('home.experienceLabel')}</p>
+                                <p className="text-sm font-black text-primary">{t('home.experienceValue')}</p>
                             </motion.div>
 
                             {/* Bottom-Right: Projects */}
@@ -194,8 +193,8 @@ function Home() {
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                                 className="absolute -bottom-4 -right-4 sm:bottom-4 sm:-right-8 bg-surface border border-border p-4 rounded-2xl shadow-2xl backdrop-blur-md"
                             >
-                                <p className="text-[10px] uppercase font-bold text-muted tracking-widest mb-1">Loyihalar</p>
-                                <p className="text-sm font-black text-primary">4+ ta</p>
+                                <p className="text-[10px] uppercase font-bold text-muted tracking-widest mb-1">{t('home.projectsLabel')}</p>
+                                <p className="text-sm font-black text-primary">{t('home.projectsValue')}</p>
                             </motion.div>
                             
                             {/* Decorative Glow */}
