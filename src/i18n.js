@@ -132,18 +132,34 @@ const resources = {
         searchPlaceholder: "Search articles...",
         readMore: "Read more",
         noResults: "No articles found",
+        backToBlog: "Back to Blog",
         posts: {
           reactQuery: {
             title: "Why use React Query?",
-            desc: "The best way to manage data in React applications and why you should use it."
+            desc: "The best way to manage data in React applications and why you should use it.",
+            content: [
+              "React Query is an amazing library for data fetching and state management in React applications. It eliminates the need for complex global state management solutions like Redux just for storing server data.",
+              "It automatically handles caching, background updates, and stale data synchronization. This means your application will always show the most up-to-date information without requiring manual API calls every time a component mounts.",
+              "By adopting React Query in your projects, you can significantly reduce the amount of boilerplate code and improve the overall performance and user experience of your application."
+            ]
           },
           tailwindPremium: {
             title: "Premium UI with Tailwind",
-            desc: "Secrets to creating high-quality, professional user interfaces using Tailwind CSS."
+            desc: "Secrets to creating high-quality, professional user interfaces using Tailwind CSS.",
+            content: [
+              "Tailwind CSS has revolutionized the way we style web applications. Unlike traditional component libraries, it provides utility classes that allow you to build completely custom designs without leaving your HTML.",
+              "To create a truly premium UI, you need to understand how to leverage Tailwind's configuration. Using custom color palettes, fine-tuning shadows, and utilizing backdrop-blur effects can elevate your design from 'basic' to 'senior-level'.",
+              "In this article, we explore the best practices for structuring your Tailwind code, creating reusable components with @apply, and implementing dark mode effectively."
+            ]
           },
           cleanCode: {
             title: "Clean Code Principles",
-            desc: "How to write code that is easy to read, maintain, and scale for long-term projects."
+            desc: "How to write code that is easy to read, maintain, and scale for long-term projects.",
+            content: [
+              "Writing clean code is not just about making it work; it's about making it readable for the next developer (which could be you in six months). Clear naming conventions and modular functions are the foundation of good software architecture.",
+              "One of the core principles is DRY (Don't Repeat Yourself). If you find yourself copying and pasting the same logic, it's time to extract it into a reusable utility function or a custom React hook.",
+              "Furthermore, keeping your components small and focused on a single responsibility (Single Responsibility Principle) makes testing and debugging much easier. Always strive for simplicity over cleverness."
+            ]
           }
         }
       },
@@ -152,18 +168,34 @@ const resources = {
         searchPlaceholder: "Maqolalarni qidirish...",
         readMore: "Batafsil",
         noResults: "Maqolalar topilmadi",
+        backToBlog: "Blogga qaytish",
         posts: {
           reactQuery: {
             title: "Nima uchun React Query?",
-            desc: "React ilovalarida ma'lumotlarni boshqarishning eng yaxshi usuli va nima uchun undan foydalanish kerak."
+            desc: "React ilovalarida ma'lumotlarni boshqarishning eng yaxshi usuli va nima uchun undan foydalanish kerak.",
+            content: [
+              "React Query — bu React ilovalarida server ma'lumotlarini olish (fetching) va holatni boshqarish uchun ajoyib kutubxona. U faqat server ma'lumotlarini saqlash uchun Redux kabi murakkab global state menejerlariga bo'lgan ehtiyojni yo'q qiladi.",
+              "U keshlash, fonda ma'lumotlarni yangilash va eskirgan ma'lumotlarni sinxronlashtirish kabi ishlarni avtomatik ravishda bajaradi. Bu shuni anglatadiki, komponent har safar yuklanganda qo'lda API so'rovlarini yozishingiz shart emas va ilovangiz doimo eng yangi ma'lumotlarni ko'rsatadi.",
+              "Loyihalaringizda React Query-ni qo'llash orqali siz takrorlanuvchi (boilerplate) kodlar hajmini sezilarli darajada kamaytirishingiz hamda dastur unumdorligi va foydalanuvchi tajribasini oshirishingiz mumkin."
+            ]
           },
           tailwindPremium: {
             title: "Tailwind bilan Premium UI",
-            desc: "Tailwind CSS yordamida yuqori sifatli va professional interfeyslarni yaratish sirlari."
+            desc: "Tailwind CSS yordamida yuqori sifatli va professional interfeyslarni yaratish sirlari.",
+            content: [
+              "Tailwind CSS veb-ilovalarga stil berish usulimizni tubdan o'zgartirdi. An'anaviy komponentlar kutubxonalaridan farqli o'laroq, u HTML-ni tark etmasdan turib to'liq shaxsiy dizaynlarni yaratishga imkon beruvchi utility-klasslarni taqdim etadi.",
+              "Haqiqiy premium UI yaratish uchun Tailwind konfiguratsiyasidan qanday to'g'ri foydalanishni bilish muhim. Shaxsiy ranglar palitrasidan foydalanish, soyalarni aniq sozlash va backdrop-blur effektlarini qo'llash orqali dizayningizni 'oddiy' darajadan 'senior' darajaga olib chiqishingiz mumkin.",
+              "Ushbu maqolada biz Tailwind kodini qanday qilib to'g'ri strukturalash, @apply yordamida qayta ishlatiluvchi komponentlar yaratish va Dark Mode (qorong'i rejim) ni samarali qo'llash bo'yicha eng yaxshi amaliyotlarni ko'rib chiqamiz."
+            ]
           },
           cleanCode: {
             title: "Clean Code prinsiplari",
-            desc: "Uzoq muddatli loyihalar uchun oson o'qiladigan, saqlanadigan va kengaytiriladigan kod yozish usullari."
+            desc: "Uzoq muddatli loyihalar uchun oson o'qiladigan, saqlanadigan va kengaytiriladigan kod yozish usullari.",
+            content: [
+              "Toza kod (Clean Code) yozish — bu shunchaki uning ishlashini ta'minlash emas, balki uni keyingi dasturchi (yoki olti oydan keyingi o'zingiz) uchun o'qilishi oson holatga keltirishdir. Aniq nomlash qoidalari va modulli funksiyalar yaxshi dasturiy arxitekturaning asosidir.",
+              "Asosiy qoidalardan biri bu DRY (Don't Repeat Yourself - O'zingizni takrorlamang) tamoyilidir. Agar siz bir xil mantiqni qayta-qayta nusxalayotganingizni sezsangiz, uni qayta ishlatiluvchi yordamchi funksiya yoki maxsus React hook'iga ajratish vaqti kelgan bo'ladi.",
+              "Bundan tashqari, komponentlaringizni kichik va faqat bitta vazifaga qaratilgan holatda saqlash (Single Responsibility Principle) kodni test qilish va xatolarni topishni ancha osonlashtiradi. Har doim murakkablikdan ko'ra soddalikni afzal ko'ring."
+            ]
           }
         }
       },
@@ -172,18 +204,34 @@ const resources = {
         searchPlaceholder: "Поиск статей...",
         readMore: "Подробнее",
         noResults: "Статьи не найдены",
+        backToBlog: "Вернуться в блог",
         posts: {
           reactQuery: {
             title: "Зачем использовать React Query?",
-            desc: "Лучший способ управления данными в приложениях React и почему его стоит использовать."
+            desc: "Лучший способ управления данными в приложениях React и почему его стоит использовать.",
+            content: [
+              "React Query — это удивительная библиотека для получения данных и управления состоянием в React-приложениях. Она устраняет необходимость в сложных решениях для глобального управления состоянием, таких как Redux, только для хранения данных сервера.",
+              "Она автоматически обрабатывает кэширование, фоновые обновления и синхронизацию устаревших данных. Это означает, что ваше приложение всегда будет показывать самую свежую информацию, не требуя ручных API-запросов при каждом монтировании компонента.",
+              "Используя React Query в своих проектах, вы можете значительно сократить объем шаблонного кода и улучшить общую производительность и пользовательский опыт вашего приложения."
+            ]
           },
           tailwindPremium: {
             title: "Премиальный UI с Tailwind",
-            desc: "Секреты создания высококачественных профессиональных интерфейсов с помощью Tailwind CSS."
+            desc: "Секреты создания высококачественных профессиональных интерфейсов с помощью Tailwind CSS.",
+            content: [
+              "Tailwind CSS произвел революцию в том, как мы стилизуем веб-приложения. В отличие от традиционных библиотек компонентов, он предоставляет служебные классы, которые позволяют создавать полностью индивидуальный дизайн, не покидая HTML.",
+              "Чтобы создать по-настоящему премиальный пользовательский интерфейс, вам нужно понимать, как использовать конфигурацию Tailwind. Использование настраиваемых цветовых палитр, тонкая настройка теней и использование эффектов размытия фона могут поднять ваш дизайн от «базового» до уровня «senior».",
+              "В этой статье мы рассмотрим лучшие практики структурирования кода Tailwind, создания повторно используемых компонентов с помощью @apply и эффективного внедрения темного режима."
+            ]
           },
           cleanCode: {
             title: "Принципы чистого кода",
-            desc: "Как писать код, который легко читать, поддерживать и масштабировать для долгосрочных проектов."
+            desc: "Как писать код, который легко читать, поддерживать и масштабировать для долгосрочных проектов.",
+            content: [
+              "Написание чистого кода — это не просто заставить его работать; это о том, чтобы сделать его читаемым для следующего разработчика (которым можете быть вы через шесть месяцев). Четкие соглашения об именовании и модульные функции — основа хорошей архитектуры программного обеспечения.",
+              "Один из основных принципов — DRY (Don't Repeat Yourself). Если вы обнаружите, что снова и снова копируете и вставляете одну и ту же логику, пришло время извлечь ее в повторно используемую служебную функцию или пользовательский хук React.",
+              "Кроме того, сохранение ваших компонентов небольшими и сосредоточенными на одной ответственности (Принцип единой ответственности) значительно упрощает тестирование и отладку. Всегда отдавайте предпочтение простоте перед хитростью."
+            ]
           }
         }
       },
@@ -269,7 +317,7 @@ const resources = {
       },
       aboutme: {
         title: "Men haqimda",
-        description: "Men Asadbek, 19 yoshdaman. Veb dasturchiman va zamonaviy texnologiyalar yordamida oddiy, samarali veb-loyihalar yarataman. Doim o'rganishga ochiqman va yangi bilimlarni amaliyotda qo'llashga intilaman.",
+        description: "Men Asadbek, Veb dasturchiman va zamonaviy texnologiyalar yordamida oddiy, samarali veb-loyihalar yarataman. Doim o'rganishga ochiqman va yangi bilimlarni amaliyotda qo'llashga intilaman.",
         contactBtn: "Bog'lanish",
         toolsTitle: "Asbob uskunalari",
         capabilitiesTitle: "Men nimalar qila olaman",

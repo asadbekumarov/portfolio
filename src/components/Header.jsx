@@ -37,32 +37,37 @@ const contacts = [
   {
     img: gmailImg,
     key: "contacts.gmail",
-    link: "https://mail.google.com/mail/?view=cm&fs=1&to=asadbekumarov922@gmail.com",
+    link: "https://mail.google.com/mail/?view=cm&fs=1&to=asadbekumarov1202@gmail.com",
     hoverColor: "hover:border-red-400/50 hover:bg-red-500/5",
+    colorDot: "bg-red-400",
   },
   {
     img: githubImg,
     key: "contacts.github",
     link: "https://github.com/asadbekumarov",
     hoverColor: "hover:border-violet-400/50 hover:bg-violet-500/5",
+    colorDot: "bg-violet-400",
   },
   {
     img: telegramImg,
     key: "contacts.telegram",
     link: "https://t.me/asad_umarov",
     hoverColor: "hover:border-sky-400/50 hover:bg-sky-500/5",
+    colorDot: "bg-sky-400",
   },
   {
     img: telefonImg,
     key: "contacts.phone",
     link: "tel:+998949011202",
     hoverColor: "hover:border-emerald-400/50 hover:bg-emerald-500/5",
+    colorDot: "bg-emerald-500",
   },
 ];
 
 const LANGS = ["uz", "en", "ru"];
+const FLAGS = { uz: "🇺🇿", en: "🇬🇧", ru: "🇷🇺" };
 
-function Header({ setSidebarToggle }) {
+function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -75,7 +80,9 @@ function Header({ setSidebarToggle }) {
   };
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
     const onClickOutside = (e) => {
       if (!e.target.closest(".lang-switcher")) setIsLangOpen(false);
     };
@@ -136,24 +143,13 @@ function Header({ setSidebarToggle }) {
 
   return (
     <motion.header
-      className={`glass-effect transition-all duration-300 ${
+      className={`glass-effect transition-all duration-300 w-full z-50 ${
         isScrolled
           ? "shadow-[0_4px_24px_-4px_rgba(0,0,0,0.12)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)]"
           : ""
       }`}
     >
-      {/* ── Scroll progress line ── */}
-      {isScrolled && (
-        <motion.div
-          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary via-indigo-500 to-primary"
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          style={{ transformOrigin: "left" }}
-          transition={{ duration: 0.4 }}
-        />
-      )}
-
-      <div className="relative flex justify-between items-center gap-2 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8 py-[18px]">
+      <div className="max-w-[1300px] mx-auto w-full relative flex justify-between items-center gap-2 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8 py-[18px]">
         {/* ── Logo ── */}
         <NavLink to="/" className="flex items-center gap-3 group">
           <motion.div
@@ -167,6 +163,7 @@ function Header({ setSidebarToggle }) {
               alt="Logo"
               className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl border-2 border-primary/40 object-cover group-hover:border-primary transition-colors duration-300"
             />
+            <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-background animate-pulse" />
           </motion.div>
           <span
             className="text-xl sm:text-2xl font-black text-main group-hover:text-primary transition-colors duration-300 hidden sm:block tracking-tight"
@@ -191,8 +188,19 @@ function Header({ setSidebarToggle }) {
                   className={linkClasses}
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
-                  <Icon className="w-4 h-4" />
-                  <span>{t(key)}</span>
+                  {({ isActive }) => (
+                    <>
+                      <Icon className="w-4 h-4" />
+                      <span>{t(key)}</span>
+                      {isActive && (
+                        <motion.span
+                          layoutId="active-dot"
+                          className="absolute -bottom-[3px] left-1/2 -translate-x-1/2 w-3 h-0.5 bg-primary rounded-full"
+                          transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                        />
+                      )}
+                    </>
+                  )}
                 </NavLink>
               </motion.li>
             ))}
@@ -203,7 +211,7 @@ function Header({ setSidebarToggle }) {
           {/* Theme Toggle */}
           <motion.button
             onClick={toggleTheme}
-            className="p-2.5 rounded-xl text-muted hover:text-primary hover:bg-primary/8 border border-transparent hover:border-primary/20 transition-all duration-300"
+            className="p-2.5 rounded-xl text-muted hover:text-primary hover:bg-primary/8 border border-transparent hover:border-primary/20 transition-all duration-300 relative group"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             aria-label="Toggle theme"
@@ -219,6 +227,9 @@ function Header({ setSidebarToggle }) {
                 {theme === "dark" ? <HiSun size={19} /> : <HiMoon size={19} />}
               </motion.div>
             </AnimatePresence>
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-mono bg-surface border border-border px-2 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none text-muted"> 
+              {theme === "dark" ? "Light mode" : "Dark mode"} 
+            </span> 
           </motion.button>
 
           {/* Language Switcher */}
@@ -228,7 +239,7 @@ function Header({ setSidebarToggle }) {
               className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface border border-border hover:border-primary/40 transition-all duration-300"
               whileTap={{ scale: 0.95 }}
             >
-              <HiTranslate className="text-primary w-4 h-4" />
+              <span className="text-sm">{FLAGS[i18n.language?.slice(0, 2)]}</span>
               <span
                 className="text-xs font-black text-main uppercase"
                 style={{ fontFamily: '"Fira Code", monospace' }}
@@ -272,7 +283,7 @@ function Header({ setSidebarToggle }) {
                       }`}
                       style={{ fontFamily: '"Fira Code", monospace' }}
                     >
-                      {lang.toUpperCase()}
+                      {FLAGS[lang]} {lang.toUpperCase()}
                     </button>
                   ))}
                 </motion.div>
@@ -285,16 +296,6 @@ function Header({ setSidebarToggle }) {
 
         {/* ── Mobile Controls ── */}
         <div className="flex items-center gap-1.5 sm:gap-2 md:hidden shrink-0">
-          <motion.button
-            type="button"
-            onClick={() => setSidebarToggle((open) => !open)}
-            className="p-2 rounded-xl text-muted hover:text-primary hover:bg-primary/8 border border-transparent hover:border-primary/20 transition-all duration-300"
-            aria-label="Toggle profile sidebar"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.93 }}
-          >
-            <HiMenuAlt1 size={22} />
-          </motion.button>
           {/* Theme */}
           <button
             onClick={toggleTheme}
@@ -402,6 +403,9 @@ function Header({ setSidebarToggle }) {
                 >
                   {t("sidebar.info.directionValue")}
                 </p>
+                <p className="text-[9px] font-mono text-muted/50 uppercase tracking-widest mt-0.5"> 
+                  // web developer 
+                </p> 
               </div>
               <div className="ml-auto flex-shrink-0 flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -433,8 +437,17 @@ function Header({ setSidebarToggle }) {
                     }
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
-                    <Icon className="w-5 h-5 flex-shrink-0" />
-                    <span>{t(key)}</span>
+                    {({ isActive }) => (
+                      <>
+                        <Icon className="w-5 h-5 flex-shrink-0" />
+                        <span>{t(key)}</span>
+                        {isActive && (
+                          <span className="ml-auto text-[9px] font-black text-primary/60 font-mono bg-primary/10 px-2 py-0.5 rounded-full"> 
+                            ● 
+                          </span> 
+                        )}
+                      </>
+                    )}
                   </NavLink>
                 </motion.li>
               ))}
@@ -454,7 +467,7 @@ function Header({ setSidebarToggle }) {
                 Contacts
               </p>
               <div className="grid grid-cols-4 gap-2 mb-4">
-                {contacts.map(({ img, key, link, hoverColor }, i) => (
+                {contacts.map(({ img, key, link, hoverColor, colorDot }, i) => (
                   <motion.a
                     key={i}
                     href={link}
@@ -464,6 +477,7 @@ function Header({ setSidebarToggle }) {
                     whileHover={{ y: -3, scale: 1.04 }}
                     whileTap={{ scale: 0.94 }}
                   >
+                    <span className={`w-1.5 h-1.5 rounded-full ${colorDot} mb-0.5`} />
                     <img
                       src={img}
                       alt={t(key)}
@@ -479,8 +493,8 @@ function Header({ setSidebarToggle }) {
                 ))}
               </div>
 
-              <div className="flex justify-center">
-                <DownloadButton />
+              <div className="border-t border-border/50 pt-3 mt-1 flex justify-center"> 
+                <DownloadButton /> 
               </div>
             </motion.div>
           </motion.nav>
@@ -489,9 +503,5 @@ function Header({ setSidebarToggle }) {
     </motion.header>
   );
 }
-
-Header.propTypes = {
-  setSidebarToggle: PropTypes.func.isRequired,
-};
 
 export default Header;

@@ -58,7 +58,7 @@ function Project() {
         desc: t("project.items.mannhome.desc"),
         stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
         live: "https://mann-home.vercel.app/uz",
-        github: "https://github.com/",
+        github: "https://github.com/asadbekumarov/mann-home",
       },
       {
         id: 2,
@@ -69,7 +69,7 @@ function Project() {
         desc: t("project.items.darrov.desc"),
         stack: ["React.tsx", "TailwindCSS", "TypeScript"],
         live: "https://darrov.softturtkul.uz/",
-        github: "https://github.com/your-username/darrov",
+        github: "https://github.com/asadbekumarov/darrov",
       },
       {
         id: 3,
@@ -80,7 +80,7 @@ function Project() {
         desc: t("project.items.pubg.desc"),
         stack: ["Next.tsx", "TailwindCSS", "TypeScript"],
         live: "https://pubg-tournament-frontend.vercel.app/uz",
-        github: "https://github.com/",
+        github: "https://github.com/asadbekumarov/pubg-tournament",
       },
       {
         id: 4,
@@ -187,6 +187,7 @@ function Project() {
             variants={fadeIn(0)}
             className="lg:col-span-7"
           >
+            <p style={{fontFamily: '"Fira Code", monospace'}} className="text-xs text-muted/50 tracking-widest mb-2">// my_work</p>
             <motion.div
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 uppercase tracking-widest"
               variants={fadeIn(0.1)}
@@ -196,7 +197,7 @@ function Project() {
             </motion.div>
 
             <motion.h2
-              className="text-4xl sm:text-5xl lg:text-7xl font-black text-main mb-6 tracking-tighter"
+              className="text-3xl sm:text-5xl lg:text-7xl font-black text-main mb-4 sm:mb-6 tracking-tighter"
               style={{ fontFamily: '"Fira Code", monospace' }}
               variants={titleFade}
             >
@@ -204,12 +205,12 @@ function Project() {
             </motion.h2>
 
             <motion.div
-              className="w-24 h-1.5 bg-primary rounded-full mb-8"
+              className="w-16 sm:w-24 h-1.5 bg-primary rounded-full mb-6 sm:mb-8"
               variants={lineGrow}
             />
 
             <motion.p
-              className="text-muted text-lg leading-[1.75] max-w-xl mb-10"
+              className="text-muted text-base leading-[1.7] sm:leading-[1.75] max-w-md mb-8 sm:mb-10"
               style={{ fontFamily: '"Fira Code", monospace' }}
               variants={fadeIn(0.2)}
             >
@@ -217,10 +218,12 @@ function Project() {
             </motion.p>
 
             {/* Filter Buttons */}
-            <motion.div className="flex flex-wrap gap-2" variants={fadeIn(0.3)}>
+            <motion.div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide" variants={fadeIn(0.3)}>
               {FILTERS.map((filter) => {
                 const Icon = filter.icon;
                 const isActive = activeFilter === filter.value;
+                const dotColor = filter.value === "all" ? "bg-gray-400" : filter.value === "production" ? "bg-green-500" : "bg-blue-500";
+                
                 return (
                   <button
                     key={filter.value}
@@ -229,10 +232,11 @@ function Project() {
                       ${
                         isActive
                           ? "bg-primary text-white shadow-lg shadow-primary/25 scale-105"
-                          : "bg-surface text-muted hover:bg-border/50 border border-border"
+                          : "bg-background text-muted hover:bg-border/50 border border-border"
                       }`}
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
+                    <span className={`w-1.5 h-1.5 rounded-full inline-block mr-1 ${dotColor}`} />
                     <Icon size={15} />
                     {filter.label}
                     <span
@@ -284,14 +288,16 @@ function Project() {
                 variants={cardFadeUp}
                 className="group relative flex flex-col bg-surface border border-border rounded-[2rem] overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500"
               >
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 rounded-t-[2rem]" />
+                
                 {/* Background Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* Image Container */}
-                <div className="relative h-64 overflow-hidden m-4 rounded-[1.5rem] bg-background border border-border/50">
+                <div className="relative h-56 overflow-hidden m-4 rounded-[1.5rem] bg-background border border-border/50">
                   {/* Project number badge */}
-                  <div className="absolute bottom-3 right-3 z-10">
-                    <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-1 rounded-full tabular-nums">
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-primary text-white text-[10px] font-black px-2.5 py-1 rounded-full tabular-nums">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -314,8 +320,8 @@ function Project() {
                   />
 
                   {/* Tag Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-white/90 dark:bg-black/90 backdrop-blur-md text-main text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-tighter border border-border/50">
+                  <div className="absolute bottom-4 right-4">
+                    <span className="bg-black/70 backdrop-blur text-white/80 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       {project.tag}
                     </span>
                   </div>
@@ -323,6 +329,20 @@ function Project() {
 
                 {/* Content */}
                 <div className="relative p-5 sm:p-6 md:p-8 pt-2 flex flex-col flex-grow">
+                  {project.type === "production" ? (
+                    <span className="flex items-center gap-1.5 text-[10px] font-mono text-green-400/80 uppercase tracking-widest mb-1"> 
+                      <span className="relative flex h-1.5 w-1.5"> 
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span> 
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400"></span> 
+                      </span> 
+                      live 
+                    </span> 
+                  ) : (
+                    <span className="text-[10px] font-mono text-blue-400/70 uppercase tracking-widest mb-1 block">
+                      ◆ personal
+                    </span>
+                  )}
+                  
                   <h3
                     className="text-xl font-black text-main mb-3 group-hover:text-primary transition-colors duration-300 tracking-tight"
                     style={{ fontFamily: '"Fira Code", monospace' }}
@@ -335,11 +355,11 @@ function Project() {
                   </p>
 
                   {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  <div className="flex flex-wrap gap-2 mb-5">
                     {project.stack.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="text-[10px] font-bold text-muted bg-background border border-border px-2.5 py-1 rounded-lg uppercase tracking-wider"
+                        className="text-[10px] font-bold text-primary/80 bg-primary/8 border border-primary/20 px-2.5 py-1 rounded-lg uppercase tracking-wider"
                       >
                         {tech}
                       </span>
@@ -358,7 +378,7 @@ function Project() {
                       }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex-[2] flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary-hover transition-all duration-300 shadow-lg shadow-primary/20"
+                      className="flex-[2] flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-2xl font-black text-sm uppercase tracking-[0.15em] hover:bg-primary-hover transition-all duration-300 shadow-lg shadow-primary/20"
                       style={{ fontFamily: '"Fira Code", monospace' }}
                       target={isVocabApp(project) ? "_self" : "_blank"}
                       rel="noopener noreferrer"
@@ -371,11 +391,12 @@ function Project() {
                       href={project.github}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex-1 flex items-center justify-center h-[52px] bg-surface border border-border rounded-2xl text-main hover:border-primary/40 hover:text-primary transition-all duration-300"
+                      className="flex-1 flex items-center justify-center h-[52px] bg-surface border border-border rounded-2xl text-main hover:border-primary/40 hover:text-primary transition-all duration-300 group relative"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <FiGithub size={20} />
+                   
                     </motion.a>
                   </div>
                 </div>
@@ -427,6 +448,16 @@ function Project() {
               </button>
 
               <div className="w-full max-w-7xl">
+                <div className="text-center mb-6">
+                  <p className="text-white/40 text-[10px] uppercase tracking-[0.3em] font-mono mb-1">
+                    // gallery
+                  </p>
+                  <h3 className="text-xl font-black text-white tracking-tight"
+                      style={{fontFamily: '"Fira Code", monospace'}}>
+                    {selectedProject.title}
+                  </h3>
+                </div>
+
                 <div className="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-12 scrollbar-hide px-4">
                   {selectedProject.images.map((image, idx) => (
                     <div
@@ -440,23 +471,19 @@ function Project() {
                           className="h-[60vh] w-auto object-contain bg-white/5"
                         />
                       </div>
-                      <span className="text-white/40 font-black text-xs uppercase tracking-widest">
+                      <span className="bg-white/10 border border-white/20 text-white/60 font-black text-[10px] px-3 py-1 rounded-full uppercase tracking-widest">
                         {idx + 1} / {selectedProject.images.length}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="text-center">
-                  <h3
-                    className="text-3xl font-black text-white mb-2 uppercase tracking-tighter"
-                    style={{ fontFamily: '"Fira Code", monospace' }}
-                  >
-                    {selectedProject.title}
-                  </h3>
-                  <p className="text-white/50 text-sm tracking-widest uppercase font-bold">
-                    {selectedProject.tag}
-                  </p>
+                <div className="flex flex-wrap gap-2 justify-center mt-4">
+                  {selectedProject.stack.map((tech, i) => (
+                    <span key={i} className="text-[10px] font-bold text-white/50 bg-white/5 border border-white/10 px-2.5 py-1 rounded-lg uppercase tracking-wider">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>
@@ -474,6 +501,8 @@ function Project() {
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700 pointer-events-none" />
 
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+
             <div className="flex flex-col sm:flex-row items-center gap-8 text-center sm:text-left relative z-10">
               <motion.div
                 whileHover={{ rotate: -10, scale: 1.1 }}
@@ -488,6 +517,9 @@ function Project() {
               </motion.div>
 
               <div className="space-y-4 max-w-xl">
+                <p className="text-primary/50 text-[10px] uppercase tracking-[0.3em] font-mono mb-2">
+                  // stay_connected
+                </p>
                 <h3
                   className="text-3xl md:text-5xl font-black text-main tracking-tighter uppercase"
                   style={{ fontFamily: '"Fira Code", monospace' }}
@@ -509,6 +541,10 @@ function Project() {
                   className="inline-flex items-center gap-3 bg-primary text-white px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary-hover transition-all duration-300 shadow-xl shadow-primary/25"
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                  </span>
                   {t("project.telegram.btn")}
                   <FiExternalLink size={18} />
                 </motion.a>

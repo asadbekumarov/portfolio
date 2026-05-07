@@ -10,7 +10,10 @@ import {
   Mail,
   Phone,
   AtSign,
+  Clock,
+  MapPin,
 } from "lucide-react";
+import { FiArrowRight } from "react-icons/fi";
 import {
   titleFade,
   lineGrow,
@@ -38,11 +41,12 @@ function Contact() {
     {
       icon: gmailIcon,
       title: "contacts.emailTitle",
-      value: "asadbekumarov922@gmail.com",
-      link: "mailto:asadbekumarov922@gmail.com",
+      value: "asadbekumarov1202@gmail.com",
+      link: "mailto:asadbekumarov1202@gmail.com",
       gradientFrom: "from-red-500/10",
       gradientTo: "to-orange-500/10",
       borderHover: "hover:border-red-400/40",
+      colorHover: "group-hover:text-red-400",
       accent: Mail,
     },
     {
@@ -53,6 +57,7 @@ function Contact() {
       gradientFrom: "from-sky-500/10",
       gradientTo: "to-cyan-500/10",
       borderHover: "hover:border-sky-400/40",
+      colorHover: "group-hover:text-sky-400",
       accent: AtSign,
     },
     {
@@ -63,6 +68,7 @@ function Contact() {
       gradientFrom: "from-green-500/10",
       gradientTo: "to-emerald-500/10",
       borderHover: "hover:border-green-400/40",
+      colorHover: "group-hover:text-green-400",
       accent: Phone,
     },
   ];
@@ -95,7 +101,8 @@ function Contact() {
     if (Object.keys(validationErrors).length === 0) {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/api/contact", {
+        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3000/api/contact";
+        const response = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
@@ -121,33 +128,64 @@ function Contact() {
       <SEO title={t("nav.contact")} />
       <div className="max-w-[1300px] mx-auto">
         {/* ── Header ─────────────────────────────────────────────── */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn(0)}
-          className="mb-16"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
           <motion.div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 uppercase tracking-widest"
-            variants={fadeIn(0.1)}
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn(0)}
+            className="lg:col-span-7"
           >
-            <MessageCircle size={12} />
-            {t("contact.title")}
+            <p style={{fontFamily:'"Fira Code",monospace'}} 
+               className="text-xs text-muted/40 tracking-[0.3em] uppercase mb-3"> 
+              // get_in_touch 
+            </p> 
+            <motion.div
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-6 uppercase tracking-widest"
+              variants={fadeIn(0.1)}
+            >
+              <MessageCircle size={12} />
+              {t("contact.title")}
+            </motion.div>
+
+            <motion.h2
+              className="text-4xl sm:text-5xl lg:text-7xl font-black text-main mb-6 tracking-tighter"
+              style={{ fontFamily: '"Fira Code", monospace' }}
+              variants={titleFade}
+            >
+              {t("contact.title")}
+            </motion.h2>
+
+            <motion.div
+              className="w-16 sm:w-24 h-1.5 bg-primary rounded-full"
+              variants={lineGrow}
+            />
+
+            <p className="text-muted text-base mt-6 max-w-xl font-medium" 
+               style={{fontFamily:'"Fira Code",monospace'}}> 
+              {t("contact.subtitle") || "Fikr, taklif yoki hamkorlik bo'yicha yozing."} 
+            </p> 
           </motion.div>
 
-          <motion.h2
-            className="text-4xl sm:text-5xl lg:text-7xl font-black text-main mb-6 tracking-tighter"
-            style={{ fontFamily: '"Fira Code", monospace' }}
-            variants={titleFade}
+          <motion.div 
+            className="lg:col-span-5 flex flex-col gap-3"
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn(0.3)}
           >
-            {t("contact.title")}
-          </motion.h2>
-
-          <motion.div
-            className="w-24 h-1.5 bg-primary rounded-full"
-            variants={lineGrow}
-          />
-        </motion.div>
+            <div className="flex items-center gap-3 bg-surface border border-border rounded-2xl px-5 py-3 text-sm text-muted font-medium">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              Hozir online
+            </div>
+            <div className="flex items-center gap-3 bg-surface border border-border rounded-2xl px-5 py-3 text-sm text-muted font-medium">
+              <Clock size={16} className="text-primary" />
+              Javob vaqti: ~1 soat
+            </div>
+            <div className="flex items-center gap-3 bg-surface border border-border rounded-2xl px-5 py-3 text-sm text-muted font-medium">
+              <MapPin size={16} className="text-primary" />
+              Toshkent, O'zbekiston
+            </div>
+          </motion.div>
+        </div>
 
         {/* ── Contact Cards ───────────────────────────────────────── */}
         <motion.div
@@ -163,32 +201,36 @@ function Contact() {
               target={contact.link.startsWith("http") ? "_blank" : undefined}
               rel={contact.link.startsWith("http") ? "noopener noreferrer" : undefined}
               variants={cardFadeUp}
-              className={`group relative overflow-hidden bg-surface border border-border ${contact.borderHover} rounded-[2rem] p-8 flex flex-col items-center text-center transition-colors duration-500`}
+              className={`group relative overflow-hidden bg-surface border border-border ${contact.borderHover} rounded-[2rem] p-8 flex items-center gap-5 text-left transition-colors duration-500`}
             >
               {/* Gradient bg on hover */}
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${contact.gradientFrom} ${contact.gradientTo} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
               />
 
-              <div className="relative flex flex-col items-center">
-                {/* Icon box */}
-                <div className="w-16 h-16 rounded-2xl bg-background border border-border flex items-center justify-center mb-5 group-hover:border-primary/30 group-hover:scale-110 transition-all duration-300">
-                  <img
-                    src={contact.icon}
-                    alt={t(contact.title)}
-                    className="w-8 h-8"
-                  />
-                </div>
+              <FiArrowRight 
+                className="absolute top-5 right-5 text-muted/30 group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" 
+                size={16} 
+              />
 
+              <div className="relative w-16 h-16 rounded-2xl bg-background border border-border flex items-center justify-center flex-shrink-0 group-hover:border-primary/30 group-hover:scale-110 transition-all duration-300">
+                <img
+                  src={contact.icon}
+                  alt={t(contact.title)}
+                  className="w-8 h-8"
+                />
+              </div>
+
+              <div className="relative flex flex-col">
                 <h3
-                  className="text-sm font-black text-main mb-2 group-hover:text-primary transition-colors duration-300 tracking-tight uppercase"
+                  className="text-[10px] uppercase tracking-widest text-muted mb-1 font-black"
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
                   {t(contact.title)}
                 </h3>
 
                 <p
-                  className="text-muted text-xs sm:text-sm font-medium break-all"
+                  className={`text-base font-black text-main break-all transition-colors duration-300 ${contact.colorHover}`}
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
                   {contact.value}
@@ -202,14 +244,9 @@ function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
           {/* Left – title + Lottie animation */}
           <div className="lg:col-span-2 lg:sticky lg:top-32 flex flex-col">
-            <h2
-              className="text-3xl md:text-4xl font-black text-main mb-5 tracking-tight"
-              style={{ fontFamily: '"Fira Code", monospace' }}
-            >
-              {t("contact.formTitle")}
-            </h2>
-
-            <div className="w-16 h-1.5 bg-primary rounded-full mb-6" />
+            <p className="text-xs text-muted/40 tracking-[0.3em] uppercase mb-6 font-mono"> 
+              // send_message 
+            </p> 
 
             {/* Info tiles */}
             <div className="space-y-3 mb-6">
@@ -217,10 +254,12 @@ function Contact() {
                 {
                   label: t("sidebar.info.workingHoursValue"),
                   desc: t("sidebar.info.workingHours"),
+                  icon: <Clock size={14} className="text-primary" />,
                 },
                 {
                   label: t("sidebar.info.levelValue"),
                   desc: t("sidebar.info.level"),
+                  icon: <CheckCircle2 size={14} className="text-primary" />,
                 },
                 {
                   label: t("sidebar.info.locationValue"),
@@ -229,9 +268,11 @@ function Contact() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-surface border border-border hover:border-primary/30 transition-colors duration-300"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-surface border border-border border-l-2 border-l-primary/20 hover:border-l-primary transition-all duration-300"
                 >
-                  <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                  <div className="flex items-center justify-center w-5 h-5 mt-0.5">
+                    {item.icon ? item.icon : <div className="w-1.5 h-1.5 rounded-full bg-primary" />}
+                  </div>
                   <div>
                     <p
                       className="text-main font-black text-sm"
@@ -240,7 +281,7 @@ function Contact() {
                       {item.label}
                     </p>
                     <p
-                      className="text-muted text-xs uppercase tracking-widest mt-0.5"
+                      className="text-muted text-[10px] uppercase tracking-widest mt-0.5 font-bold"
                       style={{ fontFamily: '"Fira Code", monospace' }}
                     >
                       {item.desc}
@@ -263,11 +304,15 @@ function Contact() {
 
           {/* Right – form / success */}
           <div className="lg:col-span-3">
+            <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-primary to-transparent rounded-t-[2rem] -mt-[1px]" />
             {submitted ? (
               /* ── Success State ── */
-              <div className="bg-surface border border-primary/30 rounded-[2rem] p-12 text-center">
-                <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
-                  <CheckCircle2 className="w-12 h-12 text-primary" />
+              <div className="bg-surface border border-primary/30 border-t-0 rounded-b-[2rem] rounded-t-none p-12 text-center">
+                <p className="text-primary/50 text-[10px] uppercase tracking-[0.3em] font-mono mb-3"> 
+                  // message_sent 
+                </p> 
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                  <CheckCircle2 className="w-10 h-10 text-primary" />
                 </div>
 
                 <h3
@@ -277,11 +322,15 @@ function Contact() {
                   {t("contact.alerts.success")}
                 </h3>
 
+                <p className="text-muted text-sm mt-2 mb-8" style={{fontFamily:'"Fira Code",monospace'}}> 
+                  {t("contact.alerts.successDesc") || "Tez orada javob beraman!"} 
+                </p> 
+
                 <motion.button
                   onClick={() => setSubmitted(false)}
                   whileHover={{ scale: 1.04, y: -2 }}
                   whileTap={{ scale: 0.97 }}
-                  className="mt-8 bg-primary text-white px-10 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary-hover transition-colors duration-300 shadow-xl shadow-primary/25"
+                  className="bg-primary text-white px-10 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary-hover transition-colors duration-300 shadow-xl shadow-primary/25"
                   style={{ fontFamily: '"Fira Code", monospace' }}
                 >
                   {t("contact.form.submitBtn")} →
@@ -291,7 +340,7 @@ function Contact() {
               /* ── Contact Form ── */
               <form
                 onSubmit={handleSubmit}
-                className="bg-surface border border-border rounded-[2rem] p-8 md:p-10 space-y-7"
+                className="bg-surface border border-border/60 border-t-0 rounded-b-[2rem] rounded-t-none p-6 sm:p-10 space-y-6 sm:space-y-7"
                 noValidate
               >
                 {/* Name + Email row */}
@@ -304,6 +353,7 @@ function Contact() {
                       style={{ fontFamily: '"Fira Code", monospace' }}
                     >
                       {t("contact.form.nameLabel")}
+                      <span className="text-primary ml-0.5">*</span>
                     </label>
                     <input
                       id="name"
@@ -312,8 +362,8 @@ function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       className={`w-full px-5 py-4 rounded-2xl bg-background border ${
-                        errors.name ? "border-red-500" : "border-border"
-                      } focus:border-primary outline-none transition-colors duration-300 text-main placeholder-muted font-medium`}
+                        errors.name ? "border-red-500" : "border-border/60"
+                      } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-main placeholder-muted font-medium`}
                       style={{ fontFamily: '"Fira Code", monospace' }}
                       aria-describedby="name-error"
                     />
@@ -336,6 +386,7 @@ function Contact() {
                       style={{ fontFamily: '"Fira Code", monospace' }}
                     >
                       {t("contact.form.emailLabel")}
+                      <span className="text-primary ml-0.5">*</span>
                     </label>
                     <input
                       id="email"
@@ -344,8 +395,8 @@ function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       className={`w-full px-5 py-4 rounded-2xl bg-background border ${
-                        errors.email ? "border-red-500" : "border-border"
-                      } focus:border-primary outline-none transition-colors duration-300 text-main placeholder-muted font-medium`}
+                        errors.email ? "border-red-500" : "border-border/60"
+                      } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-main placeholder-muted font-medium`}
                       style={{ fontFamily: '"Fira Code", monospace' }}
                       aria-describedby="email-error"
                     />
@@ -369,6 +420,7 @@ function Contact() {
                     style={{ fontFamily: '"Fira Code", monospace' }}
                   >
                     {t("contact.form.messageLabel")}
+                    <span className="text-primary ml-0.5">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -377,8 +429,8 @@ function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     className={`w-full px-5 py-4 rounded-2xl bg-background border ${
-                      errors.message ? "border-red-500" : "border-border"
-                    } focus:border-primary outline-none resize-none transition-colors duration-300 text-main placeholder-muted font-medium`}
+                      errors.message ? "border-red-500" : "border-border/60"
+                    } focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none resize-none transition-all duration-300 text-main placeholder-muted font-medium`}
                     style={{ fontFamily: '"Fira Code", monospace' }}
                     aria-describedby="message-error"
                   />
@@ -417,6 +469,10 @@ function Contact() {
                     </>
                   ) : (
                     <>
+                      <span className="relative flex h-2 w-2 mr-1"> 
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-60"></span> 
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span> 
+                      </span> 
                       {t("contact.form.submitBtn")}
                       <Send size={16} />
                     </>
