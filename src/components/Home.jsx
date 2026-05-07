@@ -5,7 +5,7 @@ import { PiMedalThin } from "react-icons/pi";
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import SEO from './SEO';
-import profileImg from '../assets/sidebarImg/ozm.jpg';
+import profileImg from '../assets/sidebarImg/person-icon-lg.png';
 
 import {
     containerStagger,
