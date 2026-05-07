@@ -58,7 +58,7 @@ const contacts = [
   {
     img: telefonImg,
     key: "contacts.phone",
-    link: "tel:+998949011202",
+    link: "tel:+998772687865",
     hoverColor: "hover:border-emerald-400/50 hover:bg-emerald-500/5",
     colorDot: "bg-emerald-500",
   },
