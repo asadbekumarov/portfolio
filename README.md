@@ -58,7 +58,7 @@ d:\projects\portfolio\
 │   ├── App.jsx             # Asosiy routing va Layout
 │   ├── i18n.js             # Tarjimalar konfiguratsiyasi va lug'atlar
 │   ├── index.css           # Global stillar va Tailwind bazasi (RGB o'zgaruvchilar)
-│   └── main.tsx            # Dasturning kirish nuqtasi (Entry point)
+│   └── main.jsx            # Dasturning kirish nuqtasi (Entry point)
 ├── tailwind.config.js      # Tailwind sozlamalari (ranglar, soyalar)
 ├── package.json            # Loyiha kutubxonalari va skriptlari
 └── README.md               # Ushbu hujjat
